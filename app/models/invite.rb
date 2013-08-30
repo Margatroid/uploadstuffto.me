@@ -3,6 +3,6 @@ class Invite < ActiveRecord::Base
 
   private
   def generate_key
-    self.key = SecureRandom.base64(10)
+    self.key = SecureRandom.base64(16)
   end
 end
