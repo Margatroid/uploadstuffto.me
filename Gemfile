@@ -29,6 +29,7 @@ gem 'jbuilder', '~> 1.2'
 
 group :test, :development do
   gem "rspec-rails", "~> 2.4"
+  gem 'capybara'
 end
 
 group :doc do
