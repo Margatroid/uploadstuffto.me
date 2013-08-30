@@ -1,4 +1,6 @@
 class Invite < ActiveRecord::Base
+  validates :description, presence: true
+
   after_initialize :generate_key
 
   private
