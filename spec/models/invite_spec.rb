@@ -19,4 +19,8 @@ describe Invite do
     subject.key = 'hello'
     expect { subject.save! }.to raise_error(ActiveRecord::RecordInvalid)
   end
+
+  it 'can only be used once by default' do
+    subject.reuse_times.should eq(0)
+  end
 end
