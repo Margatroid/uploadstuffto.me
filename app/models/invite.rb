@@ -1,5 +1,6 @@
 class Invite < ActiveRecord::Base
   validates :description, presence: true
+  validates :key,         length:   { minimum: 16 }
 
   after_initialize :generate_key
 
