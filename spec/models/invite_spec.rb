@@ -17,6 +17,6 @@ describe Invite do
 
   it "should consider keys shorter than #{ min_key_length } to be invalid" do
     subject.key = 'hello'
-    expect { subject.save! }.to raise_error(RecordInvalid)
+    expect { subject.save! }.to raise_error(ActiveRecord::RecordInvalid)
   end
 end
