@@ -1,9 +1,13 @@
 require 'spec_helper'
 
-describe 'registration with invites' do
+describe 'registration with invites', :type => :feature do
   before  { @onceoff = Invite.create(:description => 'Test') }
 
   it 'should let me register an account with an invite' do
+  end
+
+  it 'should show registration page at /register' do
+    visit '/register'
   end
 
   it 'should refuse registration with a bad key' do
