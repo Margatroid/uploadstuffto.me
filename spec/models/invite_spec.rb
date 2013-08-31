@@ -23,4 +23,12 @@ describe Invite do
   it 'can only be used once by default' do
     subject.reuse_times.should eq(0)
   end
+
+  it 'must not save invites with the same key' do
+    first  = Invite.new(:description => 'Test')
+    second = Invite.new(:description => 'Same key as first',
+                        :key         => first.key)
+    first.save!
+    expect { second.save! }.to raise_error(ActiveRecord::RecordInvalid)
+  end
 end
