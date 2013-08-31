@@ -15,6 +15,20 @@ describe 'registration with invites', :type => :feature do
     expect(page).to have_content 'You have signed up successfully'
   end
 
+  it 'should let me login' do
+    mail = 'registered@user.com'
+    pass = 'cosmoflips'
+    visit '/login'
+
+    User.create(:password => pass, :email => mail)
+
+    fill_in 'Email',    :with => mail
+    fill_in 'Password', :with => pass
+
+    click_button 'Sign in'
+    expect(page).to have_content 'Signed in successfully.'
+  end
+
   it 'should show registration page at /register' do
     visit '/register'
   end
