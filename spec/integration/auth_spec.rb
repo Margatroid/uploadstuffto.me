@@ -4,6 +4,15 @@ describe 'registration with invites', :type => :feature do
   before  { @onceoff = Invite.create(:description => 'Test') }
 
   it 'should let me register an account with an invite' do
+    pass = 'password'
+    visit '/register'
+
+    fill_in 'Email',                 :with => 'hello@world.com'
+    fill_in 'Password',              :with => pass
+    fill_in 'Password confirmation', :with => pass
+
+    click_link 'Sign up'
+    expect(page).to have_content 'You have signed up successfully'
   end
 
   it 'should show registration page at /register' do
