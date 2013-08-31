@@ -31,10 +31,12 @@ describe 'registration with invites', :type => :feature do
 
   it 'should show registration page at /register' do
     visit '/register'
+    expect(page).to have_content 'Register new account'
   end
 
   it 'should show login page at /login' do
     visit '/login'
+    expect(page).to have_content 'Log in'
   end
 
   it 'should refuse registration with a bad key' do
