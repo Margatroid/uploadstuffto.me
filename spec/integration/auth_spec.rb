@@ -10,6 +10,7 @@ describe 'registration with invites', :type => :feature do
     fill_in 'Email',                 :with => 'hello@world.com'
     fill_in 'Password',              :with => pass
     fill_in 'Password confirmation', :with => pass
+    fill_in 'Invite key',            :with => @onceoff.key
 
     click_button 'Register'
     expect(page).to have_content 'You have signed up successfully'
