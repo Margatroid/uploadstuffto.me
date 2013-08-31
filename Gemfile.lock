@@ -53,6 +53,8 @@ GEM
     execjs (2.0.1)
     faye-websocket (0.4.7)
       eventmachine (>= 0.12.0)
+    foreigner (1.4.2)
+      activerecord (>= 3.0.0)
     hike (1.2.3)
     http_parser.rb (0.5.3)
     i18n (0.6.5)
@@ -151,6 +153,7 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 4.0.0)
   devise
+  foreigner
   jbuilder (~> 1.2)
   jquery-rails
   poltergeist
