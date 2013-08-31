@@ -11,7 +11,7 @@ describe 'registration with invites', :type => :feature do
     fill_in 'Password',              :with => pass
     fill_in 'Password confirmation', :with => pass
 
-    click_link 'Sign up'
+    click_button 'Sign up'
     expect(page).to have_content 'You have signed up successfully'
   end
 
