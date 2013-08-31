@@ -10,6 +10,10 @@ describe 'registration with invites', :type => :feature do
     visit '/register'
   end
 
+  it 'should show login page at /login' do
+    visit '/login'
+  end
+
   it 'should refuse registration with a bad key' do
   end
 

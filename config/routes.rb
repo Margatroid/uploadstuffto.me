@@ -1,6 +1,7 @@
 NoMoreIdeas::Application.routes.draw do
   devise_for :users, :path => '', :path_names => {
-    :sign_up => 'register'
+    :sign_up => 'register',
+    :sign_in => 'login'
   }
 
   # The priority is based upon order of creation: first created -> highest priority.
