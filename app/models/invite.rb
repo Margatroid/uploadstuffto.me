@@ -6,6 +6,12 @@ class Invite < ActiveRecord::Base
 
   after_initialize :set_defaults
 
+  def self.key_valid?(key)
+    invite = Invite.find_by key: key
+    return false unless invite
+    return invite.users.count < (invite.reuse_times + 1)
+  end
+
   private
   def set_defaults
     self.key         ||= SecureRandom.base64
