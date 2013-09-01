@@ -82,6 +82,17 @@ describe 'registration with invalid keys', :type => :feature do
   end
 
   it 'will let me make multiple accounts with multiple use key' do
+    multiple = Invite.create(:description => 'Test', :reuse_times => 5)
+
+    (1..5).each do |i|
+      register("hello#{ i }@world.com", multiple.key)
+      expect(page).to have_content 'You have signed up successfully'
+      click_link 'Log out'
+    end
+
+    register('sixth@time.com', multiple.key)
+    expect(page).to have_content 'invalid'
+    User.all.count.should be 5
   end
 end
 
