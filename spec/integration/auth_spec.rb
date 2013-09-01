@@ -59,6 +59,16 @@ describe 'registration with invalid keys', :type => :feature do
   end
 
   it 'will refuse with no key' do
+    pass = 'password'
+    visit '/register'
+
+    fill_in 'Email',                 :with => 'invalid@key.com'
+    fill_in 'Password',              :with => pass
+    fill_in 'Password confirmation', :with => pass
+
+    click_button 'Register'
+    expect(page).to have_content 'invalid'
+    User.all.count.should be 0
   end
 
   it 'will not let me register again with a used onceoff key' do
