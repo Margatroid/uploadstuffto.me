@@ -3,8 +3,13 @@
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
+  <div>
+    <%= f.label :invite_key %><br />
+    <input id="user_invite_key" name="invite_key" type="text" autofocus="autofocus" />
+  </div>
+
   <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+  <%= f.email_field :email %></div>
 
   <div><%= f.label :password %><br />
   <%= f.password_field :password %></div>
