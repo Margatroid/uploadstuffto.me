@@ -69,6 +69,16 @@ describe 'registration with invalid keys', :type => :feature do
   end
 
   it 'will not let me register again with a used onceoff key' do
+    onceoff = Invite.create(:description => 'Test')
+
+    register('hello@world.com', onceoff.key)
+    expect(page).to have_content 'You have signed up successfully'
+
+    click_link 'Log out'
+
+    register('hello_again@world.com', onceoff.key)
+    expect(page).to have_content 'invalid'
+    User.all.count.should be 1
   end
 
   it 'will let me make multiple accounts with multiple use key' do
