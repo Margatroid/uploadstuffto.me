@@ -1,7 +1,12 @@
 require 'spec_helper'
 
-describe 'registration with invites', :type => :feature do
+describe 'register account with a onceoff invite', :type => :feature do
   before  { @onceoff = Invite.create(:description => 'Test') }
+
+  it 'should show registration page at /register' do
+    visit '/register'
+    expect(page).to have_content 'Register new account'
+  end
 
   it 'should let me register an account with an invite' do
     pass = 'password'
@@ -14,6 +19,13 @@ describe 'registration with invites', :type => :feature do
 
     click_button 'Register'
     expect(page).to have_content 'You have signed up successfully'
+  end
+end
+
+describe 'the login process', :type => :feature do
+  it 'should show login page at /login' do
+    visit '/login'
+    expect(page).to have_content 'Log in'
   end
 
   it 'should let me login' do
@@ -29,26 +41,18 @@ describe 'registration with invites', :type => :feature do
     click_button 'Sign in'
     expect(page).to have_content 'Signed in successfully.'
   end
+end
 
-  it 'should show registration page at /register' do
-    visit '/register'
-    expect(page).to have_content 'Register new account'
+describe 'registration with invalid keys', :type => :feature do
+  it 'will refuse invalid keys' do
   end
 
-  it 'should show login page at /login' do
-    visit '/login'
-    expect(page).to have_content 'Log in'
+  it 'will refuse with no key' do
   end
 
-  it 'should refuse registration with a bad key' do
+  it 'will not let me register again with a used onceoff key' do
   end
 
-  it 'should refuse registration with no key' do
-  end
-
-  it 'should not let me use a onceoff key more than once' do
-  end
-
-  it 'should let me make multiple accounts with a multi-use invite' do
+  it 'will let me make multiple accounts with multiple use key' do
   end
 end
