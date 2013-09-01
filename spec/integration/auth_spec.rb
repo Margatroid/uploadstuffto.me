@@ -55,7 +55,7 @@ describe 'registration with invalid keys', :type => :feature do
 
     click_button 'Register'
     expect(page).to have_content 'invalid'
-    User.all.count.should be_false
+    User.all.count.should be 0
   end
 
   it 'will refuse with no key' do
