@@ -10,7 +10,7 @@ class Invite < ActiveRecord::Base
     invite = Invite.find_by key: key
     return false unless invite
 
-    return invite.users.count < invite.usage
+    invite.users.count < invite.usage
   end
 
   private
