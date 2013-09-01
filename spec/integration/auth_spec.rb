@@ -1,6 +1,29 @@
 require 'spec_helper'
 
+module AuthHelper
+  def register(email, key)
+    visit '/register'
+    pass = 'password'
+
+    fill_in 'Email',                 :with => email
+    fill_in 'Password',              :with => pass
+    fill_in 'Password confirmation', :with => pass
+
+    fill_in 'Invite key', :with => key if key
+
+    click_button 'Register'
+  end
+
+  def login(email, pass)
+    visit '/login'
+    fill_in 'Email',    :with => email
+    fill_in 'Password', :with => pass
+    click_button 'Sign in'
+  end
+end
+
 describe 'register account with a onceoff invite', :type => :feature do
+  include AuthHelper
   before  { @onceoff = Invite.create(:description => 'Test') }
 
   it 'should show registration page at /register' do
@@ -9,20 +32,13 @@ describe 'register account with a onceoff invite', :type => :feature do
   end
 
   it 'should let me register an account with an invite' do
-    pass = 'password'
-    visit '/register'
-
-    fill_in 'Email',                 :with => 'hello@world.com'
-    fill_in 'Password',              :with => pass
-    fill_in 'Password confirmation', :with => pass
-    fill_in 'Invite key',            :with => @onceoff.key
-
-    click_button 'Register'
+    register('hello@world.com', @onceoff.key)
     expect(page).to have_content 'You have signed up successfully'
   end
 end
 
 describe 'the login process', :type => :feature do
+  include AuthHelper
   it 'should show login page at /login' do
     visit '/login'
     expect(page).to have_content 'Log in'
@@ -31,42 +47,23 @@ describe 'the login process', :type => :feature do
   it 'should let me login' do
     mail = 'registered@user.com'
     pass = 'cosmoflips'
-    visit '/login'
 
     User.create(:password => pass, :email => mail)
-
-    fill_in 'Email',    :with => mail
-    fill_in 'Password', :with => pass
-
-    click_button 'Sign in'
+    login(mail, pass)
     expect(page).to have_content 'Signed in successfully.'
   end
 end
 
 describe 'registration with invalid keys', :type => :feature do
+  include AuthHelper
   it 'will refuse invalid keys' do
-    pass = 'password'
-    visit '/register'
-
-    fill_in 'Email',                 :with => 'invalid@key.com'
-    fill_in 'Password',              :with => pass
-    fill_in 'Password confirmation', :with => pass
-    fill_in 'Invite key',            :with => 'not_a_valid_key'
-
-    click_button 'Register'
+    register('invalid@key.com', 'not_a_valid_key')
     expect(page).to have_content 'invalid'
     User.all.count.should be 0
   end
 
   it 'will refuse with no key' do
-    pass = 'password'
-    visit '/register'
-
-    fill_in 'Email',                 :with => 'invalid@key.com'
-    fill_in 'Password',              :with => pass
-    fill_in 'Password confirmation', :with => pass
-
-    click_button 'Register'
+    register('invalid@key.com', nil)
     expect(page).to have_content 'invalid'
     User.all.count.should be 0
   end
@@ -79,17 +76,15 @@ describe 'registration with invalid keys', :type => :feature do
 end
 
 describe 'signing out process', :type => :feature do
+  include AuthHelper
   before  {
-    @logged_in_user = User.create(
+    @registered_user = User.create(
       :email => 'test@user.com', :password => 'use_factory_girl_later'
     )
   }
 
   it 'should let me sign out on homepage' do
-    visit '/login'
-    fill_in 'Email',    :with => @logged_in_user.email
-    fill_in 'Password', :with => @logged_in_user.password
-    click_button 'Sign in'
+    login(@registered_user.email, @registered_user.password)
     expect(page).to have_content 'Signed in successfully.'
 
     click_link 'Log out'
