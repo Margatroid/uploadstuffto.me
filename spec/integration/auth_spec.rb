@@ -77,3 +77,22 @@ describe 'registration with invalid keys', :type => :feature do
   it 'will let me make multiple accounts with multiple use key' do
   end
 end
+
+describe 'signing out process', :type => :feature do
+  before  {
+    @logged_in_user = User.create(
+      :email => 'test@user.com', :password => 'use_factory_girl_later'
+    )
+  }
+
+  it 'should let me sign out on homepage' do
+    visit '/login'
+    fill_in 'Email',    :with => @logged_in_user.email
+    fill_in 'Password', :with => @logged_in_user.password
+    click_button 'Sign in'
+    expect(page).to have_content 'Signed in successfully.'
+
+    click_link 'Log out'
+    expect(page).to have_content 'You have logged out.'
+  end
+end
