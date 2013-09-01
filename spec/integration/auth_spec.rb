@@ -45,6 +45,17 @@ end
 
 describe 'registration with invalid keys', :type => :feature do
   it 'will refuse invalid keys' do
+    pass = 'password'
+    visit '/register'
+
+    fill_in 'Email',                 :with => 'invalid@key.com'
+    fill_in 'Password',              :with => pass
+    fill_in 'Password confirmation', :with => pass
+    fill_in 'Invite key',            :with => 'not_a_valid_key'
+
+    click_button 'Register'
+    expect(page).to have_content 'invalid'
+    User.all.count.should be_false
   end
 
   it 'will refuse with no key' do
