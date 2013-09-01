@@ -1,23 +1,23 @@
 namespace :invite do
   desc 'Create a new invite'
-  task :create, [:desc, :reuse] => [:environment] do |t, args|
+  task :create, [:desc, :usage] => [:environment] do |t, args|
     unless args.desc
       puts 'Failed to create invite: Missing description.'
       print_creation_syntax
       next
     end
 
-    create_invite(args.desc, args.reuse)
+    create_invite(args.desc, args.usage)
   end
 
-  def create_invite(description, reuse = 0)
-    i = Invite.create(:description => description, :reuse_times => reuse.to_i)
+  def create_invite(description, usage = 1)
+    i = Invite.create(:description => description, :usage => usage.to_i)
     puts "Invite created. Key: #{ i.key }"
   end
 
   def print_creation_syntax
     puts  "Usage: rake 'invite:create[Invite description, 5]'\n" \
-          "  Number of times invite can be reused (5) may be omitted,\n" \
+          "  Number of times invite can be used (5) may be omitted,\n" \
           "  will default to 0."
   end
 end

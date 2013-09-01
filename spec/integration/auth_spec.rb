@@ -82,7 +82,7 @@ describe 'registration with invalid keys', :type => :feature do
   end
 
   it 'will let me make multiple accounts with multiple use key' do
-    multiple = Invite.create(:description => 'Test', :reuse_times => 5)
+    multiple = Invite.create(:description => 'Test', :usage => 5)
 
     (1..5).each do |i|
       register("hello#{ i }@world.com", multiple.key)

@@ -9,12 +9,13 @@ class Invite < ActiveRecord::Base
   def self.key_valid?(key)
     invite = Invite.find_by key: key
     return false unless invite
-    return invite.users.count < (invite.reuse_times + 1)
+
+    return invite.users.count < invite.usage
   end
 
   private
   def set_defaults
-    self.key         ||= SecureRandom.base64
-    self.reuse_times ||= 0
+    self.key   ||= SecureRandom.base64
+    self.usage ||= 1
   end
 end

@@ -21,7 +21,7 @@ describe Invite do
   end
 
   it 'can only be used once by default' do
-    subject.reuse_times.should eq(0)
+    subject.usage.should eq(1)
   end
 
   it 'must not save invites with the same key' do
