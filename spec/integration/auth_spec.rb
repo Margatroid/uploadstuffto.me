@@ -48,7 +48,9 @@ describe 'the login process', :type => :feature do
     mail = 'registered@user.com'
     pass = 'cosmoflips'
 
-    User.create(:password => pass, :email => mail)
+    Invite.create(:description => 'test')
+      .users
+      .create(:password => pass, :email => mail)
     login(mail, pass)
     expect(page).to have_content 'Signed in successfully.'
   end
@@ -99,8 +101,10 @@ end
 describe 'signing out process', :type => :feature do
   include AuthHelper
   before  {
-    @registered_user = User.create(
-      :email => 'test@user.com', :password => 'use_factory_girl_later'
+    invite = Invite.create(:description => 'Test', :usage => 5)
+    @registered_user = invite.users.create(
+      :email => 'test@user.com',
+      :password => 'use_factory_girl_later'
     )
   }
 
