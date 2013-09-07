@@ -6,4 +6,5 @@ class User < ActiveRecord::Base
          :rememberable, :trackable, :validatable
 
   belongs_to :invite
+  validates :invite_id, presence: true
 end
