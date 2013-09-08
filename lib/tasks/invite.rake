@@ -18,6 +18,6 @@ namespace :invite do
   def print_creation_syntax
     puts  "Usage: rake 'invite:create[Invite description, 5]'\n" \
           "  Number of times invite can be used (5) may be omitted,\n" \
-          "  will default to 0."
+          "  will default to 1."
   end
 end
