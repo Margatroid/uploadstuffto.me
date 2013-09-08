@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20130908142149) do
 
   create_table "invites", force: true do |t|
     t.string   "key"
-    t.integer  "reuse_times"
+    t.integer  "usage"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description"
