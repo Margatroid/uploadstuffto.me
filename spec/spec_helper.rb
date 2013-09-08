@@ -8,6 +8,7 @@ require 'rspec/rails'
 require 'rspec/autorun'
 
 include Warden::Test::Helpers
+Warden.test_mode!
 
 Capybara.javascript_driver = :poltergeist
 

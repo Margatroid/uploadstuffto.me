@@ -16,6 +16,7 @@ describe 'homepage upload', :type => :feature do
   end
 
   after(:each) do
+    logout(:user)
     Warden.test_reset!
   end
 end

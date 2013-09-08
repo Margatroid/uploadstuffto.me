@@ -12,7 +12,7 @@ describe 'homepage behaviour', :type => :feature do
       .create(:email => 'test@test.com', :password => 'panzer vor')
 
     Warden.test_mode!
-    login_as(user, :scope => user)
+    login_as(user, :scope => :user)
     expect(page).to have_content 'Upload images'
 
     logout(:user)
