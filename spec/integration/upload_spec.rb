@@ -6,7 +6,6 @@ describe 'homepage upload', :type => :feature do
       .users
       .create(:email => 'electronic@bra.in', :password => 'pancakecrystal')
 
-    Warden.test_mode!
     login_as(@registered_user, :scope => :user)
   end
 
