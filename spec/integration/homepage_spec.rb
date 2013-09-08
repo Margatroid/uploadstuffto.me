@@ -7,7 +7,7 @@ describe 'homepage behaviour', :type => :feature do
     expect(page).to have_content 'No more ideas'
   end
 
-  it 'will display an upload field ifand only if logged in' do
+  it 'will display an upload field if and only if logged in' do
     user = Invite.create(:description => 'Test')
       .users
       .create(:email => 'test@test.com', :password => 'panzer vor')
