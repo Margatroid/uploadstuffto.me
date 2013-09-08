@@ -11,11 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130831220602) do
+ActiveRecord::Schema.define(version: 20130908115445) do
+
+  create_table "images", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "images", ["user_id"], name: "index_images_on_user_id"
 
   create_table "invites", force: true do |t|
     t.string   "key"
-    t.integer  "usage"
+    t.integer  "reuse_times"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description"
