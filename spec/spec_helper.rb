@@ -7,6 +7,8 @@ require 'capybara/poltergeist'
 require 'rspec/rails'
 require 'rspec/autorun'
 
+include Warden::Test::Helpers
+
 Capybara.javascript_driver = :poltergeist
 
 # Requires supporting ruby files with custom matchers and macros, etc,

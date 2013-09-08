@@ -1,5 +1,4 @@
 require 'spec_helper'
-include Warden::Test::Helpers
 
 describe 'homepage behaviour', :type => :feature do
   before { visit '/' }

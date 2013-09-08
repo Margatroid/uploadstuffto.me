@@ -1,5 +1,4 @@
 require 'spec_helper'
-include Warden::Test::Helpers
 
 describe 'homepage upload', :type => :feature do
   before(:each) do
