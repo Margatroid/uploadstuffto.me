@@ -12,10 +12,10 @@ describe 'homepage behaviour', :type => :feature do
       .create(:email => 'test@test.com', :password => 'panzer vor')
 
     login_as(user, :scope => :user)
-    expect(page).to have_content 'Upload images'
+    expect(page).to have_content 'Upload image(s)'
 
     logout(:user)
-    expect(page).not_to have_content 'Upload images'
+    expect(page).not_to have_content 'Upload image(s)'
   end
 
   after(:each) do
