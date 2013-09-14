@@ -36,7 +36,10 @@ describe ImagesController do
   # This should return the minimal set of attributes required to create a valid
   # Image. As you add validations to Image, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { :user_id => 1 } }
+  let(:valid_attributes) { {
+    :user_id => 1,
+    :file => fixture_file_upload('chicken_rice.jpg')
+  } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in

@@ -11,7 +11,7 @@ describe 'homepage upload', :type => :feature do
 
   it 'will let me upload an image from disk' do
     visit '/'
-    attach_file('File', File.expand_path('spec/assets/chicken_rice.jpg'))
+    attach_file('File', File.expand_path('spec/fixtures/chicken_rice.jpg'))
 
     click_button 'Upload image'
     current_path.should eq(image_path(1))
