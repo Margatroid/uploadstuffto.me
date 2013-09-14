@@ -10,6 +10,6 @@ describe Image do
     image = Image.create! valid_attributes
 
     Image.all.should have(1).item
-    Image.first.key.should exist
+    Image.first.key.should match(/\S{6}/)
   end
 end

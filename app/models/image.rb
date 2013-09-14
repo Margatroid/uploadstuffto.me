@@ -4,4 +4,6 @@ class Image < ActiveRecord::Base
   validates :file, :attachment_presence => true
 
   has_attached_file :file
+
+  include IdentifiableByKey
 end
