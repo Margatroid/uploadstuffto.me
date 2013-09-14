@@ -16,6 +16,10 @@ describe 'homepage behaviour', :type => :feature do
 
     logout(:user)
     expect(page).not_to have_content 'Upload images'
+  end
+
+  after(:each) do
+    logout(:user)
     Warden.test_reset!
   end
 end
