@@ -19,16 +19,29 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe ImagesController do
+  before(:each) do
+    user = Invite.create(:description => 'images controller test')
+      .users
+      .create(:email => 'hello@world.com', :password => 'pancakecrystal')
+    login_as(user, :scope => :user)
+
+    controller.stub :current_user => user
+  end
+
+  after(:each) do
+    logout(:user)
+    Warden.test_reset!
+  end
 
   # This should return the minimal set of attributes required to create a valid
   # Image. As you add validations to Image, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { {  } }
+  let(:valid_attributes) { { :user_id => 1 } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # ImagesController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
+  let(:valid_session) { { 'warden.user.user.key' => session['warden.user.user.key'] } }
 
   describe "GET index" do
     it "assigns all images as @images" do
