@@ -119,8 +119,8 @@ describe ImagesController do
         # specifies that the Image created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Image.any_instance.should_receive(:update).with({ "these" => "params" })
-        put :update, {:id => image.to_param, :image => { "these" => "params" }}, valid_session
+        Image.any_instance.should_receive(:update).with({ "file" => "params" })
+        put :update, {:id => image.to_param, :image => { "file" => "params" }}, valid_session
       end
 
       it "assigns the requested image as @image" do
