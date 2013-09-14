@@ -39,6 +39,7 @@ group :test, :development do
   gem "rspec-rails", "~> 2.4"
   gem 'capybara'
   gem 'poltergeist'
+  gem 'shoulda-matchers'
 end
 
 group :doc do
