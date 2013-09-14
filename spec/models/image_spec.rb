@@ -8,6 +8,8 @@ describe Image do
 
   it 'will have a key' do
     image = Image.create! valid_attributes
-    image.key should exist
+
+    Image.all.should have(1).item
+    Image.first.key.should exist
   end
 end
