@@ -31,7 +31,7 @@ class ImagesController < ApplicationController
         format.html { redirect_to @image, notice: 'Image uploaded successfully.' }
         format.json { render action: 'show', status: :created, location: @image }
       else
-        format.html { render action: 'new' }
+        format.html { render action: 'new', notice: 'Upload failed.' }
         format.json { render json: @image.errors, status: :unprocessable_entity }
       end
     end
