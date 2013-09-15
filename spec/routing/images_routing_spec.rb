@@ -7,12 +7,8 @@ describe ImagesController do
       get("/images").should route_to("images#index")
     end
 
-    it "routes to #new" do
-      get("/images/new").should route_to("images#new")
-    end
-
     it "routes to #show" do
-      get("/images/1").should route_to("images#show", :id => "1")
+      get("/images/hello").should route_to("images#show", :key => "hello")
     end
 
     it "routes to #edit" do
