@@ -12,7 +12,7 @@ describe ImagesController do
     end
 
     it "routes to #edit" do
-      get("/images/1/edit").should route_to("images#edit", :id => "1")
+      get("/images/hello/edit").should route_to("images#edit", :key => "hello")
     end
 
     it "routes to #create" do
@@ -20,11 +20,11 @@ describe ImagesController do
     end
 
     it "routes to #update" do
-      put("/images/1").should route_to("images#update", :id => "1")
+      put("/images/hello").should route_to("images#update", :key => "hello")
     end
 
     it "routes to #destroy" do
-      delete("/images/1").should route_to("images#destroy", :id => "1")
+      delete("/images/hello").should route_to("images#destroy", :key => "hello")
     end
 
   end

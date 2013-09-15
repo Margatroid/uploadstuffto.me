@@ -7,4 +7,8 @@ class Image < ActiveRecord::Base
   has_attached_file :file
 
   include IdentifiableByKey
+
+  def to_param
+    key
+  end
 end
