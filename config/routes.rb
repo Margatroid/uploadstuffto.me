@@ -19,11 +19,14 @@ NoMoreIdeas::Application.routes.draw do
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
-  get '/images/:key' => 'images#show'
-
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
-  resources :images
+  get '/images'           => 'images#index'
+  post '/images'          => 'images#create'
+  get '/images/:key'      => 'images#show'
+  get '/images/:key/edit' => 'images#edit'
+  put '/images/:key'      => 'images#update'
+  delete '/images/:key'   => 'images#destroy'
 
   # Example resource route with options:
   #   resources :products do
