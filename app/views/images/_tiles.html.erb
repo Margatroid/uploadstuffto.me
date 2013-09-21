@@ -1,7 +1,9 @@
 <div class="pure-g-r">
   <% images.each do |image| %>
     <div class="pure-u-1">
-      <%= link_to 'Your recently uploaded image', image_path(image) %>
+      <%= link_to image_path(image) do %>
+        <%= image_tag(image.file.url(:thumb)) %>
+      <% end %>
     </div>
   <% end %>
 </div>
