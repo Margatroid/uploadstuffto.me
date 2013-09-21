@@ -34,3 +34,11 @@ describe 'top navigation bar behaviour', :type => :feature do
     home_link[:href].should eq(root_path)
   end
 end
+
+describe 'my recent uploads widget', :type => :feature do
+  include UploadHelper
+  before { visit '/' }
+
+  it 'will show what I just uploaded in the widget' do
+  end
+end

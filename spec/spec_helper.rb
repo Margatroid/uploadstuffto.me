@@ -7,6 +7,8 @@ require 'capybara/poltergeist'
 require 'rspec/rails'
 require 'rspec/autorun'
 
+require 'integration/integration_test_helpers'
+
 include Warden::Test::Helpers
 Warden.test_mode!
 

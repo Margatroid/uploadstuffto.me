@@ -1,27 +1,5 @@
 require 'spec_helper'
 
-module AuthHelper
-  def register(email, key)
-    visit '/register'
-    pass = 'password'
-
-    fill_in 'Email',                 :with => email
-    fill_in 'Password',              :with => pass
-    fill_in 'Password confirmation', :with => pass
-
-    fill_in 'Invite key', :with => key if key
-
-    click_button 'Register'
-  end
-
-  def login(email, pass)
-    visit '/login'
-    fill_in 'Email',    :with => email
-    fill_in 'Password', :with => pass
-    click_button 'Sign in'
-  end
-end
-
 describe 'register account with a onceoff invite', :type => :feature do
   include AuthHelper
   before  { @onceoff = Invite.create(:description => 'Test') }

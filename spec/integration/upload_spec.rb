@@ -1,13 +1,5 @@
 require 'spec_helper'
 
-module UploadHelper
-  def upload_file
-    visit '/'
-    attach_file('File', File.expand_path('spec/fixtures/chicken_rice.jpg'))
-    click_button 'Upload image'
-  end
-end
-
 describe 'homepage upload', :type => :feature do
   include UploadHelper
 
