@@ -49,6 +49,6 @@ describe 'my recent uploads widget', :type => :feature do
     )
 
     thumb = page.find('#my_recent_uploads img')
-    thumb[:href].should eq(Image.first.file.url(:thumb))
+    thumb[:src].should eq(Image.first.file.url(:thumb))
   end
 end
