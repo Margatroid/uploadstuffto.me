@@ -7,25 +7,23 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div id="user_status">
-  <% if user_signed_in? %>
-    Signed in as <%= current_user.email %>.
-    <%= link_to 'Log out', destroy_user_session_path, :method => :delete %>
-  <% else %>
-    <%= link_to "Register", new_user_registration_path %>
-    or
-    <%= link_to "log in", new_user_session_path %>
-  <% end %>
+
+<div class="pure-g-r">
+  <div class="pure-u-1">
+    <%= render 'shared/nav' %>
+  </div>
+
+  <div class="pure-u-1">
+    <% if notice %>
+      <p class="notice"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert"><%= alert %></p>
+    <% end %>
+  </div>
+
+  <div class="pure-u-1"><%= yield %></div>
 </div>
-
-<% if notice %>
-  <p class="notice"><%= notice %></p>
-<% end %>
-<% if alert %>
-  <p class="alert"><%= alert %></p>
-<% end %>
-
-<%= yield %>
 
 </body>
 </html>

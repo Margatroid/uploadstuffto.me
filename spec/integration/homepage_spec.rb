@@ -25,3 +25,12 @@ describe 'homepage behaviour', :type => :feature do
     Warden.test_reset!
   end
 end
+
+describe 'top navigation bar behaviour', :type => :feature do
+  before { visit '/' }
+
+  it 'has a link back to the homepage' do
+    home_link = page.find('#homepage_link')
+    home_link[:href].should eq(root_path)
+  end
+end
