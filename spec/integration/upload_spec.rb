@@ -33,6 +33,10 @@ describe 'homepage upload', :type => :feature do
 
     visit "/images/#{ Image.first.key }"
     page.status_code.should be 200
+
+    img = page.find_by_id('fullsize_image')
+    visit img[:src]
+    page.status_code.should be 200
   end
 
   after(:each) do
