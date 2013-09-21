@@ -4,7 +4,9 @@ class Image < ActiveRecord::Base
   validates :file, :attachment_presence => true
   validates :key, presence: true
 
-  has_attached_file :file
+  has_attached_file :file,
+    :styles => { :thumb => "200x200" },
+    :convert_options => { :thumb => "-quality 75 -strip" }
 
   include IdentifiableByKey
 
