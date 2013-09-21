@@ -36,9 +36,16 @@ describe 'top navigation bar behaviour', :type => :feature do
 end
 
 describe 'my recent uploads widget', :type => :feature do
-  include UploadHelper
-  before { visit '/' }
+  include UploadHelper, UserFactory
 
   it 'will show what I just uploaded in the widget' do
+    login_as_registered_user
+    upload_file
+
+    visit '/'
+    recent_upload = page.find('#my_recent_uploads a')
+    recent_upload[:href].should eq(
+      Rails.application.routes.url_helpers.image_path(Image.first.key)
+    )
   end
 end
