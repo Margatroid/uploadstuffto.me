@@ -20,9 +20,11 @@ describe 'homepage upload', :type => :feature do
   end
 
   it 'will let me upload an image from disk' do
+    Image.count.should eq 0
     upload_file
 
     current_path.should eq(image_path(Image.first.key))
+    Image.count.should eq 1
     expect(page).to have_content 'Image uploaded successfully'
   end
 
