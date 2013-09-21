@@ -1,14 +1,10 @@
 require 'spec_helper'
 
 describe 'homepage upload', :type => :feature do
-  include UploadHelper
+  include UploadHelper, UserFactory
 
   before(:each) do
-    @registered_user = Invite.create(:description => 'even')
-      .users
-      .create(:email => 'electronic@bra.in', :password => 'pancakecrystal')
-
-    login_as(@registered_user, :scope => :user)
+    login_as_registered_user
   end
 
   it 'will let me upload an image from disk' do
