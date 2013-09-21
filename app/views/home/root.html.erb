@@ -1,5 +1,5 @@
 <div class="pure-g-r">
-  <div class="pure-u">
+  <div class="pure-u-1">
     <div class="l-box">
       <h1>uploadstuffto.me</h1>
       <p>This is an image hosting site. Only registered users may upload.</p>
@@ -8,8 +8,11 @@
   </div>
 
   <% if user_signed_in? %>
-    <div class="pure-u" id="my_recent_uploads">
-      <%= render 'images/tiles', :locals => { :images => @recently_uploaded } %>
+    <div class="pure-u-1" id="my_recent_uploads">
+      <div class="l-box">
+        <p>My recent uploads</p>
+        <%= render 'images/tiles', locals: { :images => @recently_uploaded } %>
+      </div>
     </div>
   <% end %>
 </div>
