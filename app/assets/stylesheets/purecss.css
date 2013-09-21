@@ -6,3 +6,6 @@
   =require purecss/menus
   =require purecss/tables
 */
+.l-box {
+  padding: 1em;
+}

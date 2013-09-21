@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>NoMoreIdeas</title>
+  <title>uploadstuffto.me</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
@@ -13,16 +13,13 @@
     <%= render 'shared/nav' %>
   </div>
 
-  <div class="pure-u-1 notifications">
-    <% if notice %>
-      <p class="notice"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-      <p class="alert"><%= alert %></p>
+  <div class="pure-u-1">
+    <% flash.each do |key, msg| %>
+      <div class="l-box <%= key %>"><%= msg %></div>
     <% end %>
   </div>
 
-  <div class="pure-u-1"><%= yield %></div>
+  <%= yield %>
 </div>
 </body>
 </html>
