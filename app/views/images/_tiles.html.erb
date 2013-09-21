@@ -1,0 +1,7 @@
+<div class="pure-g-r">
+  <% images.each do |image| %>
+    <div class="pure-u-1">
+      <%= link_to 'Your recently uploaded image', image_path(image) %>
+    </div>
+  <% end %>
+</div>
