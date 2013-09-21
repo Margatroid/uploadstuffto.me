@@ -8,4 +8,8 @@ class User < ActiveRecord::Base
   belongs_to :invite
   has_many :images
   validates :invite_id, presence: true
+
+  def recently_uploaded(limit = 5)
+    self.images.order('created_at DESC').limit(limit)
+  end
 end

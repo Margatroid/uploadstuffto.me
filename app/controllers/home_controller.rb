@@ -1,5 +1,8 @@
 class HomeController < ApplicationController
   def root
-    @image = Image.new if user_signed_in?
+    if user_signed_in?
+      @image = Image.new
+      @recently_uploaded = current_user.recently_uploaded
+    end
   end
 end
