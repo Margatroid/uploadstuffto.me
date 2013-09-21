@@ -6,4 +6,10 @@
       <%= render template: 'images/new' if user_signed_in? %>
     </div>
   </div>
+
+  <% if user_signed_in? %>
+    <div class="pure-u" id="my_recent_uploads">
+      <%= render 'images/tiles', :locals => { :images => @recently_uploaded } %>
+    </div>
+  <% end %>
 </div>
