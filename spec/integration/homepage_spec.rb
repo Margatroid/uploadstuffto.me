@@ -47,5 +47,8 @@ describe 'my recent uploads widget', :type => :feature do
     recent_upload[:href].should eq(
       Rails.application.routes.url_helpers.image_path(Image.first.key)
     )
+
+    thumb = page.find('#my_recent_uploads img')
+    thumb[:href].should eq(Image.first.file.url(:thumb))
   end
 end
