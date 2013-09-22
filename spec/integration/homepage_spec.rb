@@ -1,5 +1,5 @@
 require 'spec_helper'
-include UploadHelper, UserFactory, PathHelper
+include UploadHelper, PathHelper
 
 describe 'homepage behaviour', :type => :feature do
   before { visit '/' }
@@ -8,7 +8,8 @@ describe 'homepage behaviour', :type => :feature do
   end
 
   it 'will display an upload field if and only if logged in' do
-    login_as_registered_user
+    registered_user = create(:user)
+    login_as(registered_user, :scope => :user)
     visit '/'
     expect(page).to have_content 'Upload image(s)'
 
@@ -34,7 +35,8 @@ end
 
 describe 'my recent uploads widget', :type => :feature do
   it 'will show what I just uploaded in the widget' do
-    login_as_registered_user
+    registered_user = create(:user)
+    login_as(registered_user, :scope => :user)
     upload_test_file
 
     visit '/'
@@ -52,10 +54,13 @@ describe "everyone else's recent uploads widget", :type => :feature do
   widget_id = '#recent_uploads'
 
   before(:each) do
-    @me = login_as_registered_user
+    @me = create(:user)
+    login_as(@me, :scope => :user)
     upload_test_file
     logout(:user)
-    @someone_else = login_as_registered_user
+
+    @someone_else = create(:user)
+    login_as(@someone_else, :scope => :user)
     upload_test_another_file
     logout(:user)
 
@@ -103,10 +108,16 @@ end
 
 describe 'straight after new account creation', :type => :feature do
   it 'should not show my recent uploads widget if I have no images' do
-    user = login_as_registered_user
+    user = create(:user)
+    login_as(user, :scope => :user)
     visit '/'
 
     user.images.count.should eq(0)
     page.should have_no_content('My recent uploads')
+  end
+
+  after(:each) do
+    logout(:user)
+    Warden.test_reset!
   end
 end

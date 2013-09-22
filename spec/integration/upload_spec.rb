@@ -1,10 +1,11 @@
 require 'spec_helper'
 
 describe 'homepage upload', :type => :feature do
-  include UploadHelper, UserFactory
+  include UploadHelper
 
   before(:each) do
-    login_as_registered_user
+    user = create(:user)
+    login_as(user, :scope => :user)
   end
 
   it 'will let me upload an image from disk' do

@@ -21,19 +21,6 @@ module AuthHelper
   end
 end
 
-module UserFactory
-  def login_as_registered_user
-    registered_user = Invite.create(:description => SecureRandom.hex)
-      .users
-      .create(:email => "#{ SecureRandom.hex }@mail.ie",
-        :username => SecureRandom.hex,
-        :password => 'pancakecrystal')
-
-    login_as(registered_user, :scope => :user)
-    registered_user
-  end
-end
-
 module UploadHelper
   def upload_test_file
     upload_file('chicken_rice')

@@ -23,13 +23,8 @@ describe 'the login process', :type => :feature do
   end
 
   it 'should let me login' do
-    mail = 'registered@user.com'
-    pass = 'cosmoflips'
-
-    Invite.create(:description => 'test')
-      .users
-      .create(:password => pass, :email => mail, :username => SecureRandom.hex)
-    login(mail, pass)
+    user = create(:user)
+    login(user.email, user.password)
     expect(page).to have_content 'Signed in successfully.'
   end
 end
@@ -78,17 +73,10 @@ end
 
 describe 'signing out process', :type => :feature do
   include AuthHelper
-  before  {
-    invite = Invite.create(:description => 'Test', :usage => 5)
-    @registered_user = invite.users.create(
-      :email => 'test@user.com',
-      :password => 'use_factory_girl_later',
-      :username => 'perfume'
-    )
-  }
 
   it 'should let me sign out on homepage' do
-    login(@registered_user.email, @registered_user.password)
+    user = create(:user)
+    login(user.email, user.password)
     expect(page).to have_content 'Signed in successfully.'
 
     click_link 'Log out'

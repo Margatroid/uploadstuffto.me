@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-include UploadHelper, UserFactory
+include UploadHelper
 
 describe 'correct routing to profile', :type => :feature do
   it 'will load the profile at the correct path' do
