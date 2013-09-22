@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :images
   validates :invite_id, presence: true
 
-  def recently_uploaded(limit = 5)
+  def recently_uploaded(limit = 10)
     self.images.order('created_at DESC').limit(limit)
   end
 end
