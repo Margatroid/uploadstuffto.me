@@ -55,49 +55,49 @@ end
 describe "everyone else's recent uploads widget", :type => :feature do
   widget_id = '#recent_uploads'
 
-  context 'when logged in' do
-    before(:each) do
-      @me = login_as_registered_user
-      upload_test_file
-      logout(:user)
-      @someone_else = login_as_registered_user
-      upload_test_another_file
-      logout(:user)
+  before(:each) do
+    @me = login_as_registered_user
+    upload_test_file
+    logout(:user)
+    @someone_else = login_as_registered_user
+    upload_test_another_file
+    logout(:user)
 
-      login_as(@me, :scope => :user)
-    end
+    login_as(@me, :scope => :user)
+  end
 
-    it 'should not show your own upload' do
-      my_upload_thumb = @me.images.first.file.path(:thumb)
-      my_upload_url   = get_image_path(@me.images.first)
-      images_in_widget = page.all(:css, "#{ widget_id } img")
-      images_in_widget.count.should eq (1)
-      images_in_widget.each do |image|
-        image[:src].should_not eq(my_upload_thumb)
-        image[:href].should_not eq(my_upload_url)
-      end
-    end
-
-    it "should show someone else's upload" do
-      widget        = page.first("#{ widget_id } img")
-      expected_href = get_image_path(@someone_else.images.first)
-      expected_src  = @someone_else.images.first.file.path(:thumb)
-
-      page.all(:css, "#{ widget_id } a").count.should eq(1)
-      # Expect first and only image in widget to link to someone else's upload.
-      page.first("#{ widget_id } a")[:href].should eq(expected_href)
-      # Expect first and only image in widget to have correct source thumbnail.
-      page.first("#{ widget_id } a img")[:src].should eq(expected_src)
-    end
-
-    after(:each) do
-      logout(:user)
-      Warden.test_reset!
+  it 'should not show your own upload' do
+    my_upload_thumb = @me.images.first.file.path(:thumb)
+    my_upload_url   = get_image_path(@me.images.first)
+    images_in_widget = page.all(:css, "#{ widget_id } img")
+    images_in_widget.count.should eq (1)
+    images_in_widget.each do |image|
+      image[:src].should_not eq(my_upload_thumb)
+      image[:href].should_not eq(my_upload_url)
     end
   end
 
-  context 'when logged out' do
-    it "should show everyone's uploads" do
-    end
+  it "should show someone else's upload" do
+    widget        = page.first("#{ widget_id } img")
+    expected_href = get_image_path(@someone_else.images.first)
+    expected_src  = @someone_else.images.first.file.path(:thumb)
+
+    page.all(:css, "#{ widget_id } a").count.should eq(1)
+    # Expect first and only image in widget to link to someone else's upload.
+    page.first("#{ widget_id } a")[:href].should eq(expected_href)
+    # Expect first and only image in widget to have correct source thumbnail.
+    page.first("#{ widget_id } a img")[:src].should eq(expected_src)
+  end
+
+  it 'should show both uploads when logged out' do
+    logout(:user)
+    images = page.all(:css, "#{ widget_id } a")
+    page.all(:css, "#{ widget_id } a").count.should eq(2)
+    images.first[:href].should_not eq(images.last[:href])
+  end
+
+  after(:each) do
+    logout(:user)
+    Warden.test_reset!
   end
 end
