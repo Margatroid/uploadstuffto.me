@@ -13,3 +13,19 @@
  *= require purecss
  *= require purecss-addons
  */
+
+.tiles .tile {
+  float:   left;
+  padding: 2px;
+  margin:  2px;
+  border:  2px solid #EEE;
+}
+
+.tiles .tile img {
+  display: block;
+}
+
+.tiles .small-tile img {
+  width:  70px;
+  height: 70px;
+}
