@@ -43,12 +43,12 @@ describe 'my recent uploads widget', :type => :feature do
     upload_file
 
     visit '/'
-    recent_upload = page.find('#my_recent_uploads a')
+    recent_upload = page.first('#my_recent_uploads a')
     recent_upload[:href].should eq(
       Rails.application.routes.url_helpers.image_path(Image.first.key)
     )
 
-    thumb = page.find('#my_recent_uploads img')
+    thumb = page.first('#my_recent_uploads img')
     thumb[:src].should eq(Image.first.file.url(:thumb))
   end
 end
