@@ -52,3 +52,20 @@ describe 'my recent uploads widget', :type => :feature do
     thumb[:src].should eq(Image.first.file.url(:thumb))
   end
 end
+
+describe "everyone else's recent uploads widget", :type => :feature do
+  widget_id = '#recent_uploads'
+
+  context 'when logged in' do
+    it 'should not show your own upload' do
+    end
+
+    it "should show someone else's upload" do
+    end
+  end
+
+  context 'when logged out' do
+    it "should show everyone's uploads" do
+    end
+  end
+end
