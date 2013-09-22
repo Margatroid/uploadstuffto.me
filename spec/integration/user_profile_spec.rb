@@ -4,6 +4,7 @@ include UploadHelper, UserFactory
 
 describe 'correct routing to profile', :type => :feature do
   it 'will load the profile at the correct path' do
+    user = create(:user)
   end
 end
 
