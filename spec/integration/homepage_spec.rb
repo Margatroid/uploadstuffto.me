@@ -8,11 +8,7 @@ describe 'homepage behaviour', :type => :feature do
   end
 
   it 'will display an upload field if and only if logged in' do
-    user = Invite.create(:description => 'Test')
-      .users
-      .create(:email => 'test@test.com', :password => 'panzer vor')
-
-    login_as(user, :scope => :user)
+    login_as_registered_user
     visit '/'
     expect(page).to have_content 'Upload image(s)'
 
