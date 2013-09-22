@@ -17,7 +17,7 @@ describe 'username validation' do
   end
 
   it 'will accept alphanumerics, underscores and hyphens' do
-      user = create(:invite).users.build(
+    user = create(:invite).users.build(
       username: 'azAZ0123456789_-alice_m',
       email: 'thisisanemail@rspec.com',
       password: 'helloworld'
