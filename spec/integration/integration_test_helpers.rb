@@ -22,9 +22,10 @@ end
 
 module UserFactory
   def login_as_registered_user
-    registered_user = Invite.create(:description => 'even')
+    registered_user = Invite.create(:description => SecureRandom.hex)
       .users
-      .create(:email => 'electronic@bra.in', :password => 'pancakecrystal')
+      .create(:email => "#{ SecureRandom.hex }@mail.ie",
+        :password => 'pancakecrystal')
 
     login_as(registered_user, :scope => :user)
     registered_user
