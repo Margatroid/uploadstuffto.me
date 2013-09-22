@@ -9,7 +9,7 @@ describe 'homepage upload', :type => :feature do
 
   it 'will let me upload an image from disk' do
     Image.count.should eq 0
-    upload_file
+    upload_test_file
 
     current_path.should eq(image_path(Image.first.key))
     Image.count.should eq 1
@@ -17,7 +17,7 @@ describe 'homepage upload', :type => :feature do
   end
 
   it 'will have a working short link after uploading an image' do
-    upload_file
+    upload_test_file
 
     visit "/images/#{ Image.first.key }"
     page.status_code.should be 200

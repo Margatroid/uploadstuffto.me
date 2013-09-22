@@ -33,9 +33,18 @@ module UserFactory
 end
 
 module UploadHelper
-  def upload_file
+  def upload_test_file
+    upload_file('chicken_rice')
+  end
+
+  def upload_test_another_file
+    upload_file('sushi')
+  end
+
+  private
+  def upload_file(filename)
     visit '/'
-    attach_file('File', File.expand_path('spec/fixtures/chicken_rice.jpg'))
+    attach_file('File', File.expand_path("spec/fixtures/#{ filename }.jpg"))
     click_button 'Upload image'
   end
 end

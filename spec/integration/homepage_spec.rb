@@ -40,7 +40,7 @@ describe 'my recent uploads widget', :type => :feature do
 
   it 'will show what I just uploaded in the widget' do
     login_as_registered_user
-    upload_file
+    upload_test_file
 
     visit '/'
     recent_upload = page.first('#my_recent_uploads a')
