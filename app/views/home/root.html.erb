@@ -7,7 +7,7 @@
     </div>
   </div>
 
-  <% if user_signed_in? %>
+  <% if user_signed_in? && current_user.images.count > 0 %>
     <div class="pure-u-1" id="my_recent_uploads">
       <div class="l-box">
         <h2>My recent uploads</h2>
