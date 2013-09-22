@@ -11,8 +11,15 @@
     <div class="pure-u-1" id="my_recent_uploads">
       <div class="l-box">
         <h2>My recent uploads</h2>
-        <%= render 'images/tiles', :images => @recently_uploaded %>
+        <%= render 'images/tiles', :images => @my_recently_uploaded %>
       </div>
     </div>
   <% end %>
+
+  <div class="pure-u-1" id="recent_uploads">
+    <div class="l-box">
+      <h2><%= (user_signed_in?) ? "Everyone else's r" : 'R' %>ecent uploads</h2>
+      <%#= render 'images/tiles', :images => @recently_uploaded %>
+    </div>
+  </div>
 </div>

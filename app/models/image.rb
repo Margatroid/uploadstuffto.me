@@ -10,6 +10,15 @@ class Image < ActiveRecord::Base
 
   include IdentifiableByKey
 
+  def recently_uploaded(limit = 30)
+    if user_signed_in?
+      self.find_by("userid != #{ current_user.id }")
+        .order('created_at DESC').limit(limit)
+    else
+      self.all.order('created_at DESC').limit(limit)
+    end
+  end
+
   def to_param
     key
   end

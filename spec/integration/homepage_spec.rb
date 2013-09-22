@@ -64,6 +64,7 @@ describe "everyone else's recent uploads widget", :type => :feature do
     logout(:user)
 
     login_as(@me, :scope => :user)
+    visit '/'
   end
 
   it 'should not show your own upload' do
