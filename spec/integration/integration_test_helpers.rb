@@ -48,3 +48,9 @@ module UploadHelper
     click_button 'Upload image'
   end
 end
+
+module PathHelper
+  def get_image_path(image)
+    Rails.application.routes.url_helpers.image_path(image.key)
+  end
+end
