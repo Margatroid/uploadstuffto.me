@@ -5,6 +5,6 @@ class HomeController < ApplicationController
       @my_recently_uploaded = current_user.recently_uploaded
     end
 
-    Image.recently_uploaded
+    @recently_uploaded = Image.recently_uploaded(current_user)
   end
 end
