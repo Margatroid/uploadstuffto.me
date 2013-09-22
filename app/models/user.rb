@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :images
   validates :invite_id, presence: true
   validates :username, presence: true
+  validates_format_of :username, :with => /\A(\w|-)+\Z/i
 
   def recently_uploaded(limit = 10)
     self.images.order('created_at DESC').limit(limit)
