@@ -10,8 +10,8 @@ class User < ActiveRecord::Base
   validates :invite_id, presence: true
   validates :username, presence: true
   validates_format_of :username, :with => /\A(\w|-)+\Z/i,
-    :message => '- only alphanumerics, digits, underscores and hyphens are
-      allowed. No spaces.'
+    :message => '- only alphanumerics, underscores and hyphens are allowed.
+      No spaces.'
 
   def recently_uploaded(limit = 10)
     self.images.order('created_at DESC').limit(limit)
