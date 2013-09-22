@@ -104,3 +104,13 @@ describe "everyone else's recent uploads widget", :type => :feature do
     Warden.test_reset!
   end
 end
+
+describe 'straight after new account creation', :type => :feature do
+  it 'should not show my recent uploads widget if I have no images' do
+    user = login_as_registered_user
+    visit '/'
+
+    user.images.count.should eq(0)
+    page.should have_no_content('My recent uploads')
+  end
+end
