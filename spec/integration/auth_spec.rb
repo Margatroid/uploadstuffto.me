@@ -28,7 +28,7 @@ describe 'the login process', :type => :feature do
 
     Invite.create(:description => 'test')
       .users
-      .create(:password => pass, :email => mail)
+      .create(:password => pass, :email => mail, :username => SecureRandom.hex)
     login(mail, pass)
     expect(page).to have_content 'Signed in successfully.'
   end
@@ -82,7 +82,8 @@ describe 'signing out process', :type => :feature do
     invite = Invite.create(:description => 'Test', :usage => 5)
     @registered_user = invite.users.create(
       :email => 'test@user.com',
-      :password => 'use_factory_girl_later'
+      :password => 'use_factory_girl_later',
+      :username => 'perfume'
     )
   }
 

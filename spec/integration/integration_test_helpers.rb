@@ -6,6 +6,7 @@ module AuthHelper
     fill_in 'Email',                 :with => email
     fill_in 'Password',              :with => pass
     fill_in 'Password confirmation', :with => pass
+    fill_in 'Username',              :with => SecureRandom.hex
 
     fill_in 'Invite key', :with => key if key
 
@@ -25,6 +26,7 @@ module UserFactory
     registered_user = Invite.create(:description => SecureRandom.hex)
       .users
       .create(:email => "#{ SecureRandom.hex }@mail.ie",
+        :username => SecureRandom.hex,
         :password => 'pancakecrystal')
 
     login_as(registered_user, :scope => :user)

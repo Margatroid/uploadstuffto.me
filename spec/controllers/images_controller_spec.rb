@@ -22,7 +22,9 @@ describe ImagesController do
   before(:each) do
     user = Invite.create(:description => 'images controller test')
       .users
-      .create(:email => 'hello@world.com', :password => 'pancakecrystal')
+      .create(:email => 'hello@world.com',
+        :password => 'pancakecrystal',
+        :username => SecureRandom.hex)
     login_as(user, :scope => :user)
 
     controller.stub :current_user => user
