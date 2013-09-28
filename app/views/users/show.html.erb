@@ -1,5 +1,15 @@
 <div class="l-box">
   <h1><%= @user.username %>'s profile</h1>
   <p><%= @user.images.count %> images uploaded.</p>
+
+  <div id="recent_uploads">
+    <h2>Recent uploads</h2>
+
+    <% if @user.has_images? %>
+      <%= render 'images/tiles', :images => @recent_uploads %>
+    <% else %>
+      <p><%= @user.username %> has not uploaded anything yet. %></p>
+    <% end %>
+  </div>
 </div>
 
