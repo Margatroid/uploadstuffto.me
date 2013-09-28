@@ -34,10 +34,11 @@ describe 'top navigation bar behaviour', :type => :feature do
 
   it "has a link to the user's profile when signed in" do
     user = create(:user)
-    profile_link = page.find('#my_profile_link')
     login_as(user, :scope => :user)
 
-    profile_link[:href].should eq(
+    visit '/'
+
+    page.find('#my_profile_link')[:href].should eq(
       Rails.application.routes.url_helpers.user_path(user)
     )
 

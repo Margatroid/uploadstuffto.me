@@ -7,7 +7,8 @@
   <ul>
     <% if user_signed_in? %>
       <li>
-        <%= link_to 'My profile', user_path(current_user), { class: 'pure-menu-selected'} %>
+        <%= link_to 'My profile', user_path(current_user),
+          { class: 'pure-menu-selected', id: 'my_profile_link' } %>
       </li>
 
       <li>
