@@ -1,8 +1,8 @@
 <div class="l-box">
   <h1><%= @user.username %>'s profile</h1>
   <p>
-    Joined <%= @user.created_at.strftime('%Y-%m-%d') %>.
-    <%= @user.images.count %> images uploaded.
+    <strong><%= @user.images.count %></strong> images uploaded.
+    Joined <strong><%= @user.created_at.strftime('%Y-%m-%d') %></strong>.
   </p>
 
   <div id="recent_uploads">
