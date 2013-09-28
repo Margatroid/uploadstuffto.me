@@ -5,6 +5,8 @@ include UploadHelper
 describe 'correct routing to profile', :type => :feature do
   it 'will load the profile at the correct path' do
     user = create(:user)
+    visit "/profile/#{ user.username }"
+    expect(page).to have_content user.username
   end
 end
 
