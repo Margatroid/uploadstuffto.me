@@ -1,6 +1,9 @@
 <div class="l-box">
   <h1><%= @user.username %>'s profile</h1>
-  <p><%= @user.images.count %> images uploaded.</p>
+  <p>
+    Joined <%= @user.created_at.strftime('%Y-%m-%d') %>.
+    <%= @user.images.count %> images uploaded.
+  </p>
 
   <div id="recent_uploads">
     <h2>Recent uploads</h2>

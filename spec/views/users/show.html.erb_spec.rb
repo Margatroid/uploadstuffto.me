@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "users/show.html.erb" do
   it 'should have a username' do
-    user = stub_model(User, :username => 'berg_katze')
+    user = stub_model(User, username: 'berg_katze', created_at: DateTime.now)
     assign(:user, user)
     render template: 'users/show'
     rendered.should have_text("berg_katze's profile")

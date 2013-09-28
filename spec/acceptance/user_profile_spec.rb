@@ -2,6 +2,7 @@ require 'spec_helper'
 
 include UploadHelper
 
+
 describe 'correct routing to profile', :type => :feature do
   it 'will load the profile at the correct path' do
     user = create(:user)
@@ -25,6 +26,12 @@ describe 'user profile header', :type => :feature do
 
   it "shows the user's name" do
     expect(page).to have_content @user.username
+  end
+
+  it 'shows their join date' do
+    expect(page).to have_content(
+      "Joined #{ @user.created_at.strftime('%Y-%m-%d') }"
+    )
   end
 
   context 'when logged in' do
