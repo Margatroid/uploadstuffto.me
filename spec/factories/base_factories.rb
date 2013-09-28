@@ -1,3 +1,5 @@
+include ActionDispatch::TestProcess
+
 FactoryGirl.define do
   sequence :email do |n|
     "user#{ n }@gmail.com"
@@ -20,11 +22,19 @@ FactoryGirl.define do
     description
   end
 
+  factory :image do
+    file { fixture_file_upload('spec/fixtures/chicken_rice.jpg') }
+  end
+
   factory :user do
     invite
     username
     email
     password 'helloworld'
     password_confirmation { |u| u.password }
+
+    factory :user_with_image do
+      after(:create) { |instance| create_list(:image, 1, user: instance) }
+    end
   end
 end

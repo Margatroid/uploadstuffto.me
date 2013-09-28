@@ -27,4 +27,15 @@ describe 'username validation' do
     User.count.should eq(1)
     User.first.username.should eq('azAZ0123456789_-alice_m')
   end
+
+end
+
+describe 'image count' do
+  it 'will let us know if this user has images or not' do
+    user_with_images = create(:user_with_image)
+    user_without_images = create(:user)
+
+    user_with_images.has_images?.should be_true
+    user_without_images.has_images?.should be_false
+  end
 end

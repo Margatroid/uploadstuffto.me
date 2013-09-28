@@ -16,4 +16,8 @@ class User < ActiveRecord::Base
   def recently_uploaded(limit = 10)
     self.images.order('created_at DESC').limit(limit)
   end
+
+  def has_images?
+    self.images.count > 0
+  end
 end
