@@ -1,5 +1,10 @@
 require 'spec_helper'
 
 describe "users/show.html.erb" do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'should have a username' do
+    user = stub_model(User, :username => 'berg_katze')
+    assign(:user, user)
+    render template: 'users/show'
+    rendered.should have_text("berg_katze's profile")
+  end
 end
