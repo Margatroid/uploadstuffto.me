@@ -25,5 +25,6 @@ describe 'username validation' do
 
     user.save.should eq(true)
     User.count.should eq(1)
+    User.first.username.should eq('azAZ0123456789_-alice_m')
   end
 end
