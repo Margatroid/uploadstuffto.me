@@ -9,4 +9,11 @@ describe "images/show" do
     render
     # Run the generator again with the --webrat flag if you want to use webrat matchers
   end
+
+  it 'shows the user that uploaded this image' do
+    uploader = create(:user)
+    @image.user = uploader
+    render
+    rendered.should have_text(uploader.username)
+  end
 end
