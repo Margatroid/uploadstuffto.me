@@ -45,9 +45,28 @@ describe 'user profile header', :type => :feature do
   end
 end
 
-describe 'image gallery' do
+describe 'image gallery', :type => :feature do
   context 'when logged in' do
     it 'shows all the images you uploaded' do
+      user = create(:user)
+      login_as(user, :scope => :user)
+      upload_test_file
+      upload_test_another_file
+
+      visit "/profile/#{ user.username }"
+      gallery_links = page.all(:css, '#recent_uploads .small-tile a')
+      recently_upload_images = page.all(:css, '#recent_uploads .small-tile img')
+
+      srcs  = recently_upload_images.map { |image| image[:src] }
+      hrefs = gallery_links.map { |link| link[:href] }
+
+      expected_srcs  = Image.all.map { |image| image.file.url(:thumb) }
+      expected_hrefs = Image.all.map do |image|
+        Rails.application.routes.url_helpers.image_path(image)
+      end
+
+      srcs.should    =~ expected_srcs
+      expected_hrefs =~ expected_hrefs
     end
   end
 
