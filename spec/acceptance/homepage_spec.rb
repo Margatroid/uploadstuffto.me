@@ -31,6 +31,19 @@ describe 'top navigation bar behaviour', :type => :feature do
     home_link = page.find('#homepage_link')
     home_link[:href].should eq(root_path)
   end
+
+  it "has a link to the user's profile when signed in" do
+    user = create(:user)
+    profile_link = page.find('#my_profile_link')
+    login_as(user, :scope => :user)
+
+    profile_link[:href].should eq(
+      Rails.application.routes.url_helpers.user_path(user)
+    )
+
+    logout(:user)
+    Warden.test_reset!
+  end
 end
 
 describe 'my recent uploads widget', :type => :feature do
