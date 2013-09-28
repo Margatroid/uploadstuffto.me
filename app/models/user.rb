@@ -20,4 +20,8 @@ class User < ActiveRecord::Base
   def has_images?
     self.images.count > 0
   end
+
+  def to_param
+    username
+  end
 end
