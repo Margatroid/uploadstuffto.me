@@ -28,6 +28,8 @@ NoMoreIdeas::Application.routes.draw do
   put '/images/:key'      => 'images#update'
   delete '/images/:key'   => 'images#destroy'
 
+  get '/profile/:username' => 'users#show', as: 'user'
+
   # Example resource route with options:
   #   resources :products do
   #     member do
