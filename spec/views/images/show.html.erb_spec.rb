@@ -3,6 +3,7 @@ require 'spec_helper'
 describe "images/show" do
   before(:each) do
     @image = assign(:image, stub_model(Image))
+    @image.user = create(:user)
   end
 
   it "renders attributes in <p>" do
@@ -19,6 +20,6 @@ describe "images/show" do
 
     render
     rendered.should have_text(uploader.username)
-    rendered.should have_tag('a', :href => path_to_uploader)
+    rendered.should have_selector("a[href='#{ path_to_uploader }']")
   end
 end

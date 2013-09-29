@@ -5,4 +5,10 @@
   <%= link_to 'Back', images_path %>
 </div>
 
+<div class="pure-u-1">
+  <div class="l-box">
+    Uploaded by <%= link_to @image.user.username, user_path(@image.user) %>.
+  </div>
+</div>
+
 <div><%= image_tag @image.file.url, { id: 'fullsize_image' } %></div>
