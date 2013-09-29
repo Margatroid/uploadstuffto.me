@@ -12,8 +12,13 @@ describe "images/show" do
 
   it 'shows the user that uploaded this image' do
     uploader = create(:user)
+    path_to_uploader =
+      Rails.application.routes.url_helpers.user_path(uploader)
+
     @image.user = uploader
+
     render
     rendered.should have_text(uploader.username)
+    rendered.should have_tag('a', :href => path_to_uploader)
   end
 end
