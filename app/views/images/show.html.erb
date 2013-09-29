@@ -1,14 +1,10 @@
-<p id="notice"><%= notice %></p>
-
-<div>
-  <%= link_to 'Edit', edit_image_path(@image) %> |
-  <%= link_to 'Back', images_path %>
-</div>
-
 <div class="pure-u-1">
   <div class="l-box">
-    Uploaded by <%= link_to @image.user.username, user_path(@image.user) %>.
+    <p>
+      Uploaded by <%= link_to @image.user.username, user_path(@image.user) %>.
+      <%= link_to 'Edit', edit_image_path(@image) %>
+    </p>
+
+    <div><%= image_tag @image.file.url, { id: 'fullsize_image' } %></div>
   </div>
 </div>
-
-<div><%= image_tag @image.file.url, { id: 'fullsize_image' } %></div>
