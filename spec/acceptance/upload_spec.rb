@@ -28,6 +28,13 @@ describe 'homepage upload', :type => :feature do
     page.status_code.should be 200
   end
 
+  it 'will save the file in the correct location' do
+    upload_test_file
+
+    visit "/full/#{ Image.first.key }.jpg"
+    page.status_code.should be 200
+  end
+
   after(:each) do
     logout(:user)
     Warden.test_reset!
