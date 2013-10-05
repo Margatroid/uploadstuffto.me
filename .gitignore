@@ -16,5 +16,5 @@
 /tmp
 
 # Ignore Paperclip attachments.
-public/system
-public/full
+public/thumb
+public/original
