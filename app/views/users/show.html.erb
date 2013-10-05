@@ -11,7 +11,7 @@
     <% if @user.has_images? %>
       <%= render 'images/tiles', :images => @recent_uploads %>
     <% else %>
-      <p><%= @user.username %> has not uploaded anything yet. %></p>
+      <p><%= @user.username %> has not uploaded anything yet.</p>
     <% end %>
   </div>
 </div>
