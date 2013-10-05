@@ -17,3 +17,4 @@
 
 # Ignore Paperclip attachments.
 public/system
+public/full
