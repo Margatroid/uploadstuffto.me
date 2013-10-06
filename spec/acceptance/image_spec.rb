@@ -42,11 +42,24 @@ describe 'editing images', :type => :feature do
 
   context 'not logged in' do
     it 'will redirect you to login page' do
+      visit edit_image_path(Image.first)
+      page.should have_no_content('Edit')
+      page.should have_content('Log in')
     end
   end
 
   context "editing someone else's image" do
     it 'will throw an error' do
+      another_user = create(:user)
+      login_as(another_user, :scope => :user)
+      visit edit_image_path(Image.first)
+      page.should have_no_content('Edit')
+      current_path.should eq(image_path(Image.first))
     end
+  end
+
+  after(:each) do
+    logout(:user)
+    Warden.test_reset!
   end
 end
