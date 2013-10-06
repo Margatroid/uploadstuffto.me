@@ -20,14 +20,14 @@ require 'spec_helper'
 
 describe ImagesController do
   before(:each) do
-    user = Invite.create(:description => 'images controller test')
+    @user = Invite.create(:description => 'images controller test')
       .users
       .create(:email => 'hello@world.com',
         :password => 'pancakecrystal',
         :username => SecureRandom.hex)
-    login_as(user, :scope => :user)
+    sign_in @user
 
-    controller.stub :current_user => user
+    controller.stub :current_user => @user
   end
 
   after(:each) do
@@ -150,20 +150,6 @@ describe ImagesController do
     end
 
     describe "with invalid params" do
-      it "403s when editing an image that's not your own" do
-        image = Image.create! valid_attributes
-        put :update, {:key => image.to_param, :image => invalid_attributes}, valid_session
-
-        image.reload
-        image.user_id.should_not eq(invalid_attributes[:user_id])
-        image.description.should_not eq(invalid_attributes[:description])
-
-        response.response_code.should eq(403)
-        response.should render_template :edit
-      end
-    end
-
-    describe "with invalid params" do
       it "assigns the image as @image" do
         image = Image.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
@@ -178,6 +164,16 @@ describe ImagesController do
         Image.any_instance.stub(:save).and_return(false)
         put :update, {:key => image.to_param, :image => {  }}, valid_session
         response.should render_template("edit")
+      end
+
+      it 'will not update anything when signed out' do
+        sign_out @user
+        image = Image.create! valid_attributes
+        valid_attributes[:description] = 'This should not save'
+        put :update, {:key => image.to_param, :image => valid_attributes}, valid_session
+
+        image.reload
+        image.description.should_not eq(valid_attributes[:description])
       end
     end
   end
