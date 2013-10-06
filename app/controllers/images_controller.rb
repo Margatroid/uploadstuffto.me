@@ -1,7 +1,7 @@
 class ImagesController < ApplicationController
   before_action :set_image, only: [:show, :edit, :update, :destroy]
 
-  before_filter :authenticate_user!, :only => [:edit]
+  before_filter :authenticate_user!, :only => [:edit, :update]
 
   # GET /images
   # GET /images.json
@@ -24,8 +24,7 @@ class ImagesController < ApplicationController
     @image = Image.find_by_key(params[:key])
 
     if current_user.id != @image.user_id
-      redirect_to(image_url(@image),
-                  alert: "Can't edit images that aren't your own")
+      redirect_to @image, alert: "Can't edit images that aren't your own."
     end
   end
 
@@ -49,6 +48,12 @@ class ImagesController < ApplicationController
   # PATCH/PUT /images/1.json
   def update
     respond_to do |format|
+      if current_user.id != @image.user_id
+        error_msg = "Can't edit images that aren't your own."
+        format.html { redirect_to @image, notice: error_msg }
+        format.json { render :json => { :errors => error_msg } }
+      end
+
       if @image.update(image_params)
         format.html { redirect_to @image, notice: 'Image successfully updated.' }
         format.json { head :no_content }
