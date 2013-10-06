@@ -94,6 +94,7 @@ describe ImagesController do
       })
       get :edit, { :key => Image.first.to_param }, valid_session
       response.response_code.should eq(403)
+      response.should render_template :show
     end
   end
 
