@@ -22,6 +22,11 @@ class ImagesController < ApplicationController
   # GET /images/key/edit
   def edit
     @image = Image.find_by_key(params[:key])
+
+    if current_user.id != @image.user_id
+      redirect_to(image_url(@image),
+                  alert: "Can't edit images that aren't your own")
+    end
   end
 
   # POST /images

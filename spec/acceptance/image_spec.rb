@@ -53,7 +53,8 @@ describe 'editing images', :type => :feature do
       another_user = create(:user)
       login_as(another_user, :scope => :user)
       visit edit_image_path(Image.first)
-      page.should have_no_content('Edit')
+      page.should have_content("Can't edit images that aren't your own")
+      page.should_not have_content('Update Image')
       current_path.should eq(image_path(Image.first))
     end
   end
