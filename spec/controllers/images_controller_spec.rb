@@ -159,7 +159,7 @@ describe ImagesController do
       end
     end
 
-    describe "with bad params" do
+    describe "with invalid params" do
       it "403s when editing an image that's not your own" do
         image = Image.create! valid_attributes
         put :update, {:key => image.to_param, :image => invalid_attributes}, valid_session
