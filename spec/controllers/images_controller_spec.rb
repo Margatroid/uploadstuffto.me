@@ -43,6 +43,12 @@ describe ImagesController do
     :file => fixture_file_upload('chicken_rice.jpg')
   } }
 
+  let(:invalid_attributes) { {
+    :user_id => 2,
+    :description => 'wolol',
+    :file => fixture_file_upload('chicken_rice.jpg')
+  } }
+
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # ImagesController. Be sure to keep this updated too.
@@ -150,6 +156,20 @@ describe ImagesController do
         image = Image.create! valid_attributes
         put :update, {:key => image.to_param, :image => valid_attributes}, valid_session
         response.should redirect_to(image)
+      end
+    end
+
+    describe "with bad params" do
+      it "403s when editing an image that's not your own" do
+        image = Image.create! valid_attributes
+        put :update, {:key => image.to_param, :image => invalid_attributes}, valid_session
+
+        image.reload
+        image.user_id.should_not eq(invalid_attributes[:user_id])
+        image.description.should_not eq(invalid_attributes[:description])
+
+        response.response_code.should eq(403)
+        response.should render_template :edit
       end
     end
 
