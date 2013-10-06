@@ -22,6 +22,10 @@ class Image < ActiveRecord::Base
     end
   end
 
+  def is_owned_by_user?(user)
+    self.user_id == user.id
+  end
+
   def to_param
     key
   end

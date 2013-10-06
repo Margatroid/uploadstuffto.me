@@ -4,6 +4,7 @@ describe "images/show" do
   before(:each) do
     @image = assign(:image, stub_model(Image))
     @image.user = create(:user)
+    @permissions = {}
   end
 
   it "renders attributes in <p>" do

@@ -9,9 +9,12 @@ class ImagesController < ApplicationController
     @images = Image.all
   end
 
-  # GET /images/1
-  # GET /images/1.json
+  # GET /images/key
+  # GET /images/key.json
   def show
+    @permissions = {
+      :edit => (user_signed_in? && @image.is_owned_by_user?(current_user))
+    }
   end
 
   # GET /images/new

@@ -2,7 +2,7 @@
   <div class="l-box">
     <p>
       Uploaded by <%= link_to @image.user.username, user_path(@image.user) %>.
-      <%= link_to 'Edit', edit_image_path(@image) %>
+      <%= link_to 'Edit', edit_image_path(@image) if @permissions[:edit] %>
     </p>
 
     <div><%= image_tag @image.file.url, { id: 'fullsize_image' } %></div>
