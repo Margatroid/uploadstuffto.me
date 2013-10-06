@@ -17,7 +17,7 @@ class ImagesController < ApplicationController
     @image = Image.new
   end
 
-  # GET /images/1/edit
+  # GET /images/key/edit
   def edit
   end
 
@@ -69,6 +69,6 @@ class ImagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def image_params
-      params[:image].permit(:file)
+      params[:image].permit(:file, :description)
     end
 end
