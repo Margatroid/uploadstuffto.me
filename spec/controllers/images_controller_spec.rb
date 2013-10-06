@@ -79,6 +79,16 @@ describe ImagesController do
       get :edit, {:key => image.to_param}, valid_session
       assigns(:image).should eq(image)
     end
+
+    it 'will give 403 if you do not own the image' do
+      # Make image belong to another user
+      image = Image.create!({
+        :user_id => 2,
+        :file => fixture_file_upload('chicken_rice.jpg')
+      })
+      get :edit, { :key => Image.first.to_param }, valid_session
+      response.response_code.should eq(403)
+    end
   end
 
   describe "POST create" do
@@ -176,5 +186,4 @@ describe ImagesController do
       response.should redirect_to(images_url)
     end
   end
-
 end
