@@ -49,7 +49,7 @@ describe 'editing images', :type => :feature do
   end
 
   context "editing someone else's image" do
-    it 'will throw an error' do
+    it 'will throw an error and redirect back to image/show' do
       another_user = create(:user)
       login_as(another_user, :scope => :user)
       visit edit_image_path(Image.first)
