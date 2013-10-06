@@ -92,9 +92,17 @@ describe ImagesController do
         :user_id => 2,
         :file => fixture_file_upload('chicken_rice.jpg')
       })
-      get :edit, { :key => Image.first.to_param }, valid_session
+      get :edit, { :key => image.to_param }, valid_session
       response.response_code.should eq(403)
       response.should render_template :show
+    end
+
+    it 'will redirect to login page if you are not signed in' do
+      image = Image.create! valid_attributes
+      get :edit, { :key => image.to_param }
+      response.response_code.should eq(403)
+      response.should redirect_to '/login'
+      pending 'test unimplemented logic to lead signed in user back to edit'
     end
   end
 
