@@ -31,3 +31,22 @@ describe 'image show page controls', :type => :feature do
     Warden.test_reset!
   end
 end
+
+describe 'editing images', :type => :feature do
+  before(:each) do
+    @you = create(:user)
+    login_as(@you, :scope => :user)
+    upload_test_file
+    logout(:user)
+  end
+
+  context 'not logged in' do
+    it 'will redirect you to login page' do
+    end
+  end
+
+  context "editing someone else's image" do
+    it 'will throw an error' do
+    end
+  end
+end

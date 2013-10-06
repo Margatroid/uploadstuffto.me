@@ -85,25 +85,6 @@ describe ImagesController do
       get :edit, {:key => image.to_param}, valid_session
       assigns(:image).should eq(image)
     end
-
-    it 'will give 403 if you do not own the image' do
-      # Make image belong to another user
-      image = Image.create!({
-        :user_id => 2,
-        :file => fixture_file_upload('chicken_rice.jpg')
-      })
-      get :edit, { :key => image.to_param }, valid_session
-      response.response_code.should eq(403)
-      response.should render_template :show
-    end
-
-    it 'will redirect to login page if you are not signed in' do
-      image = Image.create! valid_attributes
-      get :edit, { :key => image.to_param }
-      response.response_code.should eq(403)
-      response.should redirect_to '/login'
-      pending 'test unimplemented logic to lead signed in user back to edit'
-    end
   end
 
   describe "POST create" do
