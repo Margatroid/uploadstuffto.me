@@ -34,11 +34,15 @@ class ImagesController < ApplicationController
   # POST /images
   # POST /images.json
   def create
-    @image = current_user.images.new(image_params)
+    image_params[:file].each do |file|
+      image = { file: file }
+      @image = current_user.images.new(image)
+      break unless @image.save
+    end
 
     respond_to do |format|
-      if @image.save
-        format.html { redirect_to @image, notice: 'Image uploaded successfully.' }
+      unless @image.new_record?
+        format.html { redirect_to @image, notice: 'Image(s) uploaded successfully.' }
         format.json { render action: 'show', status: :created, location: @image }
       else
         format.html { render action: 'new', notice: 'Upload failed.' }
