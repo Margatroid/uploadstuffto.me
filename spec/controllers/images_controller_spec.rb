@@ -43,6 +43,11 @@ describe ImagesController do
     :file => fixture_file_upload('chicken_rice.jpg')
   } }
 
+  let(:multi_image_post) { {
+    :user_id => 1,
+    :file => [fixture_file_upload('chicken_rice.jpg')]
+  } }
+
   let(:invalid_attributes) { {
     :user_id => 2,
     :description => 'wolol',
@@ -91,18 +96,18 @@ describe ImagesController do
     describe "with valid params" do
       it "creates a new Image" do
         expect {
-          post :create, {:image => valid_attributes}, valid_session
+          post :create, {:image => multi_image_post}, valid_session
         }.to change(Image, :count).by(1)
       end
 
       it "assigns a newly created image as @image" do
-        post :create, {:image => valid_attributes}, valid_session
+        post :create, {:image => multi_image_post}, valid_session
         assigns(:image).should be_a(Image)
         assigns(:image).should be_persisted
       end
 
       it "redirects to the created image" do
-        post :create, {:image => valid_attributes}, valid_session
+        post :create, {:image => multi_image_post}, valid_session
         response.should redirect_to(Image.last)
       end
     end
@@ -127,7 +132,7 @@ describe ImagesController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested image" do
-        image = Image.create! valid_attributes
+        image = Image.create! multi_image_post
         # Assuming there are no other images in the database, this
         # specifies that the Image created on the previous line
         # receives the :update_attributes message with whatever params are
