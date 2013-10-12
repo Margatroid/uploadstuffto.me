@@ -14,7 +14,7 @@ describe 'homepage upload', :type => :feature do
 
     current_path.should eq(image_path(Image.first.key))
     Image.count.should eq 1
-    expect(page).to have_content 'Image uploaded successfully'
+    expect(page).to have_content 'Image(s) uploaded successfully'
   end
 
   it 'will have a working short link after uploading an image' do
