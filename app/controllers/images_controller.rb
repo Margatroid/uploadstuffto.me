@@ -34,6 +34,10 @@ class ImagesController < ApplicationController
   # POST /images
   # POST /images.json
   def create
+    if image_params[:file].nil?
+      return render action: 'new', notice: 'Upload failed.'
+    end
+
     image_params[:file].each do |file|
       image = { file: file }
       @image = current_user.images.new(image)
