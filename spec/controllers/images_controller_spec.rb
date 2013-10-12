@@ -113,13 +113,6 @@ describe ImagesController do
     end
 
     describe "with invalid params" do
-      it "assigns a newly created but unsaved image as @image" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Image.any_instance.stub(:save).and_return(false)
-        post :create, {:image => {  }}, valid_session
-        assigns(:image).should be_a_new(Image)
-      end
-
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Image.any_instance.stub(:save).and_return(false)
@@ -132,7 +125,7 @@ describe ImagesController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested image" do
-        image = Image.create! multi_image_post
+        image = Image.create! valid_attributes
         # Assuming there are no other images in the database, this
         # specifies that the Image created on the previous line
         # receives the :update_attributes message with whatever params are
