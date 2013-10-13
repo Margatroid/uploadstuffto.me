@@ -80,4 +80,7 @@ NoMoreIdeas::Application.configure do
 
   # Set default URL options for devise
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  # Defualt number of items per page for will_paginate.
+  config.pagination_per_page = 50
 end
