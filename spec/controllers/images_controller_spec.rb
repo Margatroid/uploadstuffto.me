@@ -59,22 +59,6 @@ describe ImagesController do
   # ImagesController. Be sure to keep this updated too.
   let(:valid_session) { { 'warden.user.user.key' => session['warden.user.user.key'] } }
 
-  describe "GET index" do
-    it "assigns all images as @images" do
-      image = Image.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:images).should eq([image])
-    end
-  end
-
-  describe "GET show" do
-    it "assigns the requested image as @image" do
-      image = Image.create! valid_attributes
-      get :show, {:key => image.to_param}, valid_session
-      assigns(:image).should eq(image)
-    end
-  end
-
   describe "GET new" do
     it "assigns a new image as @image" do
       pending 'Leave this here until we figure out where to put /new'

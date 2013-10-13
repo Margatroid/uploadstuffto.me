@@ -3,12 +3,6 @@ class ImagesController < ApplicationController
 
   before_filter :authenticate_user!, :only => [:edit, :update]
 
-  # GET /images
-  # GET /images.json
-  def index
-    @images = Image.all
-  end
-
   # GET /images/key
   # GET /images/key.json
   def show

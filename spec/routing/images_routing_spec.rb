@@ -3,10 +3,6 @@ require "spec_helper"
 describe ImagesController do
   describe "routing" do
 
-    it "routes to #index" do
-      get("/images").should route_to("images#index")
-    end
-
     it "routes to #show" do
       get("/images/hello").should route_to("images#show", :key => "hello")
     end

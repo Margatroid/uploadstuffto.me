@@ -21,7 +21,6 @@ NoMoreIdeas::Application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
-  get '/images'           => 'images#index',   as: 'images'
   post '/images'          => 'images#create'
   get '/images/:key'      => 'images#show',    as: 'image'
   get '/images/:key/edit' => 'images#edit',    as: 'edit_image'
