@@ -54,7 +54,7 @@ end
 
 describe 'image gallery', :type => :feature do
   context 'when logged in' do
-    it 'shows all the images you uploaded' do
+    it 'shows images you uploaded' do
       user = create(:user)
       login_as(user, :scope => :user)
       upload_test_file
