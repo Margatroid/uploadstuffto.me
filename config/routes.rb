@@ -1,4 +1,6 @@
 NoMoreIdeas::Application.routes.draw do
+  resources :albums
+
   devise_for :users,
     :path => '',
     :path_names => {
