@@ -31,7 +31,7 @@ describe 'homepage upload', :type => :feature do
   it 'will save the file in the correct location' do
     upload_test_file
 
-    visit "/original/#{ Image.first.key }.jpg"
+    visit "/original/#{ Image.first.key }.png"
     page.status_code.should be 200
   end
 

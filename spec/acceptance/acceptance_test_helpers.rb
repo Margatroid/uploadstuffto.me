@@ -23,17 +23,17 @@ end
 
 module UploadHelper
   def upload_test_file
-    upload_file('chicken_rice')
+    upload_file('test_image.png')
   end
 
   def upload_test_another_file
-    upload_file('sushi')
+    upload_file('sushi.jpg')
   end
 
   private
   def upload_file(filename)
     visit '/'
-    attach_file('File', File.expand_path("spec/fixtures/#{ filename }.jpg"))
+    attach_file('File', File.expand_path("spec/fixtures/#{ filename }"))
     click_button 'Upload image'
   end
 end
