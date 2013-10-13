@@ -1,0 +1,9 @@
+<div class="l-box center">
+  <%= page_entries_info collection %>
+</div>
+<div class="l-box center pure-hidden-phone">
+  <%= will_paginate collection %>
+</div>
+<div class="l-box center pure-hidden-tablet pure-hidden-desktop">
+  <%= will_paginate collection, :page_links => false %>
+</div>
