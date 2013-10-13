@@ -83,23 +83,50 @@ describe 'image gallery', :type => :feature do
   end
 end
 
-describe 'image gallery pagination' do
-  context 'when over 50 images' do
+describe 'image gallery pagination', :type => :feature do
+  before(:each) do
+    User.per_page = 5
+    @user = create(:user)
+    login_as(@user, :scope => :user)
+    5.times { |i| upload_test_file }
+    visit "/profile/#{ @user.username }"
+  end
+
+  context 'when over 5 images' do
+    before(:each) do
+      upload_test_file
+      visit "/profile/#{ @user.username }"
+    end
+
     it 'shows pagination controls' do
+      page.should have_selector('.pagination')
     end
 
     it 'will let you go to page 2' do
+      first(:link, '2').click
+      uri = URI.parse(current_url)
+      uri.path.should eq(user_path(@user))
+      uri.query.should eq('page=2')
     end
 
-    it 'will have 60th image on page 2' do
+    it 'will have first image on page 2' do
+      first(:link, '2').click
+      images_in_widget = page.all(:css, "#recent_uploads .small-tile img")
+      images_in_widget[0][:src].should eq(Image.first.file.url(:thumb))
     end
 
-    it 'will not have 60th image on the first page' do
+    it 'will not have the last uploaded image on page 2' do
+      first(:link, '2').click
+      images_in_widget = page.all(:css, "#recent_uploads .small-tile img")
+      images_in_widget.each do |image|
+        image[:src].should_not eq(Image.last.file.url(:thumb))
+      end
     end
   end
 
-  context 'when 50 or less images' do
+  context 'when 5 or less images' do
     it 'does not show any pagination controls' do
+      page.should have_no_selector('.pagination')
     end
   end
 end
