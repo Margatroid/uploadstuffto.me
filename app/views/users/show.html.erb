@@ -9,9 +9,17 @@
     <h2>Recent uploads</h2>
 
     <% if @user.has_images? %>
-      <%= will_paginate @recent_uploads %>
+      <div class="l-box center">
+        <%= page_entries_info @recent_uploads %>
+      </div>
+      <div class="l-box center pure-hidden-phone">
+        <%= will_paginate @recent_uploads %>
+      </div>
+      <div class="l-box center pure-hidden-tablet pure-hidden-desktop">
+        <%= will_paginate @recent_uploads, :page_links => false %>
+      </div>
+
       <%= render 'images/tiles', :images => @recent_uploads %>
-      <%= will_paginate @recent_uploads %>
     <% else %>
       <p><%= @user.username %> has not uploaded anything yet.</p>
     <% end %>
