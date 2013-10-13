@@ -36,7 +36,12 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
+# Make it easier to manage foreign keys.
 gem 'foreigner'
+
+# Pagination libraries.
+gem 'will_paginate', '~> 3.0'
+gem 'purecss-will_paginate'
 
 group :test, :development do
   gem "rspec-rails", "~> 2.4"
