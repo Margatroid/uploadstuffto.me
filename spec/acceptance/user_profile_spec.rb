@@ -83,6 +83,27 @@ describe 'image gallery', :type => :feature do
   end
 end
 
+describe 'image gallery pagination' do
+  context 'when over 50 images' do
+    it 'shows pagination controls' do
+    end
+
+    it 'will let you go to page 2' do
+    end
+
+    it 'will have 60th image on page 2' do
+    end
+
+    it 'will not have 60th image on the first page' do
+    end
+  end
+
+  context 'when 50 or less images' do
+    it 'does not show any pagination controls' do
+    end
+  end
+end
+
 describe 'album gallery' do
   context 'when logged in' do
     it 'shows all the albums you created' do
