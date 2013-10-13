@@ -9,7 +9,9 @@
     <h2>Recent uploads</h2>
 
     <% if @user.has_images? %>
+      <%= will_paginate @recent_uploads %>
       <%= render 'images/tiles', :images => @recent_uploads %>
+      <%= will_paginate @recent_uploads %>
     <% else %>
       <p><%= @user.username %> has not uploaded anything yet.</p>
     <% end %>
