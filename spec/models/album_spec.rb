@@ -22,6 +22,9 @@ describe Album do
   end
 
   it 'must be deleted if the user is deleted' do
-    pending 'test that album is gone if user is deleted'
+    album = create(:album)
+    Album.all.count.should eq(1)
+    album.user.delete
+    Album.all.count.should eq(0)
   end
 end

@@ -3,5 +3,6 @@
 FactoryGirl.define do
   factory :album do
     title "MyString"
+    association :user, :factory => :user
   end
 end
