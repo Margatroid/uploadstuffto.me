@@ -61,8 +61,8 @@ describe ImagesController do
 
   describe "GET new" do
     it "assigns a new image as @image" do
-      pending 'Leave this here until we figure out where to put /new'
-      this_should_not_get_executed
+      #pending 'Leave this here until we figure out where to put /new'
+      #this_should_not_get_executed
       #get :new, {}, valid_session
       #assigns(:image).should be_a_new(Image)
     end
