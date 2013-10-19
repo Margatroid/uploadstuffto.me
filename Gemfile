@@ -56,6 +56,9 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+# Make album images act as a sortable list.
+gem 'acts_as_list'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
