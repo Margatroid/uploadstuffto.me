@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 
   belongs_to :invite
   has_many :images
+  has_many :albums
   validates :invite_id, presence: true
   validates :username, presence: true
   validates_format_of :username, :with => /\A(\w|-)+\Z/i,
