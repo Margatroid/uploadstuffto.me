@@ -6,4 +6,10 @@ module ImagesHelper
   def edit_mode?
     params[:edit_mode]
   end
+
+  def show_gallery_pagination(collection)
+    if collection.total_pages > 1
+      render 'images/gallery_pagination', :collection => collection
+    end
+  end
 end

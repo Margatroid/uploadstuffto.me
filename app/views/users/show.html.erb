@@ -9,10 +9,10 @@
     <h2>Recent uploads</h2>
 
     <% if @user.has_images? %>
-      <%= render 'images/gallery_pagination', :collection => @recent_uploads %>
+      <%= show_gallery_pagination(@recent_uploads) %>
       <%= render 'images/edit_mode_controls' if show_edit_mode? %>
       <%= render 'images/tiles', :images => @recent_uploads %>
-      <%= render 'images/gallery_pagination', :collection => @recent_uploads %>
+      <%= show_gallery_pagination(@recent_uploads) %>
     <% else %>
       <p><%= @user.username %> has not uploaded anything yet.</p>
     <% end %>
