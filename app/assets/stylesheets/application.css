@@ -39,3 +39,7 @@
 .hidden {
   display: none;
 }
+
+.edit-mode-controls a {
+  text-decoration: none;
+}
