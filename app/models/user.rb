@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :rememberable, :trackable, :validatable
 
   belongs_to :invite
-  has_many :images
+  has_many :images, :dependent => :destroy
   has_many :albums, :dependent => :destroy
   validates :invite_id, presence: true
   validates :username, presence: true

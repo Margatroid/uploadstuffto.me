@@ -64,3 +64,12 @@ describe 'editing images', :type => :feature do
     Warden.test_reset!
   end
 end
+
+describe 'user dependency' do
+  it 'gets destroyed if the user is destroyed' do
+    user = create(:user_with_image)
+    Image.all.count.should eq(1)
+    user.destroy
+    Image.all.count.should eq(0)
+  end
+end
