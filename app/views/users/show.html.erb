@@ -10,7 +10,7 @@
 
     <% if @user.has_images? %>
       <%= render 'images/gallery_pagination', :collection => @recent_uploads %>
-      <%= render 'images/edit_form_buttons' %>
+      <%= render 'images/edit_form_buttons' if show_edit_mode? %>
       <%= render 'images/tiles', :images => @recent_uploads %>
       <%= render 'images/gallery_pagination', :collection => @recent_uploads %>
     <% else %>
