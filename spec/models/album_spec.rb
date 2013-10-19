@@ -8,6 +8,11 @@ describe Album do
     album.save.should eq(true)
   end
 
+  it 'cannot be created on its own' do
+    album = Album.new(title: 'boom')
+    expect { album.save! }.to raise_error(ActiveRecord::RecordInvalid)
+  end
+
   it 'can be referenced to/from a user' do
     user = create(:user)
     album = user.albums.create
