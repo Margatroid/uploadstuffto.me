@@ -173,5 +173,15 @@ describe ImagesController do
       delete :destroy, {:key => image.to_param}, valid_session
       response.should redirect_to(images_url)
     end
+
+    context 'when logged out' do
+      it 'will not allow deletion' do
+      end
+    end
+
+    context 'when logged in' do
+      it "won't let you delete someone else's image" do
+      end
+    end
   end
 end
