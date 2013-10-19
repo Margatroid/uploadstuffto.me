@@ -1,5 +1,6 @@
 class Image < ActiveRecord::Base
   belongs_to :user
+  has_many :album_images, :dependent => :destroy
   validates :user_id, presence: true
   validates :file, :attachment_presence => true
   validates :key, presence: true
