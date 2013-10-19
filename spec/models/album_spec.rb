@@ -24,7 +24,7 @@ describe Album do
   it 'must be deleted if the user is deleted' do
     album = create(:album)
     Album.all.count.should eq(1)
-    album.user.delete
+    album.user.destroy
     Album.all.count.should eq(0)
   end
 end
