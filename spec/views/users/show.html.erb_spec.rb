@@ -12,7 +12,7 @@ describe "users/show.html.erb" do
     before(:each) do
       @me  = create(:user_with_image)
       @you = create(:user_with_image)
-      login_as(@me, :scope => :user)
+      sign_in @me
     end
 
     it 'will show edit mode on your profile' do
@@ -30,8 +30,7 @@ describe "users/show.html.erb" do
     end
 
     after(:each) do
-      logout(:user)
-      Warden.test_reset!
+      sign_out @me
     end
   end
 
