@@ -171,7 +171,7 @@ describe ImagesController do
     it "redirects to the images list" do
       image = Image.create! valid_attributes
       delete :destroy, {:key => image.to_param}, valid_session
-      response.should redirect_to(images_url)
+      response.should redirect_to(user_path(@user))
     end
 
     context 'when logged out' do

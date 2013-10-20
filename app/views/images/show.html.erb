@@ -2,7 +2,10 @@
   <div class="l-box">
     <p>
       Uploaded by <%= link_to @image.user.username, user_path(@image.user) %>.
-      <%= link_to 'Edit', edit_image_path(@image) if @permissions[:edit] %>
+      <% if @permissions[:edit] %>
+        <%= link_to 'Edit', edit_image_path(@image) %>
+        <%= link_to 'Delete', destroy_image_path(@image), method: :delete %>
+      <% end %>
     </p>
 
     <div><%= image_tag @image.file.url, { id: 'fullsize_image' } %></div>

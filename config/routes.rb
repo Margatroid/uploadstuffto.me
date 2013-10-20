@@ -27,7 +27,7 @@ NoMoreIdeas::Application.routes.draw do
   get '/images/:key'      => 'images#show',    as: 'image'
   get '/images/:key/edit' => 'images#edit',    as: 'edit_image'
   put '/images/:key'      => 'images#update'
-  delete '/images/:key'   => 'images#destroy'
+  delete '/images/:key'   => 'images#destroy', as: 'destroy_image'
 
   # Handle "add to album" or "delete" submissions.
   post '/images/edit_mode_submit' => 'images#edit_mode_submit', as: 'edit_mode_submit'
