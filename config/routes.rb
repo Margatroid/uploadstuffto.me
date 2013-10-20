@@ -30,7 +30,7 @@ NoMoreIdeas::Application.routes.draw do
   delete '/images/:key'   => 'images#destroy'
 
   # Handle "add to album" or "delete" submissions.
-  post '/images/edit_mode_submit' => 'images#edit_mode_submit', as 'edit_mode_submit'
+  post '/images/edit_mode_submit' => 'images#edit_mode_submit', as: 'edit_mode_submit'
 
   get '/profiles/:username' => 'users#show', as: 'user'
 
