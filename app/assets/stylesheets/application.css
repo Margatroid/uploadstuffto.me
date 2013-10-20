@@ -27,6 +27,11 @@
   height: 200px;
 }
 
+.tile.checked {
+  border-color:     #0078E7;
+  background-color: #91C1ED;
+}
+
 .tile .small-img img {
   width:  70px;
   height: 70px;
