@@ -16,7 +16,10 @@ module ImagesHelper
 
   def edit_mode_checkbox(image)
     return unless show_edit_mode? && edit_mode?
-    sprintf('<input type="checkbox" name="selected[]" value="%d" />',
+    sprintf('<input class="tile-select"
+                     type="checkbox"
+                     name="selected[]"
+                    value="%d" />',
             image.id).html_safe
   end
 end
