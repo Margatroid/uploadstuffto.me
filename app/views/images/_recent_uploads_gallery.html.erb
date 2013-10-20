@@ -1,0 +1,4 @@
+<%= show_gallery_pagination(@recent_uploads) %>
+<%= render 'images/edit_mode_controls' if show_edit_mode? %>
+<%= render 'images/tiles', :images => @recent_uploads %>
+<%= show_gallery_pagination(@recent_uploads) %>
