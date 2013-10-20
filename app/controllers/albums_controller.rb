@@ -1,5 +1,6 @@
 class AlbumsController < ApplicationController
   before_action :set_album, only: [:show, :edit, :update, :destroy]
+  include CanCreateNewAlbum
 
   # GET /albums
   # GET /albums.json
@@ -14,7 +15,7 @@ class AlbumsController < ApplicationController
 
   # GET /albums/new
   def new
-    @album = Album.new
+    new_album
   end
 
   # GET /albums/1/edit

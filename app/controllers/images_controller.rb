@@ -1,7 +1,7 @@
 class ImagesController < ApplicationController
   before_action :set_image, only: [:show, :edit, :update, :destroy]
-
   before_filter :authenticate_user!, :only => [:edit, :update]
+  include CanCreateNewAlbum
 
   # GET /images/key
   # GET /images/key.json
@@ -52,9 +52,9 @@ class ImagesController < ApplicationController
   # POST /images/editsubmit
   def edit_mode_submit
     if params[:delete]
-      redirect_to action: destroy, status: :found
+      self.destroy
     else
-      redirect_to new_album_path, status: :found
+      new_album
     end
   end
 
