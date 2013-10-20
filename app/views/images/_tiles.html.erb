@@ -1,15 +1,13 @@
 <div class="pure-u-1 tiles">
   <% images.each do |image| %>
-    <div class="tile pure-hidden-phone">
+    <div class="tile">
       <%= edit_mode_checkbox(image) %>
-      <%= link_to image_path(image) do %>
+
+      <%= link_to image_path(image), class: 'pure-hidden-tablet pure-hidden-desktop small-img' do %>
         <%= image_tag(image.file.url(:thumb)) %>
       <% end %>
-    </div>
 
-    <div class="tile small-tile pure-hidden-tablet pure-hidden-desktop">
-      <%= edit_mode_checkbox(image) %>
-      <%= link_to image_path(image) do %>
+      <%= link_to image_path(image), class: 'pure-hidden-phone' do %>
         <%= image_tag(image.file.url(:thumb)) %>
       <% end %>
     </div>

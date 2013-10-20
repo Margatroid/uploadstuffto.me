@@ -85,7 +85,7 @@ describe "everyone else's recent uploads widget", :type => :feature do
   it 'should not show your own upload' do
     my_upload_thumb = @me.images.first.file.path(:thumb)
     my_upload_url   = get_image_path(@me.images.first)
-    images_in_widget = page.all(:css, "#{ widget_id } .small-tile img")
+    images_in_widget = page.all(:css, "#{ widget_id } a.small-img img")
     images_in_widget.count.should eq (1)
     images_in_widget.each do |image|
       image[:src].should_not eq(my_upload_thumb)
@@ -94,22 +94,22 @@ describe "everyone else's recent uploads widget", :type => :feature do
   end
 
   it "should show someone else's upload" do
-    widget        = page.first("#{ widget_id } .small-tile img")
+    widget        = page.first("#{ widget_id } .tile img")
     expected_href = get_image_path(@someone_else.images.first)
     expected_src  = @someone_else.images.first.file.url(:thumb)
 
-    page.all(:css, "#{ widget_id } .small-tile a").count.should eq(1)
+    page.all(:css, "#{ widget_id } a.small-img").count.should eq(1)
     # Expect first and only image in widget to link to someone else's upload.
-    page.first("#{ widget_id } .small-tile a")[:href].should eq(expected_href)
+    page.first("#{ widget_id } a.small-img")[:href].should eq(expected_href)
     # Expect first and only image in widget to have correct source thumbnail.
-    page.first("#{ widget_id } .small-tile a img")[:src].should eq(expected_src)
+    page.first("#{ widget_id } a.small-img img")[:src].should eq(expected_src)
   end
 
   it 'should show both uploads when logged out' do
     logout(:user)
     visit '/'
-    images = page.all(:css, "#{ widget_id } .small-tile a")
-    page.all(:css, "#{ widget_id } .small-tile a").count.should eq(2)
+    images = page.all(:css, "#{ widget_id } a.small-img")
+    page.all(:css, "#{ widget_id } a.small-img").count.should eq(2)
 
     images.first[:href].should_not eq(images.last[:href])
   end

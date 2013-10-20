@@ -61,8 +61,8 @@ describe 'image gallery', :type => :feature do
       upload_test_another_file
 
       visit "/profiles/#{ user.username }"
-      gallery_links = page.all(:css, '#recent_uploads .small-tile a')
-      recently_upload_images = page.all(:css, '#recent_uploads .small-tile img')
+      gallery_links = page.all(:css, '#recent_uploads a.small-img')
+      recently_upload_images = page.all(:css, '#recent_uploads .small-img img')
 
       srcs  = recently_upload_images.map { |image| image[:src] }
       hrefs = gallery_links.map { |link| link[:href] }
@@ -111,13 +111,13 @@ describe 'image gallery pagination', :type => :feature do
 
     it 'will have first image on page 2' do
       first(:link, '2').click
-      images_in_widget = page.all(:css, "#recent_uploads .small-tile img")
+      images_in_widget = page.all(:css, "#recent_uploads .small-img img")
       images_in_widget[0][:src].should eq(Image.first.file.url(:thumb))
     end
 
     it 'will not have the last uploaded image on page 2' do
       first(:link, '2').click
-      images_in_widget = page.all(:css, "#recent_uploads .small-tile img")
+      images_in_widget = page.all(:css, "#recent_uploads small-img img")
       images_in_widget.each do |image|
         image[:src].should_not eq(Image.last.file.url(:thumb))
       end

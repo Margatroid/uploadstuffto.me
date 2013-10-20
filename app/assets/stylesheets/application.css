@@ -21,13 +21,13 @@
   border:  2px solid #EEE;
 }
 
-.tiles .tile img {
+.tile img {
   display: block;
-  width:   200px;
-  height:  200px;
+  width: 200px;
+  height: 200px;
 }
 
-.tiles .small-tile img {
+.tile .small-img img {
   width:  70px;
   height: 70px;
 }
