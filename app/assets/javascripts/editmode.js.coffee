@@ -3,6 +3,7 @@ class EditMode
     $('.tile').click(this.tileOnClick)
     $('.tile-select').change(this.tileSelectOnChange)
     $('.select-all, .deselect-all').click(this.toggleAllTiles)
+    $('.select-all, .deselect-all').removeAttr('disabled')
 
   onLoad: =>
     this.setup() if $('.leave-edit-mode').length

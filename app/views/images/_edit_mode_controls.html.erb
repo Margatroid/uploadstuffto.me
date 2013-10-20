@@ -3,8 +3,8 @@
     <a href="<%= url_for(params.except(:edit_mode)) %>" alt="Leave edit mode">
       <button class="leave-edit-mode pure-button s-margin">Leave edit mode</button>
     </a>
-    <button class="pure-button select-all s-margin">Select all</button>
-    <button class="pure-button deselect-all s-margin">Deselect all</button>
+    <button disabled="disabled" class="pure-button select-all s-margin">Select all</button>
+    <button disabled="disabled" class="pure-button deselect-all s-margin">Deselect all</button>
     <button type="submit" name="delete" value="true" class="pure-button s-margin">Delete</button>
     <button type="submit" name="add_to_album" value="true" class="pure-button s-margin">Add to album</button>
   <% else %>
