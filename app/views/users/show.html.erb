@@ -9,7 +9,13 @@
     <h2>Recent uploads</h2>
 
     <% if @user.has_images? %>
-      <%= render 'images/recent_uploads_gallery' %>
+      <% if show_edit_mode? %>
+        <%= form_tag(edit_mode_submit_path) do %>
+          <%= render 'images/recent_uploads_gallery' %>
+        <% end %>
+      <% else %>
+        <%= render 'images/recent_uploads_gallery' %>
+      <% end %>
     <% else %>
       <p><%= @user.username %> has not uploaded anything yet.</p>
     <% end %>
