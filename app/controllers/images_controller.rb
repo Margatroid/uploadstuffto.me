@@ -81,10 +81,20 @@ class ImagesController < ApplicationController
   # DELETE /images/1
   # DELETE /images/1.json
   def destroy
-    @image.destroy
+    if params[:key]
+      image_ids = [ Image.find_by_key(params[:key]).id ]
+    else
+      image_ids = params[:selected]
+    end
+
     respond_to do |format|
-      format.html { redirect_to user_path(current_user), notice: 'Image(s) deleted.' }
-      format.json { head :no_content }
+      if Image.delete_by_ids(current_user, image_ids)
+        format.html { redirect_to user_path(current_user), notice: 'Image(s) deleted.' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to user_path(current_user), notice: 'Error deleting image(s).'}
+        format.json { render json: { errors: 'Error deleting image(s).' } }
+      end
     end
   end
 

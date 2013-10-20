@@ -23,6 +23,18 @@ class Image < ActiveRecord::Base
     end
   end
 
+  def self.delete_by_ids(current_user, image_ids)
+    return false unless current_user
+
+    images = find(image_ids)
+    images.each do |image|
+      return false if image.user_id != current_user.id
+    end
+
+    images.each { |image| image.destroy }
+    true
+  end
+
   def is_owned_by_user?(user)
     self.user_id == user.id
   end
