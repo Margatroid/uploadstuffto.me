@@ -50,8 +50,12 @@ class ImagesController < ApplicationController
   end
 
   # POST /images/editsubmit
-  def edit_submit
-    render text: 'Hello there'
+  def edit_mode_submit
+    if params[:delete]
+      redirect_to action: destroy, status: :found
+    else
+      redirect_to new_album_path, status: :found
+    end
   end
 
   # PATCH/PUT /images/1
