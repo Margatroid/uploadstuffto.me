@@ -29,6 +29,9 @@ NoMoreIdeas::Application.routes.draw do
   put '/images/:key'      => 'images#update'
   delete '/images/:key'   => 'images#destroy'
 
+  # Handle "add to album" or "delete" submissions.
+  post '/images/edit_mode_submit' => 'images#edit_mode_submit', as 'edit_mode_submit'
+
   get '/profiles/:username' => 'users#show', as: 'user'
 
   # Example resource route with options:

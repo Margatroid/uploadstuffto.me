@@ -49,6 +49,11 @@ class ImagesController < ApplicationController
     end
   end
 
+  # POST /images/editsubmit
+  def edit_submit
+    render text: 'Hello there'
+  end
+
   # PATCH/PUT /images/1
   # PATCH/PUT /images/1.json
   def update
