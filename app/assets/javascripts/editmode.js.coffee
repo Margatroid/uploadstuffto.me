@@ -2,6 +2,7 @@ class EditMode
   setup: =>
     $('.tile').click(this.tileOnClick)
     $('.tile-select').change(this.tileSelectOnChange)
+    $('.select-all, .deselect-all').click(this.toggleAllTiles)
 
   onLoad: =>
     this.setup() if $('.leave-edit-mode').length
@@ -27,5 +28,15 @@ class EditMode
       $tile.addClass('checked')
     else
       $tile.removeClass('checked')
+
+  toggleAllTiles: (event) =>
+    event.preventDefault()
+    $button = $(event.target)
+    checkAll = ($button.hasClass('select-all')) ? true : false
+
+    $('.tile-select').each (i) ->
+      checkbox = $(this)
+      checkbox.prop('checked', checkAll)
+      checkbox.change()
 
 this.EditMode = EditMode
