@@ -18,6 +18,7 @@ describe "users/show.html.erb" do
     it 'will show edit mode on your profile' do
       assign(:user, @me)
       assign(:recent_uploads, @me.recently_uploaded_paginate(1))
+      view.stub(:url_for).and_return('/some/url')
       render template: 'users/show'
       rendered.should have_text('Edit mode')
     end
