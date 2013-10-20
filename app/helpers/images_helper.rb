@@ -4,7 +4,7 @@ module ImagesHelper
   end
 
   def edit_mode?
-    params[:edit_mode]
+    show_edit_mode? && params[:edit_mode]
   end
 
   def show_gallery_pagination(collection)
