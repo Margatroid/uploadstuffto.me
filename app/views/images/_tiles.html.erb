@@ -1,6 +1,6 @@
 <div class="pure-u-1 tiles">
   <% images.each do |image| %>
-    <div class="tile">
+    <div class="tile" id="tile_<%= image.key %>">
       <%= edit_mode_checkbox(image) %>
 
       <%= link_to image_path(image), class: 'pure-hidden-tablet pure-hidden-desktop small-img' do %>
