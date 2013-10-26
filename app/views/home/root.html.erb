@@ -1,8 +1,37 @@
 <div class="pure-g-r">
+  <div class="pure-u-1-2">
+    <div class="l-box">
+      <h3>About uploadstuffto.me</h3>
+      <p>
+        uploadstuffto.me is an image hosting site.
+        I just wanted an imgur pro account without paying for it.
+        Invite keys are required to register an account, just ask me for one.
+        This site is hosted on Digital Ocean and you can view the project
+        source here.
+      </p>
+    </div>
+  </div>
+  <div class="pure-u-1-2">
+    <div class="l-box">
+      <h3>Features</h3>
+        <ul>
+          <li>Images can be shared with a unique short URL.</li>
+          <li>Private images that cannot be attributed to a username.</li>
+          <li>User galleries for public images and albums.</li>
+          <li>Private and public albums for images with captions for each image.</li>
+          <li>
+            HTML5 multiple file upload (sadly not well supported in mobile browsers yet).
+          </li>
+          <li>Responsive layout with pure.</li>
+          <li>Degrades somewhat gracefully when no JS is available.</li>
+        </ul>
+    </div>
+  </div>
+</div>
+
+<div class="pure-g-r">
   <div class="pure-u-1">
     <div class="l-box">
-      <h1>uploadstuffto.me</h1>
-      <p>This is an image hosting site. Only registered users may upload.</p>
       <%= render template: 'images/new' if user_signed_in? %>
     </div>
   </div>
