@@ -36,5 +36,10 @@ FactoryGirl.define do
     factory :user_with_image do
       after(:create) { |instance| create_list(:image, 1, user: instance) }
     end
+
+    factory :user_with_images do
+      # Six images because pagination's per page is 5, so we can have two pages.
+      after(:create) { |instance| create_list(:image, 6, user: instance) }
+    end
   end
 end
