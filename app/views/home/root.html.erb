@@ -1,13 +1,21 @@
 <div class="pure-g-r">
   <div class="pure-u-1-2">
     <div class="l-box">
-      <h3>About uploadstuffto.me</h3>
+      <h3>
+        About uploadstuffto.me
+        <%= link_to "https://travis-ci.org/Margatroid/no-more-ideas", :target => :blank do %>
+          <%= image_tag "https://api.travis-ci.org/Margatroid/no-more-ideas.png?v=#{ Time.now.to_i }",
+                        alt: 'Build status' %>
+        <% end %>
+      </h3>
       <p>
         uploadstuffto.me is an image hosting site.
         I just wanted an imgur pro account without paying for it.
         Invite keys are required to register an account, just ask me for one.
-        This site is hosted on Digital Ocean and you can view the project
-        source here.
+        This site is hosted on
+        <%= link_to 'https://www.digitalocean.com/?refcode=49fbed615e41', :target => :blank do %>Digital Ocean<% end %>
+        and you can
+        <%= link_to 'https://github.com/Margatroid/no-more-ideas', :target => :blank do %>view the project source here.<% end %>
       </p>
     </div>
   </div>
