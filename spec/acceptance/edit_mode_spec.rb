@@ -10,12 +10,12 @@ describe 'deletion', :type => :feature do
   end
 
   it 'lets you delete an image' do
-    # Find last image, @me.images.first image is on page 2.
-    page.find(:xpath, "//a[@href='#{ image_path(@me.images.last) }'][1]").click
+    # Find last image, @me.images.first image is on page 2. Tick checkbox.
+    find("#tile_#{ @me.images.last.key } .tile-select").set(true)
 
     images = Image.count
 
-    click_link 'Delete'
+    click_button 'Delete'
     page.should have_content('Image(s) deleted.')
 
     Image.count.should eq(images - 1)
