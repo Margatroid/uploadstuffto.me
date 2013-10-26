@@ -12,11 +12,6 @@ class ImagesController < ApplicationController
     }
   end
 
-  # GET /images/new
-  def new
-    @image = Image.new
-  end
-
   # GET /images/key/edit
   def edit
     @image = Image.find_by_key(params[:key])
