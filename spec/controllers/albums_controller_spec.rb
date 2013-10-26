@@ -19,6 +19,17 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe AlbumsController do
+  before(:each) do
+    @me = create(:user)
+    sign_in @me
+
+    controller.stub :current_user => @me
+  end
+
+  after(:each) do
+    logout(:user)
+    Warden.test_reset!
+  end
 
   # This should return the minimal set of attributes required to create a valid
   # Album. As you add validations to Album, be sure to
