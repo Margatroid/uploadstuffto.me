@@ -6,7 +6,7 @@ include UploadHelper
 describe 'correct routing to profile', :type => :feature do
   it 'will load the profile at the correct path' do
     user = create(:user)
-    visit "/profiles/#{ user.username }"
+    visit "/users/#{ user.username }"
     page.status_code.should be 200
   end
 end
@@ -21,7 +21,7 @@ describe 'user profile header', :type => :feature do
 
     logout(:user)
 
-    visit "/profiles/#{ @user.username }"
+    visit "/users/#{ @user.username }"
   end
 
   it "shows the user's name" do
@@ -60,7 +60,7 @@ describe 'image gallery', :type => :feature do
       upload_test_file
       upload_test_another_file
 
-      visit "/profiles/#{ user.username }"
+      visit "/users/#{ user.username }"
       gallery_links = page.all(:css, '#recent_uploads a.small-img')
       recently_upload_images = page.all(:css, '#recent_uploads .small-img img')
 
@@ -89,13 +89,13 @@ describe 'image gallery pagination', :type => :feature do
     @user = create(:user)
     login_as(@user, :scope => :user)
     5.times { |i| upload_test_file }
-    visit "/profiles/#{ @user.username }"
+    visit "/users/#{ @user.username }"
   end
 
   context 'when over 5 images' do
     before(:each) do
       upload_test_file
-      visit "/profiles/#{ @user.username }"
+      visit "/users/#{ @user.username }"
     end
 
     it 'shows pagination controls' do
