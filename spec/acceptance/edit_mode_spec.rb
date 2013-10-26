@@ -26,3 +26,22 @@ describe 'deletion', :type => :feature do
     Warden.test_reset!
   end
 end
+
+describe 'album creation', :type => :feature do
+  before(:each) do
+    @me = create(:user_with_images)
+    login_as(@me, :scope => :user)
+
+    visit "/users/#{ @me.username }"
+    click_link 'Edit mode'
+  end
+
+  it 'creates a new album from an image you picked' do
+    find("#tile_#{ @me.images.last.key } .tile-select").set(true)
+    click_button 'Add to album'
+    page.should have_content('New album')
+
+    expected_src = @me.images.last.file.url(:thumb)
+    page.first('img')[:src].should eq(expected_src)
+  end
+end
