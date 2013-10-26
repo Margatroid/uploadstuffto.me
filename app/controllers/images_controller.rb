@@ -1,6 +1,7 @@
 class ImagesController < ApplicationController
   before_action :set_image, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_user!, :only => [:edit, :update]
+  before_filter :authenticate_user!,
+                :only => [:edit, :update, :create, :edit_mode_submit, :destroy]
   include CanCreateNewAlbum
 
   # GET /images/key
