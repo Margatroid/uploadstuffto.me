@@ -57,7 +57,7 @@ describe ImagesController do
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # ImagesController. Be sure to keep this updated too.
-  let(:valid_session) { { 'warden.user.user.key' => session['warden.user.user.key'] } }
+  let(:valid_session) { {} }
 
   describe "GET new" do
     it "assigns a new image as @image" do
