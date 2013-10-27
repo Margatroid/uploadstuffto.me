@@ -127,6 +127,11 @@ describe AlbumsController do
         valid_attributes_with_images[:selected] = [1]
 
         post :create, { :album => valid_attributes_with_images }
+
+        assigns(:album).album_images.count.should eq(1)
+        assigns(:album).album_images.first.should be_persisted
+
+        AlbumImage.first.album.should eq(assigns(:album))
       end
     end
   end
