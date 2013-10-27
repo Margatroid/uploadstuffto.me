@@ -6,8 +6,8 @@ class User < ActiveRecord::Base
          :rememberable, :trackable, :validatable
 
   belongs_to :invite
-  has_many :images, :dependent => :destroy
   has_many :albums, :dependent => :destroy
+  has_many :images, :dependent => :destroy
   validates :invite_id, presence: true
   validates :username, presence: true
   validates_format_of :username, :with => /\A(\w|-)+\Z/i,

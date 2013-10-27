@@ -2,7 +2,7 @@ class Album < ActiveRecord::Base
   validates :user_id, presence: true
 
   belongs_to :user
-  has_many :album_images, -> { order('position DESC') }
+  has_many :album_images, -> { order('position DESC') }, :dependent => :destroy
 
   def add_images(current_user, image_ids)
     begin
