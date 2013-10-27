@@ -30,8 +30,13 @@ class AlbumsController < ApplicationController
     @album = Album.new(album_params)
     @album.user_id = current_user.id
 
+    album_has_saved = @album.save
+
+    # Add images to album after album has saved successfully.
+    @album.add_images(params[:selected]) if album_has_saved && params[:add_to_album]
+
     respond_to do |format|
-      if @album.save
+      if album_has_saved
         format.html { redirect_to @album, notice: 'Album was successfully created.' }
         format.json { render action: 'show', status: :created, location: @album }
       else
