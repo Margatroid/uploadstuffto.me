@@ -111,6 +111,24 @@ describe AlbumsController do
         response.should render_template("new")
       end
     end
+
+    describe "album image creation" do
+      before(:each) do
+        logout(:user)
+        # Can't create album images if I don't have images in the first place.
+        @me_with_image = create(:user_with_image)
+        sign_in(@me_with_image)
+        controller.stub :current_user => @me
+      end
+
+      it 'creates album images for the new album' do
+        valid_attributes_with_images = valid_attributes
+        valid_attributes_with_images[:add_to_album] = true
+        valid_attributes_with_images[:selected] = [1]
+
+        post :create, { :album => valid_attributes_with_images }
+      end
+    end
   end
 
   describe "PUT update" do
