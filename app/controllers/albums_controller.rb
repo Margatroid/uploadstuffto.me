@@ -17,6 +17,7 @@ class AlbumsController < ApplicationController
 
   # GET /albums/new
   def new
+    @images = []
     new_album
   end
 
