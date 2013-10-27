@@ -118,7 +118,7 @@ describe AlbumsController do
         # Can't create album images if I don't have images in the first place.
         @me_with_image = create(:user_with_image)
         sign_in(@me_with_image)
-        controller.stub :current_user => @me
+        controller.stub :current_user => @me_with_image
       end
 
       it 'creates album images for the new album' do
