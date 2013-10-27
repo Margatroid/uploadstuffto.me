@@ -8,8 +8,10 @@
   <%#= link_to 'Back', albums_path %>
 </div>
 
-<% @images.each do |image| %>
-  <div class="l-box">
-    <%= image_tag(image.file.url(:original)) %>
-  </div>
+<% if @album.has_images? %>
+  <% @images.each do |image| %>
+    <div class="l-box">
+      <%= image_tag(image.file.url(:original)) %>
+    </div>
+  <% end %>
 <% end %>

@@ -19,4 +19,8 @@ class Album < ActiveRecord::Base
       false
     end
   end
+
+  def has_images?
+    self.album_images.count > 0
+  end
 end
