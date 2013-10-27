@@ -4,6 +4,12 @@
     <%= @album.title %>
   </p>
 
-  <%#= link_to 'Edit', edit_album_path(@album) %> |
+  <%#= link_to 'Edit', edit_album_path(@album) %>
   <%#= link_to 'Back', albums_path %>
 </div>
+
+<% @images.each do |image| %>
+  <div class="l-box">
+    <%= image_tag(image.file.url(:original)) %>
+  </div>
+<% end %>
