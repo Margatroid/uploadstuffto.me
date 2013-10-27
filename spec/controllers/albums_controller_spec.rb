@@ -64,6 +64,7 @@ describe AlbumsController do
     it "assigns a new album as @album" do
       get :new, {}, valid_session
       assigns(:album).should be_a_new(Album)
+      assigns(:album)[:title].should eq('Untitled')
     end
   end
 

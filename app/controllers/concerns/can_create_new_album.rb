@@ -5,6 +5,7 @@ module CanCreateNewAlbum extend ActiveSupport::Concern
     end
 
     @album = Album.new
+    @album.title = 'Untitled'
     render 'albums/new'
   end
 end
