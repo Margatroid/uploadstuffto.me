@@ -1,5 +1,6 @@
 class AlbumImage < ActiveRecord::Base
-  belongs_to :user
+  belongs_to :album
+  acts_as_list scope: :album
   has_one :image
 
   validates :album_id, presence: true
