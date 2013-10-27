@@ -5,6 +5,8 @@ describe "albums/new" do
     assign(:album, stub_model(Album,
       :title => "MyString"
     ).as_new_record)
+
+    assign(:images, [])
   end
 
   it "renders new album form" do
