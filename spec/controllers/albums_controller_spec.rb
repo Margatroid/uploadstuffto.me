@@ -64,7 +64,7 @@ describe AlbumsController do
       album = Album.create! valid_attributes
       album.album_images.create(:image_id => 1)
       get :show, {:id => album.to_param}
-      assigns(:images).should eq([AlbumImage.first])
+      assigns(:images).should eq([Image.first])
     end
   end
 

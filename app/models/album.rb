@@ -3,6 +3,7 @@ class Album < ActiveRecord::Base
 
   belongs_to :user
   has_many :album_images, -> { order('position DESC') }, :dependent => :destroy
+  has_many :images, through: :album_images
 
   def add_images(current_user, image_ids)
     begin
