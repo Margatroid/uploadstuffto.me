@@ -11,6 +11,9 @@
     </div>
   <% end %>
 
+  <%= f.hidden_field :selected, :value => params[:selected] %>
+  <%= f.hidden_field :add_to_album, :value => params[:add_to_album] %>
+
   <div class="field">
     <%= f.label :title %><br>
     <%= f.text_field :title %>
