@@ -11,7 +11,9 @@
     </div>
   <% end %>
 
-  <%= f.hidden_field :selected, :value => params[:selected] %>
+  <% params[:selected].each do |selected_image_id| %>
+    <%= hidden_field_tag 'album[selected][]', selected_image_id %>
+  <% end %>
   <%= f.hidden_field :add_to_album, :value => params[:add_to_album] %>
 
   <div class="field">
