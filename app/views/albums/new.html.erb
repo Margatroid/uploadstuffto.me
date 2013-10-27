@@ -1,13 +1,15 @@
-<h1>New album</h1>
+<div class="l-box">
+  <h1>New album</h1>
 
-<% if @images.any? %>
-  <p>
-    The following images will be added to this new album. You can change the
-    ordering of the images after the album has been created.
-  </p>
-  <%= render 'images/tiles', :images => @images %>
-<% end %>
+  <% if @images.any? %>
+    <p>
+      The following images will be added to this new album. You can change the
+      ordering of the images after the album has been created.
+    </p>
+    <%= render 'images/tiles', :images => @images %>
+  <% end %>
+</div>
 
-<%= render 'albums/form' %>
-
-<%= link_to 'Back', albums_path %>
+<div class="l-box">
+  <%= render 'albums/form' %>
+</div>
