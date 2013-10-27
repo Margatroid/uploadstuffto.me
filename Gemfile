@@ -51,6 +51,10 @@ group :test, :development do
   gem "factory_girl_rails", "~> 4.0"
 end
 
+group :production do
+  gem 'thin'
+end
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
