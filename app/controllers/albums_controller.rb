@@ -1,7 +1,7 @@
 class AlbumsController < ApplicationController
   before_action :set_album, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!,
-                :only => [:new, :create]
+                :only => [:new, :create, :update, :edit, :destroy]
   include CanCreateNewAlbum
 
   # GET /albums
