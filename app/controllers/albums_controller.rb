@@ -28,13 +28,15 @@ class AlbumsController < ApplicationController
   # POST /albums
   # POST /albums.json
   def create
-    @album = Album.new(album_params)
+    @album = Album.new(album_params.except(:add_to_album, :selected))
     @album.user_id = current_user.id
 
     album_has_saved = @album.save
 
     # Add images to album after album has saved successfully.
-    @album.add_images(params[:selected]) if album_has_saved && params[:add_to_album]
+    if album_has_saved && album_params[:add_to_album]
+      @album.add_images(current_user, album_params[:selected])
+    end
 
     respond_to do |format|
       if album_has_saved
@@ -79,6 +81,7 @@ class AlbumsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def album_params
-      params.require(:album).permit(:title, :user_id)
+      params.require(:album)
+            .permit(:title, :user_id, :add_to_album, :selected, { selected: [] })
     end
 end
