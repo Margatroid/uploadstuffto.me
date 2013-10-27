@@ -13,6 +13,7 @@ class AlbumsController < ApplicationController
   # GET /albums/1
   # GET /albums/1.json
   def show
+    @images = @album.album_images
   end
 
   # GET /albums/new
