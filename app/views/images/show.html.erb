@@ -8,6 +8,10 @@
       <% end %>
     </p>
 
-    <div><%= image_tag @image.file.url, { id: 'fullsize_image' } %></div>
+    <div>
+      <%= link_to @image.file.url(:original, timestamp: false) do %>
+        <%= image_tag @image.file.url(:original, timestamp: false), { id: 'fullsize_image' } %>
+      <% end %>
+    </div>
   </div>
 </div>
