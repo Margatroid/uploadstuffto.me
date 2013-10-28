@@ -45,4 +45,14 @@ describe "users/show.html.erb" do
       rendered.should_not have_text('Edit mode')
     end
   end
+
+  context "should link to the user's albums" do
+    it 'will have a link to the albums' do
+      @me = create(:user)
+      assign(:user, @me)
+
+      render template: 'users/show'
+      rendered.should have_link('View albums', href: show_user_albums_path(@me))
+    end
+  end
 end
