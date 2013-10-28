@@ -31,7 +31,6 @@ describe "albums/index" do
     ])
 
     @user = create(:user)
-    controller.stub!(:params).and_return({ :username => @user.username })
     assign(:user, @user)
   end
 
