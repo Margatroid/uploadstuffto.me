@@ -18,3 +18,25 @@ describe "albums/index" do
     assert_select "tr>td", :text => "Title".to_s, :count => 2
   end
 end
+
+describe "albums/index" do
+  before(:each) do
+    assign(:albums, [
+      stub_model(Album,
+        :title => "Title"
+      ),
+      stub_model(Album,
+        :title => "Title"
+      )
+    ])
+
+    @user = create(:user)
+    controller.stub!(:params).and_return({ :username => @user.username })
+    assign(:user, @user)
+  end
+
+  it "will have a link to the user's profile if we're looking at a user's albums" do
+    render
+    rendered.should have_link(@user.username, href: user_path(@user))
+  end
+end
