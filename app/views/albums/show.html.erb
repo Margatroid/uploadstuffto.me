@@ -11,7 +11,7 @@
 <% if @album.has_images? %>
   <% @images.each do |image| %>
     <div class="l-box">
-      <%= link_to image.file.url(:original, timestamp: false) do %>
+      <%= link_to image_path(image) do %>
         <%= image_tag(image.file.url(:original, timestamp: false)) %>
       <% end %>
     </div>
