@@ -1,4 +1,7 @@
-<h1>Listing albums</h1>
+<h1>
+  Viewing albums by
+  <%= (@user) ? link_to(@user.username, @user) : 'everyone' %>.
+</h1>
 
 <table>
   <thead>
