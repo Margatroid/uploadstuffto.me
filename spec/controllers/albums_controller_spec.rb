@@ -50,6 +50,16 @@ describe AlbumsController do
       get :index, {}, valid_session
       assigns(:albums).should eq([album])
     end
+
+    it "will only get a user's albums when a username is in the params" do
+      album = Album.create! valid_attributes
+      another_album = Album.create!({ title: 'x', user_id: 2 })
+      Album.count.should eq(2)
+
+      get :index, { username: @me.username }, valid_session
+      assigns(:albums).should eq([album])
+      assigns(:albums).should_not include(another_album)
+    end
   end
 
   describe "GET show" do
