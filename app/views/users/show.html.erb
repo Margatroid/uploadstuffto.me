@@ -3,6 +3,7 @@
   <p>
     <strong><%= @user.images.count %></strong> images uploaded.
     Joined <strong><%= @user.created_at.strftime('%Y-%m-%d') %></strong>.
+    <%= link_to 'View albums.', show_user_albums_path(@user) %>
   </p>
 
   <div id="recent_uploads">
