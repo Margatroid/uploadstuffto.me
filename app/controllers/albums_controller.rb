@@ -6,8 +6,14 @@ class AlbumsController < ApplicationController
 
   # GET /albums
   # GET /albums.json
+  # GET /profile/:username/albums
   def index
-    @albums = Album.all
+    if params[:username]
+      user = User.find_by_username(params[:username])
+      @albums = user.albums
+    else
+      @albums = Album.all
+    end
   end
 
   # GET /albums/1
