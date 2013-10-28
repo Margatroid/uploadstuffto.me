@@ -9,8 +9,8 @@ class AlbumsController < ApplicationController
   # GET /profile/:username/albums
   def index
     if params[:username]
-      user = User.find_by_username(params[:username])
-      @albums = user.albums
+      @user = User.find_by_username(params[:username])
+      @albums = @user.albums
     else
       @albums = Album.all
     end
