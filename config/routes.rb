@@ -32,8 +32,8 @@ NoMoreIdeas::Application.routes.draw do
   # Handle "add to album" or "delete" submissions.
   post '/images/edit_mode_submit' => 'images#edit_mode_submit', as: 'edit_mode_submit'
 
-  get '/users/:username'        => 'users#show',  as: 'user'
-  get '/users/:username/albums' => 'albums#show', as: 'show_user_albums'
+  get '/users/:username'        => 'users#show',   as: 'user'
+  get '/users/:username/albums' => 'albums#index', as: 'show_user_albums'
 
   # Example resource route with options:
   #   resources :products do

@@ -7,6 +7,10 @@ describe AlbumsController do
       get("/albums").should route_to("albums#index")
     end
 
+    it 'routes to #index with username param' do
+      get('/users/x/albums').should route_to('albums#index', username: 'x')
+    end
+
     it "routes to #new" do
       get("/albums/new").should route_to("albums#new")
     end
@@ -30,6 +34,5 @@ describe AlbumsController do
     it "routes to #destroy" do
       delete("/albums/1").should route_to("albums#destroy", :id => "1")
     end
-
   end
 end
