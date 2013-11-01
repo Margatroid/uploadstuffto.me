@@ -68,12 +68,12 @@ describe "everyone else's recent uploads widget", :type => :feature do
   widget_id = '#recent_uploads'
 
   before(:each) do
-    @me = create(:user)
+    @me = create(:user, :featured)
     login_as(@me, :scope => :user)
     upload_test_file
     logout(:user)
 
-    @someone_else = create(:user)
+    @someone_else = create(:user, :featured)
     login_as(@someone_else, :scope => :user)
     upload_test_another_file
     logout(:user)

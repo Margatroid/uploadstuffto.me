@@ -33,6 +33,10 @@ FactoryGirl.define do
     password 'helloworld'
     password_confirmation { |u| u.password }
 
+    trait :featured do
+      featured true
+    end
+
     factory :user_with_image do
       after(:create) { |instance| create_list(:image, 1, user: instance) }
     end
