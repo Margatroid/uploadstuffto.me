@@ -17,10 +17,13 @@ class Image < ActiveRecord::Base
 
   def self.recently_uploaded(current_user = nil, limit = 30)
     if current_user
-      where("user_id != #{ current_user.id }").order('created_at DESC').limit(limit)
+      result = joins(:user).where('user_id != ? AND featured = ?',
+                                  current_user.id, true)
     else
-      self.all.order('created_at DESC').limit(limit)
+      result = joins(:user).where(users: { featured: true })
     end
+
+    result.order('created_at DESC').limit(limit)
   end
 
   def self.delete_by_ids(current_user, image_ids)
