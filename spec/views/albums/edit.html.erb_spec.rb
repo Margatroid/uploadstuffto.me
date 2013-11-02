@@ -3,7 +3,8 @@ require 'spec_helper'
 describe "albums/edit" do
   before(:each) do
     @album = assign(:album, stub_model(Album,
-      :title => "MyString"
+      :title => "MyString",
+      :key => "YourString"
     ))
   end
 
