@@ -10,7 +10,9 @@
     <% @albums.each do |album| %>
       <%= link_to album do %>
         <div class="tile" id="tile_<%= album.key %>">
-          <%= image_tag(album.images.first.file.url(:thumb), class: 'float-left') %>
+          <% unless album.images.empty? %>
+            <%= image_tag(album.images.first.file.url(:thumb), class: 'float-left') unless album.images.empty? %>
+          <% end %>
           <div class="l-box float-left">
             <h3><%= album.title.empty? ? 'Untitled album' : album.title %></h3>
             <p><%= pluralize(album.images.count, 'image') %></p>
