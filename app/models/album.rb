@@ -25,4 +25,8 @@ class Album < ActiveRecord::Base
   def has_images?
     self.album_images.count > 0
   end
+
+  def to_param
+    key
+  end
 end
