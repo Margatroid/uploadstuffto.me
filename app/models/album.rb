@@ -5,6 +5,8 @@ class Album < ActiveRecord::Base
   has_many :album_images, -> { order('position DESC') }, :dependent => :destroy
   has_many :images, through: :album_images
 
+  include IdentifiableByKey
+
   def add_images(current_user, image_ids)
     begin
       ActiveRecord::Base.transaction do
