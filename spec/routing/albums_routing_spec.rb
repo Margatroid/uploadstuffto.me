@@ -16,11 +16,11 @@ describe AlbumsController do
     end
 
     it "routes to #show" do
-      get("/albums/1").should route_to("albums#show", :id => "1")
+      get("/albums/abcde").should route_to("albums#show", :key => "abcde")
     end
 
     it "routes to #edit" do
-      get("/albums/1/edit").should route_to("albums#edit", :id => "1")
+      get("/albums/abcde/edit").should route_to("albums#edit", :key => "abcde")
     end
 
     it "routes to #create" do
@@ -28,11 +28,11 @@ describe AlbumsController do
     end
 
     it "routes to #update" do
-      put("/albums/1").should route_to("albums#update", :id => "1")
+      put("/albums/abcde").should route_to("albums#update", :key => "abcde")
     end
 
     it "routes to #destroy" do
-      delete("/albums/1").should route_to("albums#destroy", :id => "1")
+      delete("/albums/abcde").should route_to("albums#destroy", :key => "abcde")
     end
   end
 end
