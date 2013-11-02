@@ -65,7 +65,7 @@ describe AlbumsController do
   describe "GET show" do
     it "assigns the requested album as @album" do
       album = Album.create! valid_attributes
-      get :show, {:id => album.to_param}, valid_session
+      get :show, {:key => album.to_param}, valid_session
       assigns(:album).should eq(album)
     end
 
@@ -73,7 +73,7 @@ describe AlbumsController do
       user = create(:user_with_image)
       album = Album.create! valid_attributes
       album.album_images.create(:image_id => 1)
-      get :show, {:id => album.to_param}
+      get :show, {:key => album.to_param}
       assigns(:images).should eq([Image.first])
     end
   end
@@ -88,7 +88,7 @@ describe AlbumsController do
   describe "GET edit" do
     it "assigns the requested album as @album" do
       album = Album.create! valid_attributes
-      get :edit, {:id => album.to_param}, valid_session
+      get :edit, {:key => album.to_param}, valid_session
       assigns(:album).should eq(album)
     end
   end
@@ -162,18 +162,18 @@ describe AlbumsController do
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
         Album.any_instance.should_receive(:update).with({ "title" => "MyString" })
-        put :update, {:id => album.to_param, :album => { "title" => "MyString" }}, valid_session
+        put :update, {:key => album.to_param, :album => { "title" => "MyString" }}, valid_session
       end
 
       it "assigns the requested album as @album" do
         album = Album.create! valid_attributes
-        put :update, {:id => album.to_param, :album => valid_attributes}, valid_session
+        put :update, {:key => album.to_param, :album => valid_attributes}, valid_session
         assigns(:album).should eq(album)
       end
 
       it "redirects to the album" do
         album = Album.create! valid_attributes
-        put :update, {:id => album.to_param, :album => valid_attributes}, valid_session
+        put :update, {:key => album.to_param, :album => valid_attributes}, valid_session
         response.should redirect_to(album)
       end
     end
@@ -183,7 +183,7 @@ describe AlbumsController do
         album = Album.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Album.any_instance.stub(:save).and_return(false)
-        put :update, {:id => album.to_param, :album => { "title" => "invalid value" }}, valid_session
+        put :update, {:key => album.to_param, :album => { "title" => "invalid value" }}, valid_session
         assigns(:album).should eq(album)
       end
 
@@ -191,7 +191,7 @@ describe AlbumsController do
         album = Album.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Album.any_instance.stub(:save).and_return(false)
-        put :update, {:id => album.to_param, :album => { "title" => "invalid value" }}, valid_session
+        put :update, {:key => album.to_param, :album => { "title" => "invalid value" }}, valid_session
         response.should render_template("edit")
       end
     end
@@ -201,13 +201,13 @@ describe AlbumsController do
     it "destroys the requested album" do
       album = Album.create! valid_attributes
       expect {
-        delete :destroy, {:id => album.to_param}, valid_session
+        delete :destroy, {:key => album.to_param}, valid_session
       }.to change(Album, :count).by(-1)
     end
 
     it "redirects to the albums list" do
       album = Album.create! valid_attributes
-      delete :destroy, {:id => album.to_param}, valid_session
+      delete :destroy, {:key => album.to_param}, valid_session
       response.should redirect_to(albums_url)
     end
   end
