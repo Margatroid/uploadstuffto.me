@@ -22,9 +22,12 @@
 }
 
 .tile img {
-  display: block;
   width: 200px;
   height: 200px;
+}
+
+.edit-mode-tiles img {
+  display: block;
 }
 
 .tile.checked {
@@ -32,7 +35,7 @@
   background-color: #91C1ED;
 }
 
-.tile .small-img img {
+.tile .small-img {
   width:  70px;
   height: 70px;
 }

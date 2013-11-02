@@ -11,7 +11,8 @@
       <%= link_to album do %>
         <div class="tile" id="tile_<%= album.key %>">
           <% unless album.images.empty? %>
-            <%= image_tag(album.images.first.file.url(:thumb), class: 'float-left') unless album.images.empty? %>
+            <%= image_tag(album.images.first.file.url(:thumb), class: 'float-left pure-hidden-phone') unless album.images.empty? %>
+            <%= image_tag(album.images.first.file.url(:thumb), class: 'float-left small-img pure-hidden-tablet pure-hidden-desktop') unless album.images.empty? %>
           <% end %>
           <div class="l-box float-left">
             <h3><%= album.title.empty? ? 'Untitled album' : album.title %></h3>
