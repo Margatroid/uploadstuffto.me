@@ -48,3 +48,7 @@
 .edit-mode-controls a {
   text-decoration: none;
 }
+
+.float-left {
+  float: left;
+}
