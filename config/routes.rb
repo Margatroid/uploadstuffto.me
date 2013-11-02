@@ -1,6 +1,4 @@
 NoMoreIdeas::Application.routes.draw do
-  resources :albums
-
   devise_for :users,
     :path => '',
     :path_names => {
@@ -28,6 +26,13 @@ NoMoreIdeas::Application.routes.draw do
   get '/images/:key/edit' => 'images#edit',    as: 'edit_image'
   put '/images/:key'      => 'images#update'
   delete '/images/:key'   => 'images#destroy', as: 'destroy_image'
+
+  # Declare album routes based on key.
+  post '/albums'          => 'albums#create'
+  get '/albums/:key'      => 'albums#show',    as: 'album'
+  get '/albums/:key/edit' => 'albums#edit',    as: 'edit_album'
+  put '/albums/:key'      => 'albums#update'
+  delete '/albums/:key'   => 'albums#destroy', as: 'destroy_album'
 
   # Handle "add to album" or "delete" submissions.
   post '/images/edit_mode_submit' => 'images#edit_mode_submit', as: 'edit_mode_submit'
