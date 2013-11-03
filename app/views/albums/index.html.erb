@@ -11,7 +11,7 @@
       <%= link_to album do %>
         <div class="tile float-left pure-hidden-phone">
           <%= image_tag(album.images.first.file.url(:thumb), class: 'float-left') unless album.images.empty? %>
-          <div class="l-box float-left">
+          <div class="l-box float-left tile-block-context">
             <h3><%= album.title.empty? ? 'Untitled album' : album.title %></h3>
             <p><%= pluralize(album.images.count, 'image') %>.</p>
             <p>Created <%= album.created_at %>.</p>

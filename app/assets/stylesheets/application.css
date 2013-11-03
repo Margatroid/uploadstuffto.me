@@ -30,8 +30,12 @@
   vertical-align: middle;
 }
 
-.tile-block-context {
+.tile-block-context.table-cell {
   width: 100%;
+}
+
+.tile-block-context {
+  width: 300px;
 }
 
 .table-row {
