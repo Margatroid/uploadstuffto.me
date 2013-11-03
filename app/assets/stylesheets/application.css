@@ -51,7 +51,7 @@
   background-color: #91C1ED;
 }
 
-.tile .small-img {
+.tile .small-img, .tile .small-img img {
   min-width: 70px; /* Odd quirk */
   width:     70px;
   height:    70px;
