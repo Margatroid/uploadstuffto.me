@@ -9,15 +9,21 @@
   <div class="l-box">
     <% @albums.each do |album| %>
       <%= link_to album do %>
-        <div class="tile" id="tile_<%= album.key %>">
-          <% unless album.images.empty? %>
-            <%= image_tag(album.images.first.file.url(:thumb), class: 'float-left pure-hidden-phone') unless album.images.empty? %>
-            <%= image_tag(album.images.first.file.url(:thumb), class: 'float-left small-img pure-hidden-tablet pure-hidden-desktop') unless album.images.empty? %>
-          <% end %>
+        <div class="tile float-left pure-hidden-phone">
+          <%= image_tag(album.images.first.file.url(:thumb), class: 'float-left') unless album.images.empty? %>
           <div class="l-box float-left">
             <h3><%= album.title.empty? ? 'Untitled album' : album.title %></h3>
-            <p><%= pluralize(album.images.count, 'image') %></p>
-            <p>Created <%= album.created_at %></p>
+            <p><%= pluralize(album.images.count, 'image') %>.</p>
+            <p>Created <%= album.created_at %>.</p>
+          </div>
+        </div>
+
+        <div class="tile pure-hidden-tablet pure-hidden-desktop table">
+          <div class="table-row">
+            <%= image_tag(album.images.first.file.url(:thumb), class: 'table-cell small-img') unless album.images.empty? %>
+            <div class="l-box tile-block-context table-cell">
+              <strong><%= album.title.empty? ? 'Untitled album' : album.title %></strong>
+            </div>
           </div>
         </div>
       <% end %>

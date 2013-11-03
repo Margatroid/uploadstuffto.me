@@ -25,6 +25,23 @@
   height: 200px;
 }
 
+.table-cell {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.tile-block-context {
+  width: 100%;
+}
+
+.table-row {
+  display: table-row;
+}
+
+.table {
+  display: table;
+}
+
 .edit-mode-tiles img {
   display: block;
 }
@@ -35,8 +52,9 @@
 }
 
 .tile .small-img {
-  width:  70px;
-  height: 70px;
+  min-width: 70px; /* Odd quirk */
+  width:     70px;
+  height:    70px;
 }
 
 .center {
