@@ -12,7 +12,7 @@ class AlbumsController < ApplicationController
       @user = User.find_by_username(params[:username])
       @albums = @user.albums
     else
-      @albums = Album.all
+      @albums = []
     end
   end
 
