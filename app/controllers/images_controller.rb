@@ -24,14 +24,12 @@ class ImagesController < ApplicationController
   # POST /images
   # POST /images.json
   def create
-    if image_params[:file].nil?
-      return render action: 'new', notice: 'Upload failed.'
-    end
-
-    image_params[:file].each do |file|
-      image = { file: file }
-      @image = current_user.images.new(image)
-      break unless @image.save
+    if (image_params[:file].nil? && image_params[:url].nil?)
+      return redirect_to root_path, notice: 'No file or URL to upload.'
+    elsif !image_params[:url].nil?
+      create_from_url
+    else
+      create_from_file
     end
 
     respond_to do |format|
@@ -102,6 +100,20 @@ class ImagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def image_params
-      params[:image].permit(:file, { file: [] }, :description)
+      params[:image].permit(:file, { file: [] }, :description, :url)
+    end
+
+    def create_from_file
+      image_params[:file].each do |file|
+        image = { file: file }
+        @image = current_user.images.new(image)
+        break unless @image.save
+      end
+    end
+
+    def create_from_url
+      @image = current_user.images.new
+      @image.file_remote_url = image_params[:url]
+      @image.save
     end
 end

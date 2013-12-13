@@ -46,6 +46,11 @@ class Image < ActiveRecord::Base
     key
   end
 
+  def file_remote_url=(url)
+    self.file = URI.parse(url)
+    @file_remote_url = url
+  end
+
   private
 
   def set_file_name
