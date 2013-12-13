@@ -17,3 +17,8 @@ class Paperclip::Attachment
   def post_process
   end
 end
+
+class Paperclip::Validators::AttachmentContentTypeValidator
+  def validate_each(record, attribute, value)
+  end
+end
