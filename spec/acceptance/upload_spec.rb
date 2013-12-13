@@ -50,7 +50,7 @@ describe 'upload from URL', :type => :feature do
   it 'will upload from a URL' do
     Image.count.should eq 0
     visit '/'
-    fill_in 'Upload from URL', :with => 'uploadstuffto.me/test_image.png'
+    fill_in 'Upload from URL', :with => 'http://uploadstuffto.me/test_image.jpg'
     click_button 'Upload from this URL'
     Image.count.should eq 1
   end
