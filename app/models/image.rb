@@ -5,6 +5,12 @@ class Image < ActiveRecord::Base
   validates :file, :attachment_presence => true
   validates :key, presence: true
 
+  image_validation = { :attributes => :file,
+    :content_type => /image/,
+    :message => 'File must be an image.' }
+
+  validates_with AttachmentContentTypeValidator, image_validation
+
   before_create :set_file_name
 
   has_attached_file :file,
