@@ -47,6 +47,11 @@ class Image < ActiveRecord::Base
   end
 
   def file_remote_url=(url)
+    # Add protocol if it's missing.
+    unless url[/\Ahttp:\/\//] || url[/\Ahttps:\/\//]
+      url = "http://#{url}"
+    end
+
     self.file = URI.parse(url)
     @file_remote_url = url
   end
