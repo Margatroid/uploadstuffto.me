@@ -97,11 +97,11 @@ describe ImagesController do
     end
 
     describe "with invalid params" do
-      it "re-renders the 'new' template" do
+      it "redirects to homepage" do
         # Trigger the behavior that occurs when invalid params are submitted
         Image.any_instance.stub(:save).and_return(false)
         post :create, {:image => {  }}, valid_session
-        response.should render_template("new")
+        response.should redirect_to root_path
       end
     end
   end
