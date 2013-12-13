@@ -40,3 +40,18 @@ describe 'homepage upload', :type => :feature do
     Warden.test_reset!
   end
 end
+
+describe 'upload from URL', :type => :feature do
+  before(:each) do
+    user = create(:user)
+    login_as(user, :scope => :user)
+  end
+
+  it 'will upload from a URL' do
+    Image.count.should eq 0
+    visit '/'
+    fill_in 'Upload from URL', :with => 'uploadstuffto.me/test_image.png'
+    click_button 'Upload from this URL'
+    Image.count.should eq 1
+  end
+end
