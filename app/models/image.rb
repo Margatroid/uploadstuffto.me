@@ -47,11 +47,13 @@ class Image < ActiveRecord::Base
   end
 
   def file_remote_url=(url)
+    url.strip!
     # Add protocol if it's missing.
     unless url[/\Ahttp:\/\//] || url[/\Ahttps:\/\//]
-      url = "http://#{url}"
+      url = "http://#{ url }"
     end
 
+    raise 'Empty URL to download image from' if url == 'http://'
     self.file = URI.parse(url)
     @file_remote_url = url
   end
