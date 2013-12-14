@@ -4,10 +4,16 @@
   <title>uploadstuffto.me</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= render 'shared/analytics' %>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 </head>
 <body>
+
+<% if Rails.env.production? %>
+  <script>_gaq.push(['_trackPageview']);</script>
+<% end %>
+
 <div class="pure-g-r">
   <div class="pure-u-1">
     <%= render 'shared/nav' %>
