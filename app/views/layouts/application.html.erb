@@ -11,7 +11,7 @@
 <body>
 
 <% if Rails.env.production? %>
-  <script>_gaq.push(['_trackPageview']);</script>
+  <script>ga('send', 'pageview');</script>
 <% end %>
 
 <div class="pure-g-r">
