@@ -17,6 +17,6 @@ describe "images/edit" do
 
   it "has a thumbnail so you don't forget what you're editing" do
     render
-    assert_select "img[src='/thumb/#{ @image.key }.jpg'"
+    assert_select "img[src='/thumb/#{ @image.key }.jpg']"
   end
 end
