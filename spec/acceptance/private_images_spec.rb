@@ -19,7 +19,6 @@ describe 'private images', :type => :feature do
 
     it "won't show private images on your profile" do
       visit "/users/#{ @featured_user.username }"
-      Image.all.each { |i| puts "I am public? #{ i.public? }" }
       page.has_css?('#recent_uploads .small-img img').should eq(false)
     end
 
