@@ -16,7 +16,7 @@ describe ImagesController do
     end
 
     it "routes to #update" do
-      put("/images/hello").should route_to("images#update", :key => "hello")
+      patch("/images/hello").should route_to("images#update", :key => "hello")
     end
 
     it "routes to #destroy" do
