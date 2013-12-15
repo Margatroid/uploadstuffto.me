@@ -3,8 +3,8 @@ require 'spec_helper'
 describe "images/index" do
   before(:each) do
     assign(:images, [
-      stub_model(Image),
-      stub_model(Image)
+      stub_model(Image, :key => 'module'),
+      stub_model(Image, :key => 'seventyseven')
     ])
   end
 

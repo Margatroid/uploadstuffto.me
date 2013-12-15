@@ -4,10 +4,12 @@ describe "albums/index" do
   before(:each) do
     assign(:albums, [
       stub_model(Album,
-        :title => "Title"
+        :title => 'Title',
+        :key   => 'hello'
       ),
       stub_model(Album,
-        :title => "Title"
+        :title => 'Title',
+        :key   => 'world'
       )
     ])
   end
@@ -23,10 +25,12 @@ describe "albums/index" do
   before(:each) do
     assign(:albums, [
       stub_model(Album,
-        :title => "Title"
+        :title => 'Title',
+        :key   => 'hello'
       ),
       stub_model(Album,
-        :title => "Title"
+        :title => 'Title',
+        :key   => 'world'
       )
     ])
 
