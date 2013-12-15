@@ -35,6 +35,7 @@ module UploadHelper
     visit '/'
     attach_file('File', File.expand_path("spec/fixtures/#{ filename }"))
     click_button 'Upload image'
+    Image.last.update_attribute(:public, true)
   end
 end
 
