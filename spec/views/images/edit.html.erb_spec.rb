@@ -10,14 +10,7 @@ describe "images/edit" do
 
   it "renders the edit image form" do
     render
-    assert_select "input#image_public[value=false]"
-  end
-
-  it "renders the checkbox properly" do
-    @image.public = true
-    @image.save!
-    render
-    assert_select "input#image_public[value=true]"
+    assert_select "input#image_public"
   end
 
   it "has a thumbnail so you don't forget what you're editing" do
