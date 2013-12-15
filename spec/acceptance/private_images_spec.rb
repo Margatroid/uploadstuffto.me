@@ -15,15 +15,20 @@ describe 'private images', :type => :feature do
   end
 
   context 'when logged out' do
+    before(:each) { Image.update_all(:public => false) }
+
     it "won't show private images on your profile" do
       visit "/users/#{ @featured_user.username }"
+      Image.all.each { |i| puts "I am public? #{ i.public? }" }
       page.has_css?('#recent_uploads .small-img img').should eq(false)
     end
 
     it "won't show private images on the homepage (when you're featured)" do
-      visit "/"#
+      visit "/"
       page.has_css?('#recent_uploads .small-img img').should eq(false)
     end
+
+    after(:each) { Image.update_all(:public => true) }
   end
 
   context 'when logged in' do
