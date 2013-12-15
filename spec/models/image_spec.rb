@@ -17,12 +17,16 @@ end
 describe 'never show recent uploads from non-featured profiles' do
   let(:featured_valid_attributes) do
     extend ActionDispatch::TestProcess
-    { :user_id => 1, :file => fixture_file_upload('chicken_rice.jpg') }
+    { :user_id => 1,
+      :file => fixture_file_upload('chicken_rice.jpg'),
+      :public => true }
   end
 
   let(:valid_attributes) do
     extend ActionDispatch::TestProcess
-    { :user_id => 2, :file => fixture_file_upload('chicken_rice.jpg') }
+    { :user_id => 2,
+      :file => fixture_file_upload('chicken_rice.jpg'),
+      :public => true }
   end
 
   it 'will never get recent images from non-featured profiles' do
