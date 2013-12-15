@@ -129,6 +129,20 @@ describe ImagesController do
         put :update, {:key => image.to_param, :image => valid_attributes}, valid_session
         response.should redirect_to(image)
       end
+
+      it "can set images as private" do
+        image = Image.create! valid_attributes
+        image.public = true
+        image.save
+        put :update, {:key => image.to_param, :image => { :public => false }}, valid_session
+        image.reload.public?.should eq(false)
+      end
+
+      it "can set images as public" do
+        image = Image.create! valid_attributes
+        put :update, {:key => image.to_param, :image => { :public => true }}, valid_session
+        image.reload.public?.should eq(true)
+      end
     end
 
     describe "with invalid params" do
