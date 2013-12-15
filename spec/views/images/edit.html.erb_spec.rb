@@ -14,4 +14,9 @@ describe "images/edit" do
     #end
     assert_select "form#image_public[value=#{ @image.public? }]"
   end
+
+  it "has a thumbnail so you don't forget what you're editing" do
+    render
+    assert_select "img[src='/thumb/#{ @image.key }.jpg'"
+  end
 end
