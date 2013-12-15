@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20131215155041) do
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
     t.string   "key"
-    t.boolean  "public"
+    t.boolean  "public",            default: false
   end
 
   add_index "images", ["user_id"], name: "index_images_on_user_id"
