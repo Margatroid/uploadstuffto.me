@@ -17,7 +17,7 @@ describe "users/show.html.erb" do
 
     it 'will show edit mode on your profile' do
       assign(:user, @me)
-      assign(:recent_uploads, @me.recently_uploaded_paginate(1))
+      assign(:recent_uploads, @me.recently_uploaded_paginate(@me, 1))
       view.stub(:url_for).and_return('/some/url')
       render template: 'users/show'
       rendered.should have_text('Edit mode')
@@ -25,7 +25,7 @@ describe "users/show.html.erb" do
 
     it "will not show edit mode on someone else's profile" do
       assign(:user, @you)
-      assign(:recent_uploads, @you.recently_uploaded_paginate(1))
+      assign(:recent_uploads, @you.recently_uploaded_paginate(@me, 1))
       render template: 'users/show'
       rendered.should_not have_text('Edit mode')
     end
@@ -39,7 +39,7 @@ describe "users/show.html.erb" do
     it 'will not show any editing controls' do
       @me = create(:user_with_image)
       assign(:user, @me)
-      assign(:recent_uploads, @me.recently_uploaded_paginate(1))
+      assign(:recent_uploads, @me.recently_uploaded_paginate(@me, 1))
 
       render template: 'users/show'
       rendered.should_not have_text('Edit mode')
