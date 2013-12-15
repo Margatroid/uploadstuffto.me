@@ -3,8 +3,8 @@ require 'spec_helper'
 describe 'private images', :type => :feature do
   before(:each) do
     include UploadHelper
-    @user = create(:user)
-    login_as(@user, :scope => :user)
+    @featured_user = create(:user, :featured => true)
+    login_as(@featured_user, :scope => :user)
 
     Image.count.should eq 0
 
@@ -16,19 +16,23 @@ describe 'private images', :type => :feature do
 
   context 'when logged out' do
     it "won't show private images on your profile" do
+      visit "/users/#{ @featured_user.username }"
+      page.has_css?('#recent_uploads .small-img img').should eq(false)
     end
 
-    it "won't show private images on the homepage" do
+    it "won't show private images on the homepage (when you're featured)" do
+      visit "/"#
+      page.has_css?('#recent_uploads .small-img img').should eq(false)
     end
   end
 
   context 'when logged in' do
     before(:each) do
-      login_as(@user, :scope => :user)
+      login_as(@featured_user, :scope => :user)
     end
 
     it "will show private images on your profile" do
-      visit "/users/#{ @user.username }"
+      visit "/users/#{ @featured_user.username }"
 
       # Fetch all images visible on profile page.
       recently_upload_images = page.all(:css, '#recent_uploads .small-img img')
