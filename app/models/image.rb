@@ -23,10 +23,15 @@ class Image < ActiveRecord::Base
 
   def self.recently_uploaded(current_user = nil, limit = 30)
     if current_user
-      result = joins(:user).where('user_id != ? AND featured = ?',
-                                  current_user.id, true)
+      result = joins(:user).where(
+        'user_id != ? AND featured = ? AND public = ?',
+        current_user.id,
+        true,
+        true)
     else
-      result = joins(:user).where(users: { featured: true })
+      result = joins(:user).where(
+        users: { featured: true }, images: { public: true }
+      )
     end
 
     result.order('created_at DESC').limit(limit)

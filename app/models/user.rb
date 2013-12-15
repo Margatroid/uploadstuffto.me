@@ -18,10 +18,11 @@ class User < ActiveRecord::Base
     self.images.order('created_at DESC').limit(limit)
   end
 
-  def recently_uploaded_paginate(page)
+  def recently_uploaded_paginate(current_user, page)
     images.paginate(:page => page,
                     :per_page => Rails.configuration.pagination_per_page)
-          .order('created_at DESC')
+      .where((current_user == self) ? [] : { :public => true})
+      .order('created_at DESC')
   end
 
   def has_images?
