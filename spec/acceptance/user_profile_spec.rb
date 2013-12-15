@@ -72,8 +72,8 @@ describe 'image gallery', :type => :feature do
         Rails.application.routes.url_helpers.image_path(image)
       end
 
-      srcs.should    =~ expected_srcs
-      expected_hrefs =~ expected_hrefs
+      srcs.should           =~ expected_srcs
+      expected_hrefs.should =~ expected_hrefs
     end
   end
 
