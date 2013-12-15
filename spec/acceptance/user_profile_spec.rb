@@ -130,15 +130,3 @@ describe 'image gallery pagination', :type => :feature do
     end
   end
 end
-
-describe 'album gallery' do
-  context 'when logged in' do
-    it 'shows all the albums you created' do
-    end
-  end
-
-  context 'when logged out' do
-    it 'shows only the public albums you created' do
-    end
-  end
-end
