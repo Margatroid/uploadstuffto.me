@@ -12,5 +12,6 @@ describe "images/edit" do
     # Run the generator again with the --webrat flag if you want to use webrat matchers
     #assert_select "form[action=?][method=?]", image_path(@image), "post" do
     #end
+    assert_select "form#image_public[value=#{ @image.public? }]"
   end
 end
