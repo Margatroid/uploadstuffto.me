@@ -24,7 +24,7 @@ NoMoreIdeas::Application.routes.draw do
   post '/images'          => 'images#create'
   get '/images/:key'      => 'images#show',    as: 'image'
   get '/images/:key/edit' => 'images#edit',    as: 'edit_image'
-  put '/images/:key'      => 'images#update'
+  patch '/images/:key'    => 'images#update',  as: 'update_image'
   delete '/images/:key'   => 'images#destroy', as: 'destroy_image'
 
   # Declare album routes based on key.
