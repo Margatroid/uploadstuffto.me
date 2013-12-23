@@ -3,6 +3,7 @@ describe 'rekey:all' do
 
   before(:each) do
     user = create(:user_with_images)
+    FileUtils.stub(:mv).and_return(true)
   end
 
   it 'rekeys images' do
