@@ -21,12 +21,12 @@ describe 'rekey:all' do
 
   it 'will rename all files' do
     old_thumbnail_paths = Image.all.map { |image| image.file.path(:thumb) }
-    old_original_paths  = Image.all.map { |image| image.file.path() }
+    old_original_paths  = Image.all.map { |image| image.file.path }
 
     subject.invoke # Run rekey:all
 
     new_thumbnail_paths = Image.all.map { |image| image.file.path(:thumb) }
-    new_original_paths  = Image.all.map { |image| image.file.path() }
+    new_original_paths  = Image.all.map { |image| image.file.path }
 
     expect(old_thumbnail_paths & new_thumbnail_paths).to be_empty
     expect(old_original_paths & new_original_paths).to be_empty
