@@ -12,7 +12,7 @@ namespace :rekey do
         break tmp unless Image.where(key: tmp).exists?
       end
 
-      puts "#{ old_key } being renamed to #{ image.key }"
+      puts "#{ old_key } being renamed to #{ image.key }" unless Rails.env.test?
 
       # Rename stored thumbnails. and original by reassigning them.
       # Get filepaths of thumbnail and original.
