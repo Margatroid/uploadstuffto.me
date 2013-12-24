@@ -6,6 +6,6 @@ env:
 script:
   - RAILS_ENV=test bundle exec rake --trace db:migrate
   - bundle exec rake db:test:prepare
-  - bundle exec rspec spec
+  - bundle exec rspec spec -fd
 notifications:
   email: false
