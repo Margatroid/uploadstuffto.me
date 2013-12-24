@@ -17,10 +17,24 @@ describe "images/show" do
     path_to_uploader =
       Rails.application.routes.url_helpers.user_path(uploader)
 
+    @image.public  = true
     @image.user = uploader
 
     render
     rendered.should have_text(uploader.username)
     rendered.should have_selector("a[href='#{ path_to_uploader }']")
+  end
+
+  it 'will not link to uploader if image is private' do
+    uploader = create(:user)
+    path_to_uploader =
+      Rails.application.routes.url_helpers.user_path(uploader)
+
+    @image.public  = false
+    @image.user = uploader
+
+    render
+    rendered.should_not have_text(uploader.username)
+    rendered.should_not have_selector("a[href='#{ path_to_uploader }']")
   end
 end
