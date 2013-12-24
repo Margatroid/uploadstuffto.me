@@ -1,12 +1,14 @@
 <div class="pure-u-1">
   <div class="l-box">
-    <p>
-      Uploaded by <%= link_to @image.user.username, user_path(@image.user) %>.
-      <% if @permissions[:edit] %>
-        <%= link_to 'Edit', edit_image_path(@image) %>
-        <%= link_to 'Delete', destroy_image_path(@image), method: :delete %>
-      <% end %>
-    </p>
+    <% if @image.public? %>
+      <p>
+        Uploaded by <%= link_to @image.user.username, user_path(@image.user) %>.
+        <% if @permissions[:edit] %>
+          <%= link_to 'Edit', edit_image_path(@image) %>
+          <%= link_to 'Delete', destroy_image_path(@image), method: :delete %>
+        <% end %>
+      </p>
+    <% end %>
 
     <div>
       <%= link_to @image.file.url(:original, timestamp: false) do %>
