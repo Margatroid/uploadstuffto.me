@@ -33,4 +33,18 @@ describe "images/show" do
     rendered.should_not have_text(@image.user.username)
     rendered.should_not have_selector("a[href='#{ path_to_uploader }']")
   end
+
+  it 'link to uploader if uploader is looking at their own private image' do
+    view.stub(:user_signed_in?).and_return(true)
+    view.stub(:current_user).and_return(@image.user)
+
+    path_to_uploader =
+      Rails.application.routes.url_helpers.user_path(@image.user)
+
+    @image.public  = false
+
+    render
+    rendered.should have_text(@image.user.username)
+    rendered.should have_selector("a[href='#{ path_to_uploader }']")
+  end
 end
