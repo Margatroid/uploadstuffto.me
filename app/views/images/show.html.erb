@@ -15,5 +15,7 @@
         <%= image_tag @image.file.url(:original, timestamp: false), { id: 'fullsize_image' } %>
       <% end %>
     </div>
+
+    <p><%= @image.description %></p>
   </div>
 </div>
