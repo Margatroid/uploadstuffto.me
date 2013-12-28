@@ -79,6 +79,9 @@ describe 'image descriptions', :type => :feature do
 
     logout(:user)
     Warden.test_reset!
+
+    visit image_path(Image.first)
+    expect(page).to have_content('foo')
   end
 end
 
