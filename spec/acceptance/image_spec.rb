@@ -65,6 +65,23 @@ describe 'editing images', :type => :feature do
   end
 end
 
+describe 'image descriptions', :type => :feature do
+  it 'will let you add description to image' do
+    @you = create(:user)
+    login_as(@you, :scope => :user)
+    upload_test_file
+
+    visit edit_image_path(Image.first)
+    expect(Image.first.description).to eq(nil)
+    page.fill_in('Description', :with => 'foo')
+    click_button 'Update Image'
+    expect(Image.first.description).to eq('foo')
+
+    logout(:user)
+    Warden.test_reset!
+  end
+end
+
 describe 'user dependency' do
   it 'gets destroyed if the user is destroyed' do
     user = create(:user_with_image)
