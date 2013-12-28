@@ -14,6 +14,9 @@
   <%= f.check_box(:public) %>
   <%= f.label(:public, 'Publicly visible for everyone else.') %>
 
+  <%= f.label(:description) %>
+  <%= f.text_area(:description) %>
+
   <div class="actions">
     <%= f.submit %>
   </div>
