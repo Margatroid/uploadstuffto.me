@@ -34,4 +34,13 @@ describe "albums/show" do
     # Run the generator again with the --webrat flag if you want to use webrat matchers
     rendered.should match(/Title/)
   end
+
+  it 'shows album image descriptions' do
+    AlbumImage.any_instance.stub(:save).and_return(true)
+    @album.album_images = [stub_model(AlbumImage,  description: 'foo', album_id: 1),
+                           stub_model(AlbumImage,  description: 'bar', album_id: 1)]
+    render
+    expect(rendered).to match('foo')
+    expect(rendered).to match('bar')
+  end
 end
