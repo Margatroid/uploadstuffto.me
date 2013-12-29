@@ -37,8 +37,11 @@ describe "albums/show" do
 
   it 'shows album image descriptions' do
     AlbumImage.any_instance.stub(:save).and_return(true)
-    @album.album_images = [stub_model(AlbumImage,  description: 'foo', album_id: 1),
-                           stub_model(AlbumImage,  description: 'bar', album_id: 1)]
+    Album.any_instance.stub(:has_images?).and_return(true)
+    @album.album_images = [
+      stub_model(AlbumImage,  description: 'foo', album_id: 1, image: stub_model(Image, key: 'hello')),
+      stub_model(AlbumImage,  description: 'bar', album_id: 1, image: stub_model(Image, key: 'world'))
+    ]
     render
     expect(rendered).to match('foo')
     expect(rendered).to match('bar')
