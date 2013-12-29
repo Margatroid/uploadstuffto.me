@@ -33,7 +33,7 @@ NoMoreIdeas::Application.routes.draw do
   post '/albums'          => 'albums#create'
   get '/albums/:key'      => 'albums#show',    as: 'album'
   get '/albums/:key/edit' => 'albums#edit',    as: 'edit_album'
-  put '/albums/:key'      => 'albums#update'
+  patch '/albums/:key'    => 'albums#update',  as: 'update_album'
   delete '/albums/:key'   => 'albums#destroy', as: 'destroy_album'
 
   # Handle "add to album" or "delete" submissions.

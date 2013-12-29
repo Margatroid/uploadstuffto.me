@@ -28,7 +28,7 @@ describe AlbumsController do
     end
 
     it "routes to #update" do
-      put("/albums/abcde").should route_to("albums#update", :key => "abcde")
+      patch("/albums/abcde").should route_to("albums#update", :key => "abcde")
     end
 
     it "routes to #destroy" do
