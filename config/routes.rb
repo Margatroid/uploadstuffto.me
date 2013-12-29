@@ -29,7 +29,6 @@ NoMoreIdeas::Application.routes.draw do
 
   # Declare album routes based on key.
   get '/albums/new'       => 'albums#new',     as: 'new_album'
-  get '/albums'           => 'albums#index',   as: 'albums'
   post '/albums'          => 'albums#create'
   get '/albums/:key'      => 'albums#show',    as: 'album'
   get '/albums/:key/edit' => 'albums#edit',    as: 'edit_album'

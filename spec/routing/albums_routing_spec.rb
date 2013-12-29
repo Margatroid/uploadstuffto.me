@@ -4,7 +4,7 @@ describe AlbumsController do
   describe "routing" do
 
     it "routes to #index" do
-      get("/albums").should route_to("albums#index")
+      expect(:get => "/albums").not_to be_routable
     end
 
     it 'routes to #index with username param' do
