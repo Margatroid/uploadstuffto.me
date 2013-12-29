@@ -5,6 +5,8 @@ class Album < ActiveRecord::Base
   has_many :album_images, -> { order('position DESC') }, :dependent => :destroy
   has_many :images, through: :album_images
 
+  accepts_nested_attributes_for :album_images
+
   include IdentifiableByKey
 
   def add_images(current_user, image_ids)

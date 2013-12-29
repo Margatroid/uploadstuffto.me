@@ -22,6 +22,15 @@
     <%= f.label :title %><br>
     <%= f.text_field :title %>
   </div>
+
+  <%= f.fields_for(:album_images, @album.album_images) do |album_image_fields| %>
+    <p>
+      <%= image_tag album_image_fields.object.image.file.url(:thumb, timestamp: false) %><br>
+      <%= album_image_fields.label :description %><br>
+      <%= album_image_fields.text_area :description %>
+    </p>
+  <% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>

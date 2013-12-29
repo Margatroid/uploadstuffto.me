@@ -24,11 +24,12 @@ describe "albums/edit" do
     end
   end
 
-  it 'renders each image in the album' do
+  it 'renders each image in the album along with description fields' do
     render
 
-    @user.images.first(2).each do |image|
-      assert_select "img[src='#{ image.file.path(:thumb) }']"
+    @user.images.first(2).each_with_index do |image, index|
+      assert_select "img[src='/thumb/#{ image.key }.jpg']"
+      assert_select "textarea[name='album[album_images_attributes][#{ index }][description]']"
     end
   end
 end
