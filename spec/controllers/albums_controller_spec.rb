@@ -45,12 +45,6 @@ describe AlbumsController do
   let(:valid_session) { {} }
 
   describe "GET index" do
-    it 'assigns no albums for now' do
-      album = Album.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:albums).should eq([])
-    end
-
     it "will only get a user's albums when a username is in the params" do
       album = Album.create! valid_attributes
       another_album = Album.create!({ title: 'x', user_id: 2 })
