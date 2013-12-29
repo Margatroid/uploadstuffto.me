@@ -62,14 +62,6 @@ describe AlbumsController do
       get :show, {:key => album.to_param}, valid_session
       assigns(:album).should eq(album)
     end
-
-    it "assigns the album's images to @images" do
-      user = create(:user_with_image)
-      album = Album.create! valid_attributes
-      album.album_images.create(:image_id => 1)
-      get :show, {:key => album.to_param}
-      assigns(:images).should eq([Image.first])
-    end
   end
 
   describe "GET new" do
