@@ -8,9 +8,9 @@ describe "albums/edit" do
       :key => "YourString"
     ))
 
-    user = create(:user_with_images)
+    @user = create(:user_with_images)
 
-    user.images.first(2).each do |image|
+    @user.images.first(2).each do |image|
       @album.album_images.create(image_id: image.id)
     end
   end
@@ -25,5 +25,10 @@ describe "albums/edit" do
   end
 
   it 'renders each image in the album' do
+    render
+
+    @user.images.first(2).each do |image|
+      assert_select "img[src='#{ image.file.path(:thumb) }']"
+    end
   end
 end
