@@ -58,12 +58,12 @@ describe AlbumsController do
 
   describe "GET index" do
     before(:each) do
-      public_album = Album.create! ({ title:   'My public album',
-                                      user_id: 1,
-                                      public: true })
-      private_album = Album.create! ({ title:  'My private album',
+      @public_album = Album.create! ({ title:   'My public album',
                                        user_id: 1,
-                                       public: false })
+                                       public: true })
+      @private_album = Album.create! ({ title:  'My private album',
+                                        user_id: 1,
+                                        public: false })
     end
 
     context 'when logged in' do
@@ -72,17 +72,18 @@ describe AlbumsController do
       end
 
       it 'will assign my public and private albums' do
-        expect(assigns(:album)).to eq([public_album, private_album])
+        expect(assigns(:album)).to eq([@public_album, @private_album])
       end
     end
 
     context 'when logged out' do
       before(:each) do
         logout(:user)
+        get :index, { username: @me.username }, valid_session
       end
 
       it 'will only assign my public albums' do
-        expect(assigns(:album)).to eq([public_album])
+        expect(assigns(:album)).to eq([@public_album])
       end
     end
   end
