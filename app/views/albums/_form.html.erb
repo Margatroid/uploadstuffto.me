@@ -31,6 +31,9 @@
     </p>
   <% end %>
 
+  <%= f.check_box(:public) %>
+  <%= f.label(:public, 'Publicly visible for everyone else.') %>
+
   <div class="actions">
     <%= f.submit %>
   </div>
