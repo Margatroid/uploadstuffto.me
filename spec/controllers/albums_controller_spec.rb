@@ -72,7 +72,7 @@ describe AlbumsController do
       end
 
       it 'will assign my public and private albums' do
-        expect(assigns(:album)).to eq([@public_album, @private_album])
+        expect(assigns(:albums)).to eq([@public_album, @private_album])
       end
     end
 
@@ -83,7 +83,7 @@ describe AlbumsController do
       end
 
       it 'will only assign my public albums' do
-        expect(assigns(:album)).to eq([@public_album])
+        expect(assigns(:albums)).to eq([@public_album])
       end
     end
   end
