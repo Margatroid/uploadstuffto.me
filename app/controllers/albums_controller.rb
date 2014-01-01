@@ -8,15 +8,11 @@ class AlbumsController < ApplicationController
   # GET /albums.json
   # GET /profile/:username/albums
   def index
-    if params[:username]
-      @user = User.find_by_username(params[:username])
-      if current_user == @user
-        @albums = @user.albums
-      else
-        @albums = @user.albums.where(:public => true)
-      end
+    @user = User.find_by_username(params[:username])
+    if current_user == @user
+      @albums = @user.albums
     else
-      @albums = []
+      @albums = @user.albums.where(:public => true)
     end
   end
 
