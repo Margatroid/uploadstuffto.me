@@ -10,7 +10,11 @@ class AlbumsController < ApplicationController
   def index
     if params[:username]
       @user = User.find_by_username(params[:username])
-      @albums = @user.albums
+      if current_user == @user
+        @albums = @user.albums
+      else
+        @albums = @user.albums.where(:public => true)
+      end
     else
       @albums = []
     end
