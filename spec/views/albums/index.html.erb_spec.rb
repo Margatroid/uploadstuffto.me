@@ -58,7 +58,7 @@ describe 'albums/index' do
       stub_model(Album,
         :title   => 'My private album',
         :key     => 'private',
-        :public  => true,
+        :public  => false,
         :user_id => 1
       )
     ])
