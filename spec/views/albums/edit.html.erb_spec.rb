@@ -32,4 +32,9 @@ describe "albums/edit" do
       assert_select "textarea[name='album[album_images_attributes][#{ index }][description]']"
     end
   end
+
+  it 'renders the public/private checkbox' do
+    render
+    expect(rendered).to have_selector('input[name="album[public]"]')
+  end
 end
