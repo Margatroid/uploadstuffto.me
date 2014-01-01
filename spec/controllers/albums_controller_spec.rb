@@ -56,6 +56,37 @@ describe AlbumsController do
     end
   end
 
+  describe "GET index" do
+    before(:each) do
+      public_album = Album.create! { title:   'My public album',
+                                     user_id: 1,
+                                     public: true }
+      private_album = Album.create! { title:  'My private album',
+                                      user_id: 1,
+                                      public: false }
+    end
+
+    context 'when logged in' do
+      before(:each) do
+        get :index, { username: @me.username }, valid_session
+      end
+
+      it 'will assign my public and private albums' do
+        expect(assigns(:album)).to eq([public_album, private_album])
+      end
+    end
+
+    context 'when logged out' do
+      before(:each) do
+        logout(:user)
+      end
+
+      it 'will only assign my public albums' do
+        expect(assigns(:album)).to eq([public_album])
+      end
+    end
+  end
+
   describe "GET show" do
     it "assigns the requested album as @album" do
       album = Album.create! valid_attributes
