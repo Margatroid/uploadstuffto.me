@@ -78,7 +78,7 @@ describe AlbumsController do
 
     context 'when logged out' do
       before(:each) do
-        logout(:user)
+        controller.stub :current_user => nil
         get :index, { username: @me.username }, valid_session
       end
 
