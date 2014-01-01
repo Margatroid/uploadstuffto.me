@@ -25,12 +25,14 @@ describe "albums/index" do
   before(:each) do
     assign(:albums, [
       stub_model(Album,
-        :title => 'Title',
-        :key   => 'hello'
+        :title  => 'Title',
+        :key    => 'hello',
+        :public => true
       ),
       stub_model(Album,
-        :title => 'Title',
-        :key   => 'world'
+        :title  => 'Title',
+        :key    => 'world',
+        :public => true
       )
     ])
 
