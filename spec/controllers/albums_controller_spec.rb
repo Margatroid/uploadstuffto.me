@@ -58,12 +58,12 @@ describe AlbumsController do
 
   describe "GET index" do
     before(:each) do
-      public_album = Album.create! { title:   'My public album',
-                                     user_id: 1,
-                                     public: true }
-      private_album = Album.create! { title:  'My private album',
+      public_album = Album.create! ({ title:   'My public album',
                                       user_id: 1,
-                                      public: false }
+                                      public: true })
+      private_album = Album.create! ({ title:  'My private album',
+                                       user_id: 1,
+                                       public: false })
     end
 
     context 'when logged in' do
