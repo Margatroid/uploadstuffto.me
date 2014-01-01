@@ -89,6 +89,6 @@ class AlbumsController < ApplicationController
     def album_params
       params.require(:album)
             .permit(:title, :user_id, :add_to_album, :selected, { selected: [] },
-                    { album_images_attributes: [:id, :description] })
+                    { album_images_attributes: [:id, :description] }, :public)
     end
 end

@@ -36,7 +36,8 @@ describe AlbumsController do
   # adjust the attributes here as well.
   let(:valid_attributes) { {
     "title" => "MyString",
-    "user_id" => 1
+    "user_id" => 1,
+    "public" => true
   } }
 
   # This should return the minimal set of values that should be in the session
@@ -123,6 +124,7 @@ describe AlbumsController do
         post :create, {:album => valid_attributes}, valid_session
         assigns(:album).should be_a(Album)
         assigns(:album).should be_persisted
+        expect(assigns(:album).public?).to be_true
       end
 
       it "redirects to the created album" do
