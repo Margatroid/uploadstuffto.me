@@ -9,15 +9,15 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
  *= require purecss
  *= require purecss-addons
+ *= require_tree .
  */
 
 .tiles .tile {
   padding: 2px;
   margin:  2px;
-  border:  2px solid #EEE;
+  border:  2px solid;
 }
 
 .tile img {
@@ -48,11 +48,6 @@
 
 .edit-mode-tiles img {
   display: block;
-}
-
-.tile.checked {
-  border-color:     #0078E7;
-  background-color: #91C1ED;
 }
 
 .tile .small-img, .tile .small-img img {

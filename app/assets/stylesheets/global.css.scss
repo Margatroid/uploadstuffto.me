@@ -1,4 +1,32 @@
 @import 'colours';
 
+h1, h2, h3 {
+  color: $header-colour;
+}
+
+.pure-menu.pure-menu-open {
+  background-color: $menu-background;
+  color: $dark-text-colour;
+}
+
+.pure-menu a, .pure-menu .pure-menu-heading {
+  color: $dark-text-colour;
+}
+
+.pure-menu li a:hover, .pure-menu li a:focus {
+  background-color: $menu-hover;
+}
+
 body {
+  color: $text-colour;
+  background-color: $page-background;
+}
+
+.tile.checked {
+  border-color:     #0078E7;
+  background-color: #91C1ED;
+}
+
+.tiles .tile {
+  border-color: $header-colour;
 }
