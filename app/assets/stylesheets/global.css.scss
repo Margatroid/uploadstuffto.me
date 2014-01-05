@@ -39,3 +39,8 @@ body a {
   background-color: $input-background;
   box-shadow:       none;
 }
+
+.pure-form input[type=submit] {
+  background-color: $submit-button;
+  color:            $submit-button-text;
+}
