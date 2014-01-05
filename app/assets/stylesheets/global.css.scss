@@ -33,3 +33,9 @@ body a {
 .tiles .tile {
   border-color: $tile-border-colour;
 }
+
+.pure-form input[type], .pure-form input {
+  color:            $text-colour;
+  background-color: $input-background;
+  box-shadow:       none;
+}
