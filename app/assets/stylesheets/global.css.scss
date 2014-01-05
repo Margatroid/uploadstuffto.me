@@ -22,6 +22,10 @@ body {
   background-color: $page-background;
 }
 
+body a {
+  color: $url-colour;
+}
+
 .tile.checked {
   border-color:     #0078E7;
   background-color: #91C1ED;
