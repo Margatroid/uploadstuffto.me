@@ -9,20 +9,24 @@
 
     <p>
       <%= f.label :invite_key %><br />
-      <input id="user_invite_key" name="invite_key" type="text" autofocus="autofocus" />
+      <input placeholder="Invite key"
+             id="user_invite_key"
+             name="invite_key"
+             type="text"
+             autofocus="autofocus" />
     </p>
 
     <p><%= f.label :username %><br />
-    <%= f.text_field :username %></p>
+    <%= f.text_field :username, :placeholder => 'Username' %></p>
 
     <p><%= f.label :email %><br />
-    <%= f.email_field :email %></p>
+    <%= f.email_field :email, :placeholder => 'Email' %></p>
 
     <p><%= f.label :password %><br />
-    <%= f.password_field :password %></p>
+    <%= f.password_field :password, :placeholder => 'Password' %></p>
 
     <p><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %></p>
+    <%= f.password_field :password_confirmation, :placeholder => 'Confirm Password' %></p>
 
     <p><%= f.submit("Register", :class => 'pure-button pure-button-primary') %></p>
   <% end %>
