@@ -3,7 +3,10 @@
 <% end -%>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= button_to "Sign up", new_registration_path(resource_name), :class => 'pure-button' %><br />
+  <%= button_to 'Register',
+                '/register',
+                :class => 'pure-button',
+                :method => :get %><br />
 <% end -%>
 
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
