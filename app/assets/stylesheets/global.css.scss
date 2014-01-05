@@ -6,11 +6,10 @@ h1, h2, h3 {
 
 .pure-menu.pure-menu-open {
   background-color: $menu-background;
-  color: $menu-text-colour;
 }
 
 .pure-menu a, .pure-menu .pure-menu-heading {
-  color: $menu-text-colour;
+  color: $text-colour;
 }
 
 .pure-menu li a:hover, .pure-menu li a:focus {
@@ -23,7 +22,7 @@ body {
 }
 
 body a {
-  color: $url-colour;
+  color: $header-colour;
 }
 
 .tiles .tile.checked {
