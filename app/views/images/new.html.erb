@@ -10,6 +10,6 @@
 <h3>Upload file from URL</h3>
 <%= form_for @image, :url => images_path do |f| %>
   <%= label_tag(:image_url, 'Upload from URL') %>
-  <input id="image_url" name="image[url]" type="url" />
+  <input placeholder="Upload from URL" id="image_url" name="image[url]" type="url" />
   <%= submit_tag 'Upload from this URL' %>
 <% end %>
