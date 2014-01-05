@@ -1,27 +1,30 @@
 <div class="l-box">
   <h2>Register new account</h2>
 
-  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= form_for(resource,
+               :as => resource_name,
+               :url => registration_path(resource_name),
+               :html => {:class => 'pure-form'}) do |f| %>
     <%= devise_error_messages! %>
 
-    <div>
+    <p>
       <%= f.label :invite_key %><br />
       <input id="user_invite_key" name="invite_key" type="text" autofocus="autofocus" />
-    </div>
+    </p>
 
-    <div><%= f.label :username %><br />
-    <%= f.text_field :username %></div>
+    <p><%= f.label :username %><br />
+    <%= f.text_field :username %></p>
 
-    <div><%= f.label :email %><br />
-    <%= f.email_field :email %></div>
+    <p><%= f.label :email %><br />
+    <%= f.email_field :email %></p>
 
-    <div><%= f.label :password %><br />
-    <%= f.password_field :password %></div>
+    <p><%= f.label :password %><br />
+    <%= f.password_field :password %></p>
 
-    <div><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %></div>
+    <p><%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %></p>
 
-    <div><%= f.submit "Register" %></div>
+    <p><%= f.submit("Register", :class => 'pure-button pure-button-primary') %></p>
   <% end %>
 
   <%= render "devise/shared/links" %>
