@@ -26,10 +26,10 @@ body a {
 }
 
 .tiles .tile.checked {
-  border-color:     $menu-hover;
-  background-color: $menu-background;
+  border-color:     $text-colour;
+  background-color: $success-background;
 }
 
 .tiles .tile {
-  border-color: $header-colour;
+  border-color: $tile-border-colour;
 }
