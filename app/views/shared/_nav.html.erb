@@ -1,10 +1,14 @@
 <div class="pure-menu pure-menu-open pure-menu-horizontal">
-  <%= link_to 'Home',
-              root_path,
-              { class: 'pure-menu-heading', id: 'homepage_link' }
-  %>
-
   <ul>
+    <li>
+      <strong>
+        <%= link_to 'uploadstuffto.me',
+                    root_path,
+                    { class: 'pure-menu-selected', id: 'homepage_link' }
+        %>
+      </strong>
+    </li>
+
     <% if user_signed_in? %>
       <li>
         <%= link_to 'My profile', user_path(current_user),
