@@ -16,6 +16,7 @@ class Image < ActiveRecord::Base
   has_attached_file :file,
     :styles => { :thumb => '200x200#' },
     :convert_options => { :thumb => '-quality 75 -strip' },
+    :source_file_options => { :all => '-limit memory 64MiB -limit map 64MiB' },
     :path => 'public/:style/:basename:extension',
     :url => '/:style/:basename:extension'
 
