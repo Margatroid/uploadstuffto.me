@@ -31,8 +31,8 @@ imagemagick (for thumbnail generation) and ruby 2.0.0p247 or above.
         bundle install
 
 4. Setup development database. If you get an error about not being able
-to find a JavaScript runtime, add `therubyracer` to the Gemfile and run
-bundler again.
+to find a JavaScript runtime, install NodeJS or add `therubyracer` to the
+Gemfile and run bundler again.
 
         rake db:setup
 
