@@ -30,7 +30,7 @@ imagemagick (for thumbnail generation) and ruby 2.0.0p247 or above.
 
         bundle install
 
-4. Setup database. If you get an error about not being able
+4. Setup development database. If you get an error about not being able
 to find a JavaScript runtime, add `therubyracer` to the Gemfile and run
 bundler again.
 
@@ -45,10 +45,11 @@ has gone wrong during the installation.
 
         rspec
 
-7. Generate an invite for yourself so you can register a new account.
+7. Generate an invite for yourself so you can register a new account on the
+development environment.
 
         rake 'invite:create[My first invite, 1]'
 
-8. Start the server. Go to `http://localhost:3000` in your browser.
+8. Start the development server. Go to `http://localhost:3000` in your browser.
 
         rails server
