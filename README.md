@@ -31,8 +31,8 @@ imagemagick (for thumbnail generation) and ruby 2.0.0p247 or above.
         bundle install
 
 4. Setup database. If you get an error about not being able
-  to find a JavaScript runtime, add `therubyracer` to the Gemfile and run
-  bundler again.
+to find a JavaScript runtime, add `therubyracer` to the Gemfile and run
+bundler again.
 
         rake db:setup
 
@@ -41,7 +41,7 @@ imagemagick (for thumbnail generation) and ruby 2.0.0p247 or above.
         RAILS_ENV=test rake db:setup
 
 6. Run full test suite. Failing tests may be a sign that something
-  has gone wrong during the installation.
+has gone wrong during the installation.
 
         rspec
 
