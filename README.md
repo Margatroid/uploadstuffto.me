@@ -20,35 +20,35 @@ imagemagick (for thumbnail generation) and ruby 2.0.0p247 or above.
 
 1. Clone repo.
 
-  `git clone https://github.com/Margatroid/uploadstuffto.me.git`
+        git clone https://github.com/Margatroid/uploadstuffto.me.git
 
 2. Change directory to repo.
 
-  `cd uploadstuffto.me`
+        cd uploadstuffto.me
 
 3. Install required gems.
 
-  `bundle install`
+        bundle install
 
 4. Setup database. If you get an error about not being able
   to find a JavaScript runtime, add `therubyracer` to the Gemfile and run
   bundler again.
 
-  `rake db:setup`
+        rake db:setup
 
 5. Setup test database.
 
-  `RAILS_ENV=test rake db:setup`
+        RAILS_ENV=test rake db:setup
 
 6. Run full test suite. Failing tests may be a sign that something
   has gone wrong during the installation.
 
-  `rspec`
+        rspec
 
 7. Generate an invite for yourself so you can register a new account.
 
-  `rake 'invite:create[My first invite, 1]'`
+        rake 'invite:create[My first invite, 1]'
 
 8. Start the server. Go to `http://localhost:3000` in your browser.
 
-  `rails server`
+        rails server
