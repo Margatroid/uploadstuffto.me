@@ -51,6 +51,11 @@
   display: block;
 }
 
+.tile {
+  width:  200px;
+  height: 200px;
+}
+
 .tile .small-img, .tile .small-img img {
   min-width: 70px; /* Odd quirk */
   width:     70px;
