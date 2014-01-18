@@ -11,6 +11,7 @@ describe "images/edit" do
   it "renders the edit image form" do
     render
     assert_select "input#image_public"
+    assert_select "textarea[placeholder='Description']#image_description"
   end
 
   it "has a thumbnail so you don't forget what you're editing" do
