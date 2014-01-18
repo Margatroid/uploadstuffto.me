@@ -20,13 +20,21 @@
       <%= f.hidden_field :add_to_album, :value => params[:add_to_album] %>
     <% end %>
 
+    <legend>Album images</legend>
+
     <%= f.fields_for(:album_images, @album.album_images) do |album_image_fields| %>
-      <p>
-        <%= image_tag album_image_fields.object.image.file.url(:thumb) %><br>
-        <%= album_image_fields.label :description %><br>
-        <%= album_image_fields.text_area :description %>
-      </p>
+      <div class="pure-control-group">
+        <label></label>
+        <%= image_tag album_image_fields.object.image.file.url(:thumb) %>
+      </div>
+      <div class="pure-control-group">
+        <%= album_image_fields.label :description %>
+        <%= album_image_fields.text_area(:description,
+                                         :placeholder => 'Description') %>
+      </div>
     <% end %>
+
+    <legend>Album properties</legend>
 
     <div class="pure-control-group">
       <%= f.label :title %>
