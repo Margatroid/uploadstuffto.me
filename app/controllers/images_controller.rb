@@ -36,6 +36,17 @@ class ImagesController < ApplicationController
       end
     else
       create_from_file
+      if @images_saved.count > 1
+        respond_to do |format|
+          format.html do
+            @images = @images_saved
+            params[:selected] = @images.map { |image| image.id }
+            flash[:notice] = "#{ @images.count } images uploaded successfully."
+            new_album
+            return
+          end
+        end
+      end
     end
 
     respond_to do |format|
@@ -116,11 +127,13 @@ class ImagesController < ApplicationController
     end
 
     def create_from_file
+      @images_saved = []
       return if image_params[:file].nil?
       image_params[:file].each do |file|
         image = { file: file }
         @image = current_user.images.new(image)
         break unless @image.save
+        @images_saved.push(@image)
       end
     end
 
