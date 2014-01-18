@@ -48,6 +48,12 @@ describe ImagesController do
     :file => [fixture_file_upload('chicken_rice.jpg')]
   } }
 
+  let(:two_image_post) { {
+    :user_id => 1,
+    :file => [fixture_file_upload('chicken_rice.jpg'),
+              fixture_file_upload('sushi.jpg')]
+  } }
+
   let(:invalid_attributes) { {
     :user_id => 2,
     :description => 'wolol',
@@ -93,6 +99,13 @@ describe ImagesController do
       it "redirects to the created image" do
         post :create, {:image => multi_image_post}, valid_session
         response.should redirect_to(Image.last)
+      end
+    end
+
+    describe "uploading two images" do
+      it "prompts you to create a new album with those two images" do
+        post :create, { :image => two_image_post }, valid_session
+        expect(response).to redirect_to(new_album_path)
       end
     end
 
