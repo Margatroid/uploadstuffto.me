@@ -34,7 +34,7 @@ body a {
   border-color: $tile-border-colour;
 }
 
-.pure-form input[type], .pure-form input {
+.pure-form input[type], .pure-form input, .pure-form textarea {
   color:            $text-colour;
   background-color: $input-background;
   box-shadow:       none;
