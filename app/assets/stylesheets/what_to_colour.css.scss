@@ -49,10 +49,10 @@ body a {
   color: $flash-message;
 }
 
-.flash.success {
+.flash.success, .flash.notice {
   background-color: $success-background;
 }
 
-.flash.error {
+.flash.error, .flash.alert {
   background-color: $error-background;
 }
