@@ -60,7 +60,7 @@ describe 'my recent uploads widget', :type => :feature do
     )
 
     thumb = page.first('#my_recent_uploads img')
-    thumb[:src].should eq(Image.first.file.url(:thumb))
+    thumb[:src].should eq(Image.first.file.url(:thumb, timestamp: false))
   end
 end
 
@@ -96,7 +96,7 @@ describe "everyone else's recent uploads widget", :type => :feature do
   it "should show someone else's upload" do
     widget        = page.first("#{ widget_id } .tile img")
     expected_href = get_image_path(@someone_else.images.first)
-    expected_src  = @someone_else.images.first.file.url(:thumb)
+    expected_src  = @someone_else.images.first.file.url(:thumb, timestamp: false)
 
     page.all(:css, "#{ widget_id } a.small-img").count.should eq(1)
     # Expect first and only image in widget to link to someone else's upload.

@@ -54,7 +54,7 @@ describe 'album creation', :type => :feature do
     click_button 'Add to album'
     page.should have_content('New album')
 
-    expected_src = @me.images.last.file.url(:thumb)
+    expected_src = @me.images.last.file.url(:thumb, timestamp: false)
     page.first('img')[:src].should eq(expected_src)
   end
 end

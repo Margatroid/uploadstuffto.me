@@ -42,7 +42,7 @@ describe 'private images', :type => :feature do
       recently_upload_images = page.all(:css, '#recent_uploads .small-img img')
       srcs  = recently_upload_images.map { |image| image[:src] }
 
-      expected_srcs  = Image.all.map { |image| image.file.url(:thumb) }
+      expected_srcs  = Image.all.map { |image| image.file.url(:thumb, timestamp: false) }
       srcs.should    =~ expected_srcs
     end
 
@@ -53,7 +53,7 @@ describe 'private images', :type => :feature do
       recently_upload_images = page.all(:css, '#my_recent_uploads .small-img img')
       srcs  = recently_upload_images.map { |image| image[:src] }
 
-      expected_srcs  = Image.all.map { |image| image.file.url(:thumb) }
+      expected_srcs  = Image.all.map { |image| image.file.url(:thumb, timestamp: false) }
       srcs.should    =~ expected_srcs
     end
 

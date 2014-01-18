@@ -67,7 +67,7 @@ describe 'image gallery', :type => :feature do
       srcs  = recently_upload_images.map { |image| image[:src] }
       hrefs = gallery_links.map { |link| link[:href] }
 
-      expected_srcs  = Image.all.map { |image| image.file.url(:thumb) }
+      expected_srcs  = Image.all.map { |image| image.file.url(:thumb, timestamp: false) }
       expected_hrefs = Image.all.map do |image|
         Rails.application.routes.url_helpers.image_path(image)
       end
@@ -112,14 +112,14 @@ describe 'image gallery pagination', :type => :feature do
     it 'will have first image on page 2' do
       first(:link, '2').click
       images_in_widget = page.all(:css, "#recent_uploads .small-img img")
-      images_in_widget[0][:src].should eq(Image.first.file.url(:thumb))
+      images_in_widget[0][:src].should eq(Image.first.file.url(:thumb, timestamp: false))
     end
 
     it 'will not have the last uploaded image on page 2' do
       first(:link, '2').click
       images_in_widget = page.all(:css, "#recent_uploads small-img img")
       images_in_widget.each do |image|
-        image[:src].should_not eq(Image.last.file.url(:thumb))
+        image[:src].should_not eq(Image.last.file.url(:thumb, timestamp: false))
       end
     end
   end
