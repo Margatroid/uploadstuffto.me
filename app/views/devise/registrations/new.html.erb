@@ -4,32 +4,42 @@
   <%= form_for(resource,
                :as => resource_name,
                :url => registration_path(resource_name),
-               :html => {:class => 'pure-form'}) do |f| %>
-    <%= devise_error_messages! %>
+               :html => {:class => 'pure-form pure-form-aligned'}) do |f| %>
+    <fieldset>
+      <%= devise_error_messages! %>
 
-    <p>
-      <%= f.label :invite_key %><br />
-      <input placeholder="Invite key"
-             id="user_invite_key"
-             name="invite_key"
-             type="text"
-             autofocus="autofocus" />
-    </p>
+      <div class="pure-control-group">
+        <%= f.label :invite_key %>
+        <input placeholder="Invite key"
+               id="user_invite_key"
+               name="invite_key"
+               type="text"
+               autofocus="autofocus" />
+      </div>
 
-    <p><%= f.label :username %><br />
-    <%= f.text_field :username, :placeholder => 'Username' %></p>
+      <div class="pure-control-group">
+        <%= f.label :username %>
+        <%= f.text_field :username, :placeholder => 'Username' %>
+      </div>
 
-    <p><%= f.label :email %><br />
-    <%= f.email_field :email, :placeholder => 'Email' %></p>
+      <div class="pure-control-group">
+        <%= f.label :email %>
+        <%= f.email_field :email, :placeholder => 'Email' %>
+      </div>
 
-    <p><%= f.label :password %><br />
-    <%= f.password_field :password, :placeholder => 'Password' %></p>
+      <div class="pure-control-group">
+        <%= f.label :password %>
+        <%= f.password_field :password, :placeholder => 'Password' %>
+      </div>
 
-    <p><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, :placeholder => 'Confirm Password' %></p>
+      <div class="pure-control-group">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, :placeholder => 'Password confirmation' %>
+      </div>
 
-    <p><%= f.submit("Register", :class => 'pure-button pure-button-primary') %></p>
+      <div class="pure-controls">
+        <%= f.submit("Register", :class => 'pure-button pure-button-primary') %>
+      </div>
+    </fieldset>
   <% end %>
-
-  <p><%= render "devise/shared/links" %></p>
 </div>
