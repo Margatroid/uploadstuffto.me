@@ -49,7 +49,7 @@ describe 'registration with invalid keys', :type => :feature do
     register('hello@world.com', onceoff.key)
     expect(page).to have_content 'You have signed up successfully'
 
-    click_link 'Log out'
+    click_link('Log out', match: :first)
 
     register('hello_again@world.com', onceoff.key)
     expect(page).to have_content 'invalid'
@@ -62,7 +62,7 @@ describe 'registration with invalid keys', :type => :feature do
     (1..5).each do |i|
       register("hello#{ i }@world.com", multiple.key)
       expect(page).to have_content 'You have signed up successfully'
-      click_link 'Log out'
+      click_link('Log out', match: :first)
     end
 
     register('sixth@time.com', multiple.key)
@@ -79,7 +79,7 @@ describe 'signing out process', :type => :feature do
     login(user.email, user.password)
     expect(page).to have_content 'Signed in successfully.'
 
-    click_link 'Log out'
+    click_link('Log out', match: :first)
     expect(page).to have_content 'You have logged out.'
   end
 end

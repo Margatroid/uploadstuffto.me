@@ -1,4 +1,4 @@
-<div class="pure-menu pure-menu-open pure-menu-horizontal">
+<div class="pure-menu pure-menu-open pure-menu-horizontal pure-hidden-phone">
   <ul>
     <li>
       <strong>
@@ -13,6 +13,29 @@
       <li>
         <%= link_to 'My profile', user_path(current_user),
           { class: 'pure-menu-selected', id: 'my_profile_link' } %>
+      </li>
+
+      <li>
+        <%= link_to 'Log out', destroy_user_session_path, :method => :delete %>
+      </li>
+    <% else %>
+      <li><%= link_to "Register", new_user_registration_path %></li>
+      <li><%= link_to "Log in", new_user_session_path %></li>
+    <% end %>
+  </ul>
+</div>
+
+<div class="phone-nav pure-hidden-tablet pure-hidden-desktop pure-menu pure-menu-open">
+  <ul>
+    <li>
+      <strong>
+        <%= link_to 'uploadstuffto.me', root_path %>
+      </strong>
+    </li>
+
+    <% if user_signed_in? %>
+      <li>
+        <%= link_to 'My profile', user_path(current_user) %>
       </li>
 
       <li>

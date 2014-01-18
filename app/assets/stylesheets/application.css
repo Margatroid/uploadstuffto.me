@@ -77,3 +77,7 @@
 .float-left {
   float: left;
 }
+
+.phone-nav.pure-menu.pure-menu-open {
+  border: none;
+}
