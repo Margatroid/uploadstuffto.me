@@ -1,4 +1,4 @@
-<%= form_for(@image) do |f| %>
+<%= form_for(@image, :html => { :class => 'pure-form' }) do |f| %>
   <% if @image.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@image.errors.count, "error") %> prohibited this image from being saved:</h2>
@@ -11,13 +11,17 @@
     </div>
   <% end %>
 
-  <%= f.check_box(:public) %>
-  <%= f.label(:public, 'Publicly visible for everyone else.') %>
+  <p>
+    <%= f.check_box(:public) %>
+    <%= f.label(:public, 'Publicly visible for everyone else.') %>
+  </p>
 
-  <%= f.label(:description) %>
-  <%= f.text_area(:description, placeholder: 'Description') %>
+  <p>
+    <%= f.label(:description) %>
+    <%= f.text_area(:description, placeholder: 'Description') %>
+  </p>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit(class: 'pure-button pure-button-primary') %>
   </div>
 <% end %>
