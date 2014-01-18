@@ -11,8 +11,8 @@
     <% end %>
 
     <div>
-      <%= link_to @image.file.url(:original, timestamp: false) do %>
-        <%= image_tag @image.file.url(:original, timestamp: false), { id: 'fullsize_image' } %>
+      <%= link_to @image.file.url(:original) do %>
+        <%= image_tag @image.file.url(:original), { id: 'fullsize_image' } %>
       <% end %>
     </div>
 
