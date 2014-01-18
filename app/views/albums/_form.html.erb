@@ -1,40 +1,45 @@
-<%= form_for(@album) do |f| %>
-  <% if @album.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@album.errors.count, "error") %> prohibited this album from being saved:</h2>
+<%= form_for(@album,
+             :html => {:class => 'pure-form pure-form-aligned'} ) do |f| %>
+  <fieldset>
+    <% if @album.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@album.errors.count, "error") %> prohibited this album from being saved:</h2>
 
-      <ul>
-      <% @album.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <% if params[:selected] %>
-    <% params[:selected].each do |selected_image_id| %>
-      <%= hidden_field_tag 'album[selected][]', selected_image_id %>
+        <ul>
+        <% @album.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     <% end %>
-    <%= f.hidden_field :add_to_album, :value => params[:add_to_album] %>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
+    <% if params[:selected] %>
+      <% params[:selected].each do |selected_image_id| %>
+        <%= hidden_field_tag 'album[selected][]', selected_image_id %>
+      <% end %>
+      <%= f.hidden_field :add_to_album, :value => params[:add_to_album] %>
+    <% end %>
 
-  <%= f.fields_for(:album_images, @album.album_images) do |album_image_fields| %>
-    <p>
-      <%= image_tag album_image_fields.object.image.file.url(:thumb) %><br>
-      <%= album_image_fields.label :description %><br>
-      <%= album_image_fields.text_area :description %>
-    </p>
-  <% end %>
+    <%= f.fields_for(:album_images, @album.album_images) do |album_image_fields| %>
+      <p>
+        <%= image_tag album_image_fields.object.image.file.url(:thumb) %><br>
+        <%= album_image_fields.label :description %><br>
+        <%= album_image_fields.text_area :description %>
+      </p>
+    <% end %>
 
-  <%= f.check_box(:public) %>
-  <%= f.label(:public, 'Publicly visible for everyone else.') %>
+    <div class="pure-control-group">
+      <%= f.label :title %>
+      <%= f.text_field :title, :placeholder => 'Album title' %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="pure-controls">
+      <%= f.label(:public, class: 'pure-checkbox') do %>
+        <%= f.check_box :public %> Publicly visible for everyone else.
+      <% end %>
+
+      <%= f.submit('Create album',
+                   :class => 'pure-button pure-button-primary') %>
+    </div>
+  </fieldset>
 <% end %>
