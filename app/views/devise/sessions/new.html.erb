@@ -4,19 +4,28 @@
   <%= form_for(resource,
                :as => resource_name,
                :url => session_path(resource_name),
-               :html => {:class => 'pure-form'}) do |f| %>
-    <p><%= f.label :email %><br />
-    <%= f.email_field :email, :autofocus => true, :placeholder => 'Email' %></p>
+               :html => {:class => 'pure-form pure-form-aligned'}) do |f| %>
+    <fieldset>
+      <div class="pure-control-group">
+        <%= f.label :email %>
+        <%= f.email_field :email, :autofocus => true, :placeholder => 'Email' %>
+      </div>
 
-    <p><%= f.label :password %><br />
-    <%= f.password_field :password, :placeholder => 'Password' %></p>
+      <div class="pure-control-group">
+        <%= f.label :password %>
+        <%= f.password_field :password, :placeholder => 'Password' %>
+      </div>
 
-    <% if devise_mapping.rememberable? -%>
-      <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
-    <% end -%>
+      <div class="pure-controls">
+        <% if devise_mapping.rememberable? -%>
+          <%= f.label(:remember_me, class: 'pure-checkbox') do %>
+            <%= f.check_box :remember_me %>
+            Remember me
+          <% end %>
+        <% end %>
 
-    <p><%= f.submit("Sign in", :class => 'pure-button pure-button-primary') %></p>
+        <%= f.submit("Sign in", :class => 'pure-button pure-button-primary') %>
+      </div>
+    </fieldset>
   <% end %>
-
-  <p><%= render "devise/shared/links" %></p>
 </div>
