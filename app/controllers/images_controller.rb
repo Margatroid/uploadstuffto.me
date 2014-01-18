@@ -25,7 +25,8 @@ class ImagesController < ApplicationController
   # POST /images.json
   def create
     if (image_params[:file].nil? && image_params[:url].nil?)
-      return redirect_to root_path, notice: 'No file or URL to upload.'
+      flash[:error] = 'No file or URL to upload.'
+      return redirect_to root_path
     elsif !image_params[:url].nil?
       create_from_url
     else
@@ -59,15 +60,17 @@ class ImagesController < ApplicationController
   def update
     respond_to do |format|
       if current_user.id != @image.user_id
-        error_msg = "Can't edit images that aren't your own."
-        format.html { redirect_to @image, notice: error_msg }
+        flash[:error] = "Can't edit images that aren't your own."
+        format.html { redirect_to @image }
         format.json { render :json => { :errors => error_msg } }
       end
 
       if @image.update(image_params)
-        format.html { redirect_to @image, notice: 'Image successfully updated.' }
+        flash[:success] = 'Image successfully updated.'
+        format.html { redirect_to @image }
         format.json { head :no_content }
       else
+        flash[:error] = 'Failed to update image.'
         format.html { render action: 'edit' }
         format.json { render json: @image.errors, status: :unprocessable_entity }
       end
@@ -85,10 +88,12 @@ class ImagesController < ApplicationController
 
     respond_to do |format|
       if Image.delete_by_ids(current_user, image_ids)
-        format.html { redirect_to user_path(current_user), notice: 'Image(s) deleted.' }
+        flash[:success] = 'Image(s) deleted.'
+        format.html { redirect_to user_path(current_user) }
         format.json { head :no_content }
       else
-        format.html { redirect_to user_path(current_user), notice: 'Error deleting image(s).'}
+        flash[:error] = 'An error occured when deleting image(s).'
+        format.html { redirect_to user_path(current_user) }
         format.json { render json: { errors: 'Error deleting image(s).' } }
       end
     end
