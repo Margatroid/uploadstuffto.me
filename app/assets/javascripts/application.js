@@ -14,8 +14,3 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
-
-placeholderCompatibility = new PlaceholderCompatibility
-
-$(document).ready(placeholderCompatibility.onLoad)
-$(document).on('page:load', placeholderCompatibility.onLoad)
