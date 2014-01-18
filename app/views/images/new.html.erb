@@ -1,19 +1,35 @@
 <h2>Upload image(s)</h2>
 
-<h3>Upload files from computer</h3>
-<%= form_for @image,
-             :url => images_path,
-             :html => { multipart: true, :class => 'pure-form' } do |f| %>
-  <%= f.label 'file' %>
-  <%= f.file_field :file, :multiple => true %>
-  <%= submit_tag('Upload image', :class => 'pure-button') %>
-<% end %>
-
 <h3>Upload file from URL</h3>
 <%= form_for @image,
              :url => images_path,
-             :html => { :class => 'pure-form' } do |f| %>
-  <%= label_tag(:image_url, 'Upload from URL') %>
-  <input placeholder="Upload from URL" id="image_url" name="image[url]" type="url" />
-  <%= submit_tag('Upload from this URL', :class => 'pure-button') %>
+             :html => { :class => 'pure-form pure-form-aligned' } do |f| %>
+  <fieldset>
+    <div class="pure-control-group">
+      <%= label_tag(:image_url, 'Upload from URL') %>
+      <input placeholder="Upload from URL"
+             id="image_url"
+             name="image[url]"
+             type="url" />
+    </div>
+    <div class="pure-controls">
+      <%= submit_tag('Upload from this URL', :class => 'pure-button') %>
+    </div>
+  </fieldset>
+<% end %>
+
+<h3>Upload files from computer</h3>
+<%= form_for @image,
+             :url => images_path,
+             :html => { :multipart => true,
+                        :class     => 'pure-form pure-form-aligned' } do |f| %>
+  <fieldset>
+    <div class="pure-control-group">
+      <%= f.label 'file' %>
+      <%= f.file_field :file, :multiple => true %>
+    </div>
+    <div class="pure-controls">
+      <%= submit_tag('Upload image', :class => 'pure-button') %>
+    </div>
+  </fieldset>
 <% end %>
