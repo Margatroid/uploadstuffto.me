@@ -105,7 +105,8 @@ describe ImagesController do
     describe "uploading two images" do
       it "prompts you to create a new album with those two images" do
         post :create, { :image => two_image_post }, valid_session
-        expect(response).to redirect_to(new_album_path)
+        expect(assigns(:images).count).to eq(2)
+        expect(response).to render_template('albums/new')
       end
     end
 
