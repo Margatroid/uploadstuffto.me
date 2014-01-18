@@ -44,3 +44,15 @@ body a {
   background-color: $submit-button;
   color:            $submit-button-text;
 }
+
+.flash {
+  color: $flash-message;
+}
+
+.flash.success {
+  background-color: $success-background;
+}
+
+.flash.error {
+  background-color: $error-background;
+}

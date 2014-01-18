@@ -34,10 +34,12 @@ class ImagesController < ApplicationController
 
     respond_to do |format|
       unless @image.new_record?
-        format.html { redirect_to @image, notice: 'Image(s) uploaded successfully.' }
+        flash[:success] = 'Image(s) uploaded successfully.'
+        format.html { redirect_to @image }
         format.json { render action: 'show', status: :created, location: @image }
       else
-        format.html { render action: 'new', notice: 'Upload failed.' }
+        flash[:error] = 'Upload failed.'
+        format.html { redirect_to '/' }
         format.json { render json: @image.errors, status: :unprocessable_entity }
       end
     end

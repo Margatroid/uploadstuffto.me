@@ -22,7 +22,7 @@
   <% unless flash.empty? %>
     <div class="pure-u-1">
       <% flash.each do |key, msg| %>
-        <div class="l-box <%= key %>"><%= msg %></div>
+        <div class="l-box flash <%= key %>"><strong><%= msg %></strong></div>
       <% end %>
     </div>
   <% end %>
