@@ -24,22 +24,27 @@ class ImagesController < ApplicationController
   # POST /images
   # POST /images.json
   def create
-    if (image_params[:file].nil? && image_params[:url].nil?)
-      flash[:error] = 'No file or URL to upload.'
-      return redirect_to root_path
+    error_msg = 'Upload failed.'
+
+    if params[:image].nil?
+      error_msg = 'No image file selected for upload.'
     elsif !image_params[:url].nil?
-      create_from_url
+      begin
+        create_from_url
+      rescue
+        error_msg = 'Upload from URL failed.'
+      end
     else
       create_from_file
     end
 
     respond_to do |format|
-      unless @image.new_record?
+      if !@image.nil? && !@image.new_record?
         flash[:success] = 'Image(s) uploaded successfully.'
         format.html { redirect_to @image }
         format.json { render action: 'show', status: :created, location: @image }
       else
-        flash[:error] = 'Upload failed.'
+        flash[:error] = error_msg
         format.html { redirect_to '/' }
         format.json { render json: @image.errors, status: :unprocessable_entity }
       end
@@ -111,6 +116,7 @@ class ImagesController < ApplicationController
     end
 
     def create_from_file
+      return if image_params[:file].nil?
       image_params[:file].each do |file|
         image = { file: file }
         @image = current_user.images.new(image)
