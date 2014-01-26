@@ -8,6 +8,13 @@ describe "users/show.html.erb" do
     rendered.should have_text("berg_katze's profile")
   end
 
+  it 'should set the title correctly' do
+    user = stub_model(User, username: 'foo4000', created_at: DateTime.now)
+    assign(:user, user)
+    render template: 'users/show'
+    expect(view.content_for(:title)).to be("foo4000's profile | uploadstuffto.me")
+  end
+
   context 'when logged in' do
     before(:each) do
       @me  = create(:user_with_image)
