@@ -11,7 +11,7 @@ describe "users/show.html.erb" do
   it 'should set the title correctly' do
     user = stub_model(User, username: 'foo4000', created_at: DateTime.now)
     assign(:user, user)
-    render template: 'users/show'
+    render template: 'users/show', layout: 'layouts/application'
     expect(view.content_for(:title)).to eq("foo4000's profile | uploadstuffto.me")
   end
 
