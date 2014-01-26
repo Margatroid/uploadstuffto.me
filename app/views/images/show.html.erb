@@ -1,3 +1,5 @@
+<% title('Viewing image') %>
+
 <div class="pure-u-1">
   <div class="l-box">
     <% if @image.public? || (user_signed_in? && @image.user == current_user) %>

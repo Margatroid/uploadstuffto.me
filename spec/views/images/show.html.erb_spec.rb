@@ -7,6 +7,12 @@ describe "images/show" do
     @permissions = {}
   end
 
+  it 'sets page title correctly' do
+    render(template: 'images/show', layout: 'layouts/application')
+    expect(view.content_for(:title)).to(
+      eq(ERB::Util.h("Viewing image | uploadstuffto.me").to_s))
+  end
+
   it "renders attributes in <p>" do
     render
     # Run the generator again with the --webrat flag if you want to use webrat matchers
