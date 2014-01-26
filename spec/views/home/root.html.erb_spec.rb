@@ -1,5 +1,10 @@
 require 'spec_helper'
 
 describe "home/root.html.erb" do
-  #pending "add some examples to (or delete) #{__FILE__}"
+  it 'shows the correct title' do
+    assign(:recently_uploaded, [])
+    render(template: 'home/root', layout: 'layouts/application')
+    expect(view.content_for(:title)).to(
+      eq(ERB::Util.h("Home | uploadstuffto.me").to_s))
+  end
 end
