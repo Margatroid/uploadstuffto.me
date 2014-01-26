@@ -12,7 +12,8 @@ describe "users/show.html.erb" do
     user = stub_model(User, username: 'foo4000', created_at: DateTime.now)
     assign(:user, user)
     render template: 'users/show', layout: 'layouts/application'
-    expect(view.content_for(:title)).to eq("foo4000's profile | uploadstuffto.me")
+    expect(view.content_for(:title)).to(
+      eq(ERB::Util.h("foo4000's profile | uploadstuffto.me").to_s))
   end
 
   context 'when logged in' do
